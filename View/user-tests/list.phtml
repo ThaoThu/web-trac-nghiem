@@ -1,16 +1,13 @@
 <div class="center_content">
 
     <div id="right_wrap">
-        <div id="right_content" 
+        <div id="right_content" >
             <h2>Các bài thi chưa làm</h2>
             <table id="rounded-corner">
                 <thead>
                     <tr>
                         <th>Mã Bài thi</th>
-                        <th>Mã thí sinh</th>
-                        <th>Họ Đệm</th>
-                        <th>Tên</th>
-                        <th>Lớp</th>
+                        <th>Ngày Thi</th>
                         <th>Đã Hoàn Thành</th>
                         <th>Làm Bài</th>
                     </tr>
@@ -22,17 +19,17 @@
                             echo "<tr>";
                             echo '
                                 <td >'.$row['ma_bt'].'</td>
-                                <td >'.$row['ma_ts'].'</td>
-                                <td >'.$row['ho_dem'].'</td>
-                                <td >'.$row['ten'].'</td>
-                                <td >'.$row['ten_lop'].'</td>
-                                <td >'.($row['trang_thai']==1?"đã hòa thành":"chưa hoàn thành").'</td>
+                                <td >'.$row['ngay_thi'].'</td>
+                                
+                                <td >'.($row['trang_thai']==1?"Hoàn thành":"Chưa hoàn thành").'</td>
                                 
                             ';
                             $link = '?controller=user-tests&action=lambai&ma_ts='.$row['ma_ts'].'&ma_bt='.$row['ma_bt'];
-                           // if($row['trang_thai']!=1){
+                           if($row['trang_thai']!=1){
                                 echo '<td><a href='.$link.'><img src="Public/backend/images/edit.png"/></a></td>';
-                           // }
+                           }else{
+                            echo '<td><img width="40px" src="Public/backend/images/none.jpg"/></td>';
+                           }
                             echo "<tr>";
                         }
 
@@ -68,15 +65,15 @@
 
         <input type="checkbox" id="menuTrigger"/>
         <div class="menu">
-            <h3>Quản Lý Bài Thi</h3>
+            <h3>Quản Lý </h3>
             <label for="menuTrigger" class="trigger">
             <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
             </label>
             <ul class="links">
-                <li class="link"><a href="#">Làm Bài Thi</a></li>
-                <li class="link"><a href="#">Xem Kết Quả</a></li>
+                <li class="link"><a href="?controller=user-tests&action=list">Làm Bài Thi</a></li>
+                <li class="link"><a href="?controller=user-tests&action=xemketqua">Xem Kết Quả</a></li>
             </ul>
         </div>
         <div class="css-script-ads">

@@ -37,20 +37,12 @@ class IndexController extends Controller{
         if(isset($_SESSION['userLogin']))
         {
             $_base_path='/TRAC-NGHIEM';
-//            echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')<br>';
-//            	print_r(_base_path);
-//            echo '</pre>';
             header("Location: ".$_base_path);
             unset($_SESSION['userLogin']);
-            header();
+            
         }
     }
 
-    // public function listAction(){
-    //     $userModel = new UsersModel();
-    //     $list = $userModel->loadList();
-
-    //     $this->view['list']  = $list;
-    // }
+    
 
 }
