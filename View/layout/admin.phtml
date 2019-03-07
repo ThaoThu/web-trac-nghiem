@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Quản Trị Hệ Thống</title>
+        <link rel="stylesheet" type="text/css" href="Public/backend/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+        <script>var  _base_url="<?php echo base_path; ?>"</script>
+        <script type="text/javascript" src="Public/backend/js/ckeditor/ckeditor.js"></script>
+        <script src="Public/backend/js/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <!--   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+    </head>
+    <body>
+        <div id="panelwrap">
+            <div class="header">
+                <div class="title"><a href="#">Quản Trị Hệ Thống</a>
+                    <div class="infor">
+                    <?php if(isset($_SESSION['userLogin']))
+                            echo 'Xin chao <b>'. $_SESSION['userLogin']['username'].'</b>';
+                        ?>
+                        <!-- <a href="?controller=admin-user&action=edit" class="settings">Thông tin cá nhân</a>
+                        <a class="settings"href="?controller=admin-user&action=editpass">Đổi Mật Khẩu</a> -->
+                        <a href="?controller=index&action=logout" class="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <div class="submenu">
+                <ul>
+                    <li><a href="?controller=admin-group&&action=list">Tài khoản</a></li>
+                    <li><a href="?controller=admin-class&action=list&page=1">Lớp </a></li>
+                    <li><a href="?controller=admin-subject&action=list&page=1">Môn học</a></li>
+                    <li><a href="?controller=admin-question&action=list&page=1">Ngân hàng câu hỏi</a></li>
+                    <li><a href="?controller=admin-kythi&action=list&page=1">Kỳ thi</a></li>
+                    <li><a href="?controller=admin-exam&action=list&page=1">Đề thi</a></li>
+                    <li><a href="?controller=admin-teacher&action=taobaithi">Bài thi</a></li>
+                </ul>
+            </div>
+            <?php
+            $this->showContent();
+            ?>
+
+            
+        </div> 
+        <div class="clear"></div> 
+        <div class="footer">
+            <small>Hệ Thống Thi Trắc Nghiệm Trực Tuyến</small> 
+            <small>Thông Tin Liên Hệ <i class = "fa fa-envelope"></i> <a href="mailto:thaothung.04@gmail.com">thaothung.04@gmail.com</a></small>
+        </div>
+        
+    </body>
+</html>

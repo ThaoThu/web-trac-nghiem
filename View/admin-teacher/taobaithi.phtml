@@ -1,0 +1,117 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+// echo '</pre>';?>
+
+
+    <div id="right_wrap">
+        <div id="right_content">
+            <form action="" method="post">
+            <fieldset>
+            <legend>Tạo bài thi</legend>
+            
+            <h2>Danh Sách Đề Thi</h2>
+            <table id="rounded-corner" name="txt_ch" <?php echo isset($this->view['list'])?"":"hidden"; ?>>
+                <thead>
+                <tr>
+                    <th>Chọn đề thi</th>
+                    <th>Kỳ Thi</th>
+                    <th>Môn Học</th>
+                    <th>Số Lượng Câu Hỏi</th>
+                    <th>Tổng Điểm</th>
+                    <th>Người tạo</th>
+                    <th>Ngày tạo</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="12"></td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+                    <?php
+                        if(isset($this->view['list'])){
+                            foreach(@$this->view['list'] as $row){
+                                foreach($this->view['list_mh'] as $row1){
+                                    if($row['ma_mh']===$row1['ma_mh']){
+                                        $ten_mh = $row1['ten_mh'];
+                                    }
+                                }
+                                foreach($this->view['list_kt'] as $row2){
+                                    if($row['ma_kt']===$row2['id_kt']){
+                                        $ten_kt = $row2['ten_kt'];
+                                    }}
+
+                                echo '<tr>
+                                    <td>
+                                        <input type="radio" name="id_dt" id="cid" value="'.$row['ma_dt'].'"> 
+                                    </td>
+                     
+                                    <td>'.$ten_kt.'</td>
+                                    <td>'.$ten_mh.'</td>
+                                    <td>'.$row['so_luong_cau_hoi'].'</td>
+                                    <td>'.$row['tong_diem'].'</td>
+                                    <td>'.$row['nguoitao'].'</td>
+                                    <td>'.$row['ngaytao'].'</td>
+
+                                 
+                 
+                                 </tr>';
+
+                            }
+                        }
+                       
+
+
+                    ?>
+
+
+
+                </tr>
+                <tr>
+
+
+                </tbody>
+            </table>
+            <div class="form_row">
+                <label>Lớp</label>
+                <select name="txt_ma_lp" style="" class="form_input">
+                    <?php
+                    $ma_lp = isset($_POST['txt_ma_lp'])?$_POST['txt_ma_lp']:'';
+                    if(isset($this->view['list_class'])){
+                        foreach ($this->view['list_class'] as $row){
+                            echo '<option  value="'.$row['ma_lop'].'" >'.$row['ten_lop'].'</option>';
+                        }
+                    }
+                    ?>
+                </select>
+           <input type="submit" name = "btnSave" value="Lưu" class="btn-delete ">
+            </div>
+            <div class="clear"></div>
+            <p>
+            <?php
+            if(@$this->view['msg']!==null)
+            if(is_array($this->view['msg']))
+                foreach($this->view['msg'] as $row)
+                echo $row.'<br />';
+                
+            ?></p>
+            </fieldset>
+            </form>
+            
+            
+
+
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <h2>Quản lý Bài thi</h2>
+        <ul>
+            <li><a href="?controller=admin-test&&action=list" >Bài thi</a></li>
+        </ul>
+    </div>
+    
+    <div class="clear"></div>
+    </div><!-- end of right content-->

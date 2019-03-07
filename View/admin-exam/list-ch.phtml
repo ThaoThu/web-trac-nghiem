@@ -1,0 +1,164 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view);
+// echo '</pre>';?>
+
+<div class="trai">
+<?php
+    if($this->view['list_sub']){ 
+    echo '<h2>Cấu trúc ngân hàng đề</h2>';
+    echo '<table  class="table table-striped table-inverse table-responsive haft text-center">';
+       echo' <thead class="thead-inverse">';
+        
+            echo '<tr>
+                <th>Chương</th>
+                <th>Số câu dễ</th>
+                <th>Số câu trung bình</th>
+                <th>Số câu khó</th>
+            </tr>';
+        
+    
+           echo ' </thead>
+            <tbody>';
+                
+                      $total = count($this->view['list_sub']);
+                        $D = $TB = $K =0;
+                        foreach($this->view['list_sub'] as $row){
+                            if($row['dokho']=='de'){
+                                $D ++;  
+                            }
+                            if($row['dokho']=='tb'){
+                                $TB ++;   
+                            }
+                            if($row['dokho']=='kho'){
+                                $K ++;      
+                            }
+                        }
+                        
+                    
+                    $array_hp_dokho = array();$str_noi = '';
+                        foreach($this->view['list_sub'] as $row){
+
+                             $str_noi= $row['dokho'].'-'.$row['id_hp'];
+                            
+                            array_push($array_hp_dokho,$str_noi); 
+                        }
+                          $dem_so_lan_xh=array_count_values($array_hp_dokho);
+                    echo '
+                    <tr>
+                        <td scope="row">%</td>
+                        <td><input type="text" value="'.round($D*100/$total,2,PHP_ROUND_HALF_EVEN).'%"></td>
+                        <td><input type="text" value="'.round($TB*100/$total,2,PHP_ROUND_HALF_EVEN).'%"></td>';
+                        $res = 100 - round($D*100/$total,2,PHP_ROUND_HALF_EVEN) -round($TB*100/$total,2,PHP_ROUND_HALF_EVEN);
+                     echo   '<td><input type="text" value = "'.$res.'%" ></td>
+                    </tr>';
+                       
+                        $de=array(); $kho =array(); $tb = array();
+                        foreach($dem_so_lan_xh as $key => $val){
+                            if(substr($key, 0,2) === 'de'){
+                                $de[substr($key,3)]=$val;
+                               
+                            }else if(substr($key, 0,2) === 'tb'){
+                                $tb[substr($key,3)]=$val;
+                            }else{
+                                $kho[substr($key,4)]=$val;
+                            }
+                        }
+                        foreach($this->view['list_hp']  as  $row){
+                            $ma_hp =$row['ma_hp'];
+                             //phong truonghop gia tri khong ton tai xet gia tri =0
+                             if(!isset($tb["$ma_hp"])){
+                                $tb["$ma_hp"]=0;
+                            }
+                            if(!isset($de["$ma_hp"])){
+                                $de["$ma_hp"]=0;
+                            }
+                            if(!isset($kho["$ma_hp"])){
+                                $kho["$ma_hp"]=0;
+                            }
+                        echo '<tr>
+                            <td>'.$row['ten_hp'].'</td>
+                            <td><input readonly type="text"  value = "'.@$de["$ma_hp"].'"></td>
+                            <td><input readonly type="text"  value = "'.@$tb["$ma_hp"].'" ></td>
+                            <td><input readonly type="text" name="kho" value = "'.@$kho["$ma_hp"].'" ></td>
+                        
+                        </tr>';
+                        }
+                        echo '<tr>
+                        <td>Tổng : '.$total.'</td>
+                        <td><input type="text" name="" id="" readonly value='.$D.'></td>
+                        <td><input type="text" name="" id="" readonly value='.$TB.'></td>
+                        <td><input type="text" name="" id="" readonly value='.$K.'></td>   
+                    </tr>';
+                    
+                
+                
+        echo'    </tbody>
+    </table>
+</div>
+<div class="clear"></div>                                                              
+<div class="trai">';
+    echo '<h2>Cấu trúc đề thi</h2>';
+    echo '<table  class="table table-striped table-inverse table-responsive haft text-center">';
+       echo' <thead class="thead-inverse">';
+            echo '<tr>
+                <th>Chương</th>
+                <th>Số câu dễ</th>
+                <th>Số câu trung bình</th>
+                <th>Số câu khó</th>
+            </tr>
+            </thead>
+            <tbody>
+            ';
+            echo '
+            <tr>
+                <td scope="row">%</td>
+                <td id="persent_de"></td>
+                <td id = "persent_tb"></td>
+                <td id = "persent_kho"></td>
+            </tr>
+            <form method = "post" >
+            ';
+                        foreach($this->view['list_hp']  as $key=> $row){
+                            
+                            $ma_hp =$row['ma_hp'];
+                        echo '<tr id = "find">
+                            <td>'.$row['ten_hp'].'</td>
+                            <td><input type="number" min ="0" max ="'.$de["$ma_hp"].'" name = "de'.$ma_hp.'" class="de change" ></td>
+                            <td><input type="number" min ="0" max ="'.$tb["$ma_hp"].'" name = "tb'.$ma_hp.'" class="tb change"></td>
+                            <td><input  type="number" min ="0" max ="'.$kho["$ma_hp"].'" name = "kho'.$ma_hp.'" class="kho change"></td>
+                        
+                        </tr>';
+                        }
+                    
+                        echo '<tr>
+                        <td>Tổng</td>
+                        <td id = "Total_de" name ="Total_de"></td>
+                        <td id="Total_tb" name ="Total_tb"></td>
+                        <td id="Total_kho" name ="Total_kho"></td>  
+                    </tr>
+                    <tr><td>Số câu đã chọn là :<td><td id="Total" name ="Total"></td><td><input type = "submit" class="btn-delete btn-return" name = "btnSave" value="Lưu"></td></tr>';
+                    echo '</tbody>
+                    </table>
+                
+                
+                </div> ';
+                echo'
+                <div class="clear"></div>
+                
+                   
+                        
+                    </form>';
+                   
+                          
+    }else{
+        echo 'Không có câu hỏi';
+    }
+?>    
+           
+
+
+<div class="clear"></div>
+<script src="Public/backend/js/dethi.js">
+</script>
+

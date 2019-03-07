@@ -1,0 +1,41 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view);
+// echo '</pre>';
+?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-school"></i> <a href="?controller=admin-class&action=list">Quản lý lớp</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                        if(is_array($this->view['msg'])){
+                             foreach ($this->view['msg'] as $item_msg)
+                            echo '<b>'.$item_msg."</b>";
+                        }else echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset>
+            <legend>Thêm lớp</legend>
+            <div class="form_row">
+                <label class="require">Tên lớp </label>
+                <input  type="text" required class="form_input" name="txt_ten_lop" value="<?php echo isset($_POST['txt_ten_lop'])?$_POST['txt_ten_lop']:'' ;?>">
+            </div> 
+            <div class="form_row">
+                <label>Ghi chú</label>
+                <textarea class="form_textarea" name="txt_ghi_chu"></textarea>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+

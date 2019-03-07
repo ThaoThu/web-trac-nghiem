@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Thi trắc nghiệm</title>
+        <link rel="stylesheet" type="text/css" href="Public/backend/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id="loginpanelwrap">
+            <img src="Public/imgs/images.jpg" class="logologin"alt="">
+            <div class="loginheader">
+                <h3 class="logintitle">Thi trắc nghiệm</h3>
+                <p class="logintitle">Đăng nhập</p>
+                <hr>
+            </div>
+            <div class="loginform">
+                
+                <form action="" method="post">
+                    <div class="loginform_row"> 
+                        <input type="text" placeholder = "Tên đăng nhập " class="loginform_input" name="txt_username" />
+                    </div>
+                    <div class="loginform_row">
+                        <input type="password" placeholder = "Mật khẩu" class="loginform_input" name="txt_passwd" />
+                    </div>
+                    <div class="loginform_row">
+                        <input type="submit" class="loginform_input loginform_submit" value="Đăng Nhập" name="btnLogin" />
+                    </div>
+                     <!-- <a href="#">Lấy lại mật khẩu</a>  -->
+                    <div class="clear"></div>
+                </form>
+                <?php
+                if(!empty($this->view['msg'])){
+                    foreach ( $this->view['msg'] as $msg) {
+                        echo '- <b>'.$msg.'</b><br>';
+                    }
+                }
+                ?>
+            </div>
+        </div>      
+    </body>
+</html>

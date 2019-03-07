@@ -1,0 +1,73 @@
+<?php
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+//echo '</pre>';?>
+<div class="center_content ">
+    <div id="right_wrap">
+        <div id="right_content" class="nomargin">
+        <h2><i class="fas fa-school"></i> Lớp<a href="?controller=admin-class&&action=add"><i class="fas fa-2x fa-plus-circle add-icon "> </i></a><a href="?controller=admin-class&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+
+            <table id="rounded-corner">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên lớp</th>
+                    <th>Ghi chú</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                <td colspan="6">
+                        <?php
+
+                        // hiển thị chỉ số trang của danh sách
+                        if($this->view['total_pages']>1){?>
+
+                        <div class="page-number">
+                            <ul>
+                                <?php
+                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
+                                    echo '<li><a href="?controller=admin-class&action=list&page='.$page.'">'.$page.'</a></li>';
+                                }
+                                ?>
+                                <?php }?>
+                    </td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+                    <?php
+                    $stt = 0;
+                    foreach($this->view['list'] as $row){
+                        $stt++;
+                        $link = '?controller=admin-class&action=edit&id='.$row['ma_lop'];
+                        $link_delete = '?controller=admin-class&action=delete&id='.$row['ma_lop'];
+                        echo '<tr>
+                            <td>'.$stt.'</td>
+                            <td><a href="?controller=admin-class&action=class&id='.$row['ma_lop'].'">'.$row['ten_lop'].'</a></td>
+                            <td>'.$row['ghi_chu'].'</td>
+                            <td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td>
+                            <td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td></tr>';
+
+                    }
+
+                    ?>
+
+
+                </tr>
+                </tbody>
+            </table>
+
+
+            
+
+        </div>
+    </div><!-- end of right content-->
+   
+
+
+    <div class="clear"></div>
+</div> <!--end of center_content-->

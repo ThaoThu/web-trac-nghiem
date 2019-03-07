@@ -1,0 +1,90 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+// echo '</pre>';?>
+<div class="center_content">
+    <div id="right_wrap">
+        <div id="right_content">
+        <h2><i class="fas fa-book"></i> Kỳ thi<a href="?controller=admin-kythi&&action=add"><i class="fas fa-2x fa-plus-circle add-icon"> </i></a><a href="?controller=admin-kythi&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+            <table id="rounded-corner">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên kỳ thi</th>
+                        <th>Bắt đầu</th>
+                        <th>Kết thúc</th>
+                        <th>Khóa</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                    <td colspan="7">
+                        <?php
+
+                        // hiển thị chỉ số trang của danh sách
+                        if($this->view['total_pages']>1){?>
+
+                        <div class="page-number">
+                            <ul>
+                                <?php
+                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
+                                    echo '<li><a href="?controller=admin-kythi&action=list&page='.$page.'">'.$page.'</a></li>';
+                                }
+                                ?>
+                                <?php }?>
+                    </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+                    <?php
+                    $stt=0;
+                    $img_delete='';
+                    $img_not_delete='<img class="img_none"  src="Public/backend/images/none.jpg';
+                    $img_edit='<img src="Public/backend/images/edit.png';
+                    foreach($this->view['list'] as $row){
+                        $link = '?controller=admin-kythi&action=edit&id='.$row['id_kt'];
+                        $link_delete = '?controller=admin-kythi&action=delete&id='.$row['id_kt'];
+                        if($row['locked']==1)
+                        {
+                             $img='<i class="fas fa-lock"></i>';
+                             $img_delete = $img_not_delete;
+                             $link_delete ='#';
+                        }
+                        if($row['locked']==0) {
+                            $img='<i class="fas fa-lock-open"></i>';
+                            $img_delete='<img src="Public/backend/images/trash.gif';
+
+                        }
+                        $stt++;
+                        
+
+
+                        echo '<tr><td>'.$stt.'</td><td>'.$row['ten_kt'].'</td><td>'.$row['thoi_gian_bat_dau'].'</td><td>'.$row['thoi_gian_ket_thuc'].'</td><td>'.$img.'</td>
+                        <td><a href='.$link.'>'.$img_edit.'"  /></a></td><td><a href='.$link_delete.'>'.$img_delete.'"/></a></td></tr>';
+
+                    }
+
+                    ?>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <h2>Quản lý </h2>
+
+        <ul>
+            <li><a href="?controller=admin-dethi&action=list&page=1">Quản lý đề thi</a></li>
+            <li><a href="?controller=admin-baithi&action=list&page=1">Quản lý bài thi</a></li>
+        </ul>
+    </div>
+
+
+    <div class="clear"></div>
+</div> <!--end of center_content-->

@@ -1,0 +1,95 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view);
+// echo '</pre>';
+?>
+<div class="center_content">
+    <div id="right_wrap">
+        <div id="right_content">
+        <h2><i class="fas fa-users"></i> Học Sinh<a href="?controller=admin-student&&action=add"><i class="fas fa-2x fa-plus-circle add-icon"> </i></a><a href="?controller=admin-student&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+            <table id="rounded-corner">
+                <thead>
+                <tr>
+                    <th>Mã Thí sinh</th>
+                    <th>Họ và Tên</th>
+                    <th>Lớp</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Địa chỉ</th>
+                    <th>Điện thoại</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                <td colspan="10">
+                        <?php
+
+                        // hiển thị chỉ số trang của danh sách
+                        if($this->view['total_pages']>1){?>
+
+                        <div class="page-number">
+                            <ul>
+                                <?php
+                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
+                                    echo '<li><a href="?controller=admin-student&action=list&page='.$page.'">'.$page.'</a></li>';
+                                }
+                                ?>
+                                <?php }?>
+                    </td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+
+                    <?php
+                    foreach($this->view['list'] as $row){
+                        foreach($this->view['list_class'] as $row1){
+                            if($row['ma_lp']===$row1['ma_lop']){
+                                $ten_lp = $row1['ten_lop'];
+                            }
+                        }
+
+                        //?controller=admin-group&action=edit&id=14
+                        $link = '?controller=admin-student&action=edit&id='.$row['ma_ts'];
+                        $link_delete = '?controller=admin-student&action=delete&id='.$row['ma_ts'];
+                        $gt;
+                        if($row['gioi_tinh']==0) $gt="Nam";else $gt="Nữ";
+                        echo '
+                        <tr>
+                            <td><b>'.$row['ma_ts'].'</b></td>
+                            
+                            <td class = "text-left"><a href="?controller=admin-class&action=thisinh&id='.$row['ma_ts'].'">'.$row['ho_dem'].' '.$row['ten'].'</td>
+                            <td>'.$ten_lp.'</td>
+                            <td>'.substr($row['ngay_sinh'],0,10).'</td>
+                            <td >'.$gt.'</td><td class = "text-left">'.$row['dia_chi'].'</td><td>'.$row['dien_thoai'].'</td>
+                            <td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td>
+                            <td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td>
+                         </tr>';
+
+                    }
+
+                    ?>
+
+
+                </tr>
+                <!-- <tr></tr> -->
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <h2>Quản lý tài khoản</h2>
+        <ul>
+            <li><a href="?controller=admin-group&&action=list" >Nhóm tài khoản</a></li>
+            <li><a href="?controller=admin-teacher&&action=list">Giáo Viên</a></li>
+            <li><a href="?controller=admin-student&&action=list">Học Sinh</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div> 

@@ -1,0 +1,45 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 10/01/2018
+ * Time: 12:00 SA
+ */
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//print_r($this->view);
+//echo '</pre>';?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="form_row">
+            <h2 id="h2">Đổi Mật Khẩu</h2>
+            <label>Tên đăng nhập</label>
+            <input type="text" disabled class="form_input" name="username" value="<?php echo $_SESSION['userLogin']['username'] ;?>">
+        </div>
+        <div class="form_row">
+            <label>Mật Khẩu Cũ</label>
+            <input type="password" class="form_input" name="mk_cu" />
+            <label>Nhập khẩu Mới</label>
+            <input type="password" class="form_input" name="mk_1" />
+            <label>Nhập Lại Mật khẩu Mới</label>
+            <input type="password" class="form_input" name="mk_2" />
+        </div>
+        <div class="form_row">
+            <input type="submit" class="form_submit" value="Đổi Mật Khẩu" name="btnSave" />
+<!--            --><?php
+            if(!empty($this->view['msg'])){
+                //foreach ($this->view['msg'] as $msg)
+                    echo '<b>'.$this->view['msg']."</b><br>";
+            }
+//            ?>
+        </div>
+
+
+
+    </form>
+</div>
+
+
+
+
+

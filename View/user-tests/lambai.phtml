@@ -1,0 +1,181 @@
+<?php
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
+?>
+        <div class="container">
+        <div class="col-lg-8 d-block m-auto bg-light quizsetting ">
+            <div class="card">
+                <p class="card-header text-center " ><span class="text-uppercase text-primary"> <?php echo $_SESSION['userLogin']['username']; ?></span>, Chọn phương án trả lời đúng. <i class="fas fa-thumbs-up"></i>	 </p>
+            </div>
+            
+            <form action="?controller=user-tests&action=checked" method="post" id="myform">
+            <input type="hidden"  name="ma_bt"  id="" value = <?php echo $_GET['ma_bt']?>>
+                <div class="card">
+                
+                    
+                    <?php 
+                    $i = 0;
+                    //strip_tags : bỏ tag thẻ p lấy từ CSDL
+                        foreach($this->view['ds_ch'] as $row)
+                        {
+                    echo '<p class="card-header bg-info">';
+                            
+                        foreach($row as $val)$i++;
+                        echo  $i.'.'.strip_tags($val['noi_dung_ch']);
+                            $answer_serialize = unserialize($val['noi_dung_dap_an']);
+                            foreach($answer_serialize as $stt => $ans){
+                                echo '<div class = "card-block"><label class = "container" id="edit-padding">'.$ans[0];
+                                echo '<input type = "radio" class="custom-control-input" id ="'.$val['ma_ch'].$stt.'" name ="'.$val['ma_ch'].'" value="'.$stt.'">';
+                                echo ' <span class="checkmark"></span>';
+                                echo '</label></div>';
+                            }
+                    } //end of foreach row
+                            
+                        
+                    ?>    
+                    
+                </div>              
+                <button type="submit" class="btn btn-secondary mg-submit" name = "btnSave" value="Hoàn Thành Bài Thi" onclick="return hoanthanh()">Nộp Bài Thi</button>
+                
+            </form>
+        </div>  
+    </div>
+    <script type="text/javascript">
+    function hoanthanh() {
+        var validate=false;
+            if(validate==false){
+                var x= confirm("Bạn Chắc chắn muốn hoàn thành bài thi?");
+                if(x){
+                  
+                    alert("Bài thi kết thúc");
+                    return true;
+                }
+                 return false;
+               
+
+            }
+            return true;
+                
+            
+        }
+    </script>
+<!-- <div class="center_content" style="padding-left: 50px;padding-top: 20px;" onload="start()">
+   
+        <label for=""></label>
+        <div class="form_row">
+            <?php
+            if($this->view['locked']==0)
+            echo '<input type="submit" class="form_submit"value="Hoàn Thành Bài Thi" onclick="return hoanthanh()" name="btnSave" id="btnSave" />';
+
+            ?>
+            <?php
+            ?>
+        </div>
+    </form>
+    <div style="position: fixed;right: 0;top: 0; padding: 20px; background-color: #eee; border: 1px solid #ccc; border-radius: 5px;" <?php if($this->view['locked']==1) echo "hidden" ?> >
+        <span id="h">Giờ</span> :
+        <span id="m">Phút</span> :
+        <span id="s">Giây</span>
+    </div>
+    <script language="javascript">
+        $(document).keyup(function(event) {
+            $(document).keydown(function (e) {
+                alert("bạn không thể load lại trang khi ")
+                return (e.which || e.keyCode) != 116;
+            });
+        });
+        function hoanthanh() {
+            if(validate==false)
+                var x= confirm("Bạn Chắc chắn muốn hoàn thành bài thi?");
+            else
+                x=true;
+            if(x==true){
+                alert("Bài thi kết thúc");
+                return true;
+
+            }
+            return false;
+        }
+        function hoanthanh1() {
+            document.getElementById('btnSave').click();
+        }
+        var h = null; // Giờ
+        var m = null; // Phút
+        var s = null; // Giây
+        var timeout = null; // Timeout
+        var validate =false;
+        window.onload = function start()
+        {
+            /*BƯỚC 1: LẤY GIÁ TRỊ BAN ĐẦU*/
+            if (h === null)
+            {
+
+                var time=
+                <?php
+                if (isset($this->view['pick_time']))
+                    echo "parseInt(".$this->view['pick_time'].");";
+                else
+                    echo "null;";
+                ?>
+
+                if(time==null){
+                    h =null;
+                    m =null;
+                    s =null;
+                }
+                else{
+                    console.log(time);
+                    h = parseInt(time/60); // Giờ
+                    m = parseInt(time%60);
+                    s = parseInt(time-parseInt(time));
+                }
+            }
+            /*BƯỚC 1: CHUYỂN ĐỔI DỮ LIỆU*/
+            // Nếu số giây = -1 tức là đã chạy ngược hết số giây, lúc này:
+            //  - giảm số phút xuống 1 đơn vị
+            //  - thiết lập số giây lại 59
+            if (s === -1){
+                m -= 1;
+                s = 59;
+            }
+
+            // Nếu số phút = -1 tức là đã chạy ngược hết số phút, lúc này:
+            //  - giảm số giờ xuống 1 đơn vị
+            //  - thiết lập số phút lại 59
+            if (m === -1){
+                h -= 1;
+                m = 59;
+            }
+
+            // Nếu số giờ = -1 tức là đã hết giờ, lúc này:
+            //  - Dừng chương trình
+            if (h == -1){
+                clearTimeout(timeout);
+                alert('Hết giờ');
+                validate=true;
+                hoanthanh1();
+
+                return false;
+            }
+
+            /*BƯỚC 1: HIỂN THỊ ĐỒNG HỒ*/
+            document.getElementById('h').innerText = h.toString();
+            document.getElementById('m').innerText = m.toString();
+            document.getElementById('s').innerText = s.toString();
+
+            /*BƯỚC 1: GIẢM PHÚT XUỐNG 1 GIÂY VÀ GỌI LẠI SAU 1 GIÂY */
+            timeout = setTimeout(function(){
+                s--;
+                start();
+            }, 1000);
+        }
+
+        function stop(){
+            //document.getElementById('dateForm').submit();
+            clearTimeout(timeout);
+        }
+    </script>
+</div> -->
+
+

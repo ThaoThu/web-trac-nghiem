@@ -1,0 +1,57 @@
+
+<?php
+ ?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-users"></i> <a href="?controller=admin-user&action=list">Quản lý tài khoản</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg']['success'])){
+                     echo $this->view['msg']['success'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset class="fieldset">
+            <legend>Thêm quản trị viên</legend>
+             <div class="form_row ">
+                <label class="require">Email</label>
+                <input type="email" required class="form_input" name="txt_email"  value="<?php echo isset($_POST['txt_email'])?$_POST['txt_email']:'' ;?>"/>
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mail'])? $this->view['msg']['mail']:''   ?>
+                </div>
+            </div>  
+            <div class="form_row">
+                <label class="require">Tên đăng nhập</label>
+                <input type="text" required class="form_input" name="txt_ten_dang_nhap" value="<?php echo isset($_POST['txt_ten_dang_nhap'])?$_POST['txt_ten_dang_nhap']:'' ;?>">
+                <div class="err">
+                    <?php echo isset($this->view['msg']['username'])? $this->view['msg']['username']:''   ?>
+                </div>
+            </div>
+            <div class="form_row">
+                <label class="require">Mật khẩu</label>
+                <input type="password" required class="form_input" name="txt_mat_khau" />
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mk1'])? $this->view['msg']['mk1']:''   ?>
+                </div>
+            </div>
+            <div class="form_row">
+                <label class="require">Xác nhận mật khẩu</label>
+                <input type="password" required class="form_input" name="txt_mat_khau_2" />
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mk'])? $this->view['msg']['mk']:''   ?>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+
+

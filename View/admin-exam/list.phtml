@@ -1,0 +1,104 @@
+<?php
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
+?>
+<div class="center_content">
+    <div id="right_wrap">
+        <div id="right_content">
+            <h2><i class="fas fa-book"></i> Đề thi<a href="?controller=admin-exam&&action=add"><i class="fas fa-2x fa-plus-circle add-icon"> </i></a><a href="?controller=admin-exam&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+
+            <table id="rounded-corner">
+                <thead>
+                <tr>
+                    <th>Kỳ Thi</th>
+                    <th>Môn học</th>
+                    <th>Số lượng câu hỏi</th>
+                    <th>Tổng Điểm</th>
+                    <th>Thời Gian làm bài</th>
+                    <th>Khóa</th>
+                    <!-- <th>Sửa</th> -->
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tfoot>
+                    <tr><td colspan="8">
+                            <?php
+
+                            // hiển thị chỉ số trang của danh sách
+                            if(@$this->view['total_pages']>1){?>
+
+                            <div class="page-number">
+                                <ul>
+                                    <?php
+                                    for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
+                                        echo '<li><a href="?controller=admin-exam&action=list&page='.$page.'">'.$page.'</a></li>';
+                                    }
+                                    ?>
+                                    <?php }?>
+                        </td></tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+                    <?php
+                    $img_not_delete='<img class="img_none"  src="Public/backend/images/none.jpg"/>';
+                    $img_delete='';
+                    $img_edit='<img src="Public/backend/images/edit.png" />';
+                    if(isset($this->view['list'])){
+                        foreach($this->view['list'] as $row){
+                            $link = '?controller=admin-exam&action=edit&id='.$row['ma_dt'];
+                            $link_delete = '?controller=admin-exam&action=delete&id='.$row['ma_dt'];
+                            if($row['locked']==1){
+                                $img='<i class="fas fa-lock"></i>';
+                                $img_delete = $img_not_delete;
+                                $link_delete ='#';
+                            }
+                            if($row['locked']==0) {
+                                $img='<i class="fas fa-lock-open"></i>';
+                                $img_delete='<img src="Public/backend/images/trash.gif"/>';
+                            }
+                            foreach($this->view['list_mh'] as $row1){
+                                if($row['ma_mh']===$row1['ma_mh']){
+                                    $ten_mh = $row1['ten_mh'];
+                                }
+                            }
+                            foreach($this->view['list_kt'] as $row2){
+                                if($row['ma_kt']===$row2['id_kt']){
+                                    $ten_kt = $row2['ten_kt'];
+                                }}
+
+                            echo '
+                            <tr>
+                                
+                                <td>'.$ten_kt.'</td>
+                                <td>'.$ten_mh.'</td>
+                                <td>'.$row['so_luong_cau_hoi'].'</td>
+                                <td>'.$row['tong_diem'].'</td>
+                                <td>'.$row['thoi_gian_lam_bai'].'</td>
+                                <td>'.$img.'</td>
+                                <td><a href='.$link_delete.'>'.$img_delete.'</a></td>
+                            </tr>';
+                        }
+                    }
+
+                    ?>
+
+
+                </tr>
+               
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Quản lý Bài thi</h2>
+        <ul>
+            <li><a href="?controller=admin-test&&action=list" >Bài thi</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div> <!--end of center_content-->

@@ -1,0 +1,41 @@
+<div class="clear"></div>
+<div id="form_row">
+
+    <form action="" method="post">
+    <div class="manager-nav">
+            <h2>
+                <i class="fas fa-school"></i> <a href="?controller=admin-exam&action=list">Quản lý đề thi</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                        if(is_array($this->view['msg'])){
+                             foreach ($this->view['msg'] as $item_msg)
+                            echo '<b>'.$item_msg."</b>";
+                        }else echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+            </h2>
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo ' <input type="hidden" name="txt_ma_dt" value="'.$this->view['data']['ma_dt'].'">';
+                echo '<h1>Chắc chắn xóa đề thi</h1>';
+             }
+            ?>
+
+            
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
+                echo '<button class="btn-delete btn-return"><a href="?controller=admin-exam&action=list">Trở về</a></button>';
+            }
+            ?>
+        </div>
+
+    </form>
+
+</div>

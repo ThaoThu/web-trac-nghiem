@@ -1,0 +1,48 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view['a']);
+// echo '</pre>';
+?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post" >
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-school"></i> <a href="?controller=admin-hocphan&action=list">Quản lý Học Phần</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                        if(is_array($this->view['msg'])){
+                             foreach ($this->view['msg'] as $item_msg)
+                            echo '<b>'.$item_msg."</b>";
+                        }else echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset>
+            <legend>Thêm học phần</legend>
+            <div class="form_row">
+                <label class="require">Tên Học Phần</label>
+                <input type="text" class="form_input" name="txt_ten_hp" >
+            </div>
+            <div class="form_row">
+                <label class="require">Môn Học</label>
+                <select name="ma_monhoc"" class="form_input">
+                    <?php
+                     foreach($this->view['list_mon'] as $row){
+                        echo '<option value="'.$row['ma_mh'].'">'.$row['ten_mh'] .'</option>';
+                     }
+                    ?>
+                    
+                </select></div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+

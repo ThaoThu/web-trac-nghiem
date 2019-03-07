@@ -1,0 +1,53 @@
+<?php
+echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+print_r($this->view);
+echo '</pre>';
+ echo $this->view['data']['ten_kt']
+?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+                <h2>
+                    <i class="fas fa-book"></i> <a href="?controller=admin-group&action=list">Quản lý kỳ thi </a> 
+                    <span>
+                        <?php
+                        if(!empty($this->view['msg'])){
+                            if(is_array($this->view['msg'])){
+                                foreach ($this->view['msg'] as $item_msg)
+                                echo '<b>'.$item_msg."</b>";
+                            }else echo $this->view['msg'];
+                        }
+                        ?>
+                    </span>
+                    <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+                </h2>
+            </div>
+            <fieldset>
+                <legend>Sửa kỳ thi</legend>
+                <div class="form_row">
+                    <input type="hidden" class="form_input" name="txt_ma_kt" value="<?php echo $this->view['data']['id_kt'];?>">
+                    <label class="require">Tên kỳ thi</label>
+                    <input type="text" class="form_input" name="txt_ten_kt" value="<?php echo $this->view['data']['ten_kt'];?>">
+                </div>
+                <div class="form_row">
+
+                <label class="require">Bắt đầu</label>
+                <input type="datetime-local" required class="form_input" name="time_start" id="" value="<?php echo $this->view['data']['thoi_gian_bat_dau']?>">
+                </div>
+                <div class="form_row">
+                    <label class="require">Kết thúc</label>
+                    <input type="datetime-local" required class="form_input" name="time_finish" id="" value="<?php echo $this->view['data']['thoi_gian_ket_thuc']?>">
+                </div>
+                <div class="form_row checkbox">
+                    <input type="checkbox" checked name="khoa" id="" value='0'> Không Khóa
+                    <input type="checkbox" name="khoa" id="" value='1'> Khóa
+                </div>
+
+            </fieldset>
+    </form>
+</div>
+
+
+
+

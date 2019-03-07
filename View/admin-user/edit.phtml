@@ -1,0 +1,53 @@
+
+<?php
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
+ ?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+    <div class="manager-nav">
+            <h2>
+                <i class="fas fa-users"></i> <a href="?controller=admin-user&action=list">Quản lý tài khoản</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg']['success'])){
+                     echo $this->view['msg']['success'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset class="fieldset">
+            <legend>Sửa thông tin tài khoản</legend>
+             <div class="form_row">
+                <label class="require">Email</label>
+                <input type="email" required class="form_input" name="txt_email"  value="<?php echo isset($this->view['data']['email'])?$this->view['data']['email']:'' ;?>"/>
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mail'])? $this->view['msg']['mail']:''   ?>
+                </div>
+            </div>  
+            <div class="form_row">
+                <label class="require">Mật khẩu</label>
+                <input type="password" required class="form_input" name="txt_mat_khau" />
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mk1'])? $this->view['msg']['mk1']:''   ?>
+                </div>
+            </div>
+            <div class="form_row">
+                <label class="require">Xác nhận mật khẩu</label>
+                <input type="password" required class="form_input" name="txt_mat_khau_2" />
+                <div class="err">
+                    <?php echo isset($this->view['msg']['mk'])? $this->view['msg']['mk']:''   ?>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+
+

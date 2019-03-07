@@ -1,0 +1,132 @@
+<?php
+class AdminKythiController extends Controller{
+    function listAction(){
+        $adminktModel = new AdminKythiModel();
+        $count = $adminktModel->count();
+        $_admin_page_limit = 6;
+        // Công việc dành cho phân trang
+        $total_records = $count;
+        if(!is_numeric($total_records)){
+            $this->view['msg'] = $total_records;
+
+        }
+
+        $total_pages = ceil($total_records / $_admin_page_limit);
+
+        if($total_pages<=0){
+            $this->view['msg'] = "Chưa có dữ liệu!";
+
+        }
+
+        $current_page = @intval($_GET['page']);
+        if($current_page <1)
+            $current_page = 1;
+        if($current_page > $total_pages)
+            $current_page = $total_pages;
+
+        $offset = ($current_page-1) * $_admin_page_limit ;
+        //
+
+        $list =$adminktModel->loadList($offset);
+
+        if(is_array($list)){
+            $this->view['list']  = $list;
+            $this->view['total_pages'] = $total_pages;
+            $this->view['msg'] = "Lay dl thanh cong!";
+        }else{
+            $this->view['msg'] = $list;
+        }
+
+
+    }
+    function addAction(){
+        $func= new func();
+        $adminktModel= new AdminKythiModel();
+        if(isset($_POST['btnSave_x'])){
+            $ten_mh = $_POST['txt_ten_kt'];
+            $time_start=$_POST['time_start'];
+            $time_finish=$_POST['time_finish'];
+            
+            if($time_start>$time_finish){
+                $this->view['msg']='Lỗi :Thời gian bắt đầu lớn hơn kết thúc!';
+            }else{
+                 // gọi hàm lưu vào CSDL
+                $data_save = array('ten_kt'=>$ten_mh,'thoi_gian_bat_dau'=>$time_start,'thoi_gian_ket_thuc'=>$time_finish);
+                $res_insert= $adminktModel->Insert_kt($data_save);
+                if($res_insert === true){
+                    $this->view['msg'] = "Thêm  mới kỳ thi thành công!";
+                    header("Location: ".base_path.'?controller=admin-kythi&action=list');
+                }
+                else
+                    $this->view['msg'] = $res_insert;
+
+            }
+            }
+               
+        }
+    function editAction(){
+        $adminktModel= new AdminKythiModel();
+        $id= $_GET['id'];
+        if(!is_numeric($id)){
+            $this->view['msg'][] = 'Không xác định ID môn!';
+        }
+        if(isset($_POST['btnSave_x'])){
+            $ten_kt = $_POST['txt_ten_kt'];
+            $time_start=$_POST['time_start'];
+            $time_finish=$_POST['time_finish'];
+            $khoa = $_POST['khoa'];
+            
+            if($time_start>$time_finish){
+                $this->view['msg']='Lỗi :Thời gian bắt đầu lớn hơn kết thúc!';
+            }else{
+                // hợp lệ
+                $data_update = array('id_kt'=>$id, 'ten_kt'=>$ten_kt,'thoi_gian_bat_dau'=>$time_start,'thoi_gian_ket_thuc'=>$time_finish,'locked'=>$khoa);
+                $res_update =  $adminktModel->Update_Kythi($data_update);
+                if($res_update === true){
+                    $this->view['msg'][]  = "Cập nhật kỳ thi thành công!";
+                    header("Location: ".base_path.'?controller=admin-kythi&action=list');
+
+                }
+                else
+                    $this->view['msg'][]  = $res_update;
+            }
+        }
+
+        $row_info =  $adminktModel->loadOne($id);
+        if(is_array($row_info)){
+            $this->view['data'] = $row_info;
+        }else{
+            $this->view['msg'][]  = $row_info;  // có lỗi
+        }
+
+    }
+    function deleteAction (){
+        $adminktModel= new AdminKythiModel();
+        $id= @$_GET['id'];
+        if(!is_numeric($id)){
+            $this->view['msg'][] = 'Không xác định ID môn!';
+        }
+        $row_info = $adminktModel->loadOne($id);
+        if(is_array($row_info)){
+            $this->view['data'] = $row_info;
+        }else{
+            $this->view['msg'][]  = $row_info;  // có lỗi
+        }
+        if(isset($_POST['id_kt'])){
+            $ma_kt = $_POST['id_kt'];
+            if($ma_kt != $id){
+                $this->view ['msg']='Không xác định ID kỳ thi!';
+
+            }else{
+                $res =  $adminktModel->Delete($ma_kt);
+                if($res === true){
+                    $this->view ['msg']= "Xóa thành công!";
+                    header("Location: ".base_path.'?controller=admin-kythi&action=list');
+                }
+                else
+                    $this->view ['msg'] = $res;
+            }
+        }
+
+    }
+}

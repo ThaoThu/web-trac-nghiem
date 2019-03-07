@@ -1,0 +1,56 @@
+
+<?php
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//print_r($this->view);
+//echo '</pre>';?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="form_row">
+            <h2 id="h2">Sửa tài khoản</h2>
+            <label>Tên đăng nhập</label>
+            <input type="text" disabled class="form_input" name="txt_ten_dang_nhap" value="<?php echo $this->view['info']['username'];?>">
+        </div>
+        <div class="form_row">
+
+            <!--            $this->view['info']['username']=$_SESSION['userLogin']['username'];-->
+            <!--            $this->view['info']['hodem']=$infor_giaovien['ho_dem'];-->
+            <!--            $this->view['info']['ten']=$infor_giaovien['ten'];-->
+            <!--            $this->view['info']['birth']=$infor_giaovien['ngay_sinh'];-->
+
+            <label>Họ Đệm</label>
+            <input type="text" class="form_input" name="txt_hodem"  value="<?php if(isset($this->view['info']['hodem'])) echo $this->view['info']['hodem']; ?>"/>
+
+            <label>Tên</label>
+            <input type="text" class="form_input" name="txt_ten"  value="<?php if(isset($this->view['info']['ten'])) echo $this->view['info']['ten']; ?>"/>
+
+            <label>Email</label>
+            <input type="email" class="form_input" name="txt_email"  value="<?php if(isset($this->view['info']['mail'])) echo $this->view['info']['mail'];?>"/>
+
+            <label>Ngày Sinh</label>
+            <input type="date" class="form_input" name="txt_birth"  value="<?php if(isset($this->view['info']['birth'])) echo $this->view['info']['birth'];?>"/>
+
+            <label>Số điện thoại</label>
+            <input type="number" class="form_input" name="txt_sdt"  value="<?php if(isset($this->view['info']['sdt'])) echo $this->view['info']['sdt'];?>"/>
+
+            <label>Địa chỉ</label>
+            <input type="text" class="form_input" name="txt_diachi"  value="<?php if(isset($this->view['info']['dia_chi'])) echo $this->view['info']['dia_chi'];?>"/>
+
+        </div>
+
+        <div class="form_row">
+            <input type="submit" class="form_submit" value="Sửa tài khoản" name="btnSave" />
+            <?php
+            if(!empty($this->view['msg'])){
+                foreach ($this->view['msg'] as $msg)
+                    echo '<b>'.$msg."</b><br>";
+            }
+            ?>
+        </div>
+    </form>
+</div>
+
+
+
+
+

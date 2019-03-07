@@ -1,0 +1,108 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view);
+// echo '</pre>';
+
+?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+    <div class="manager-nav">
+            <h2>
+                <i class="fas fa-school"></i> <a href="?controller=admin-exam&action=list">Quản lý Đề Thi</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                        if(is_array($this->view['msg'])){
+                             foreach ($this->view['msg'] as $item_msg)
+                            echo '<b>'.$item_msg."</b>";
+                        }else echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset>
+        
+            <legend>Thêm học phần</legend>
+            <div class="form_row">
+                <label class = "require">Môn Học</label>
+                <select name="txt_ma_mh" id="select" class="form_input"  >
+                <?php
+
+                foreach($this->view['list_mh'] as $row){
+                        if($row['ma_mh'] ==  $ma_mh)
+                            $selected = ' selected ';
+                        else
+                            $selected ='';
+
+                        echo '<option '.$selected.' value="'.$row['ma_mh'].'" >'.$row['ten_mh'].'</option>';
+                    }
+                    
+                
+                ?>
+            </select>    
+              <span id="btn_brows_question" style="cursor: pointer;color:red;font-weight: bolder" >Chọn câu hỏi...</span>
+             
+            </div>
+           
+           
+            <div class="form_row">
+                <label class = "require"> Kỳ Thi</label>
+                <select name="txt_ma_kt"  class="form_input">
+                    <?php
+                        foreach($this->view['list_kt'] as $row){
+                            ?>
+                            <option value="<?php echo $row['id_kt']; ?>"><?php echo $row['ten_kt']; ?></option>';
+                            <?php
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form_row">
+                <label class = "require">Tổng Điểm</label>
+                <input type="text"  required class="form_input" name="txt_tong_diem" />
+    
+            </div>
+            <div class="form_row">   
+                <label class = "require">Thời Gian làm bài</label>
+                <input type="text" required class="form_input" name="txt_thoi_gian_lam_bai" />
+            </div>
+        
+            
+        </fieldset>
+    </form>
+</div>
+
+<script>
+$(document).ready(function () {
+
+    $('#btn_brows_question').click(function (event) {
+        event.preventDefault();
+
+    
+
+        var monhoc = $('select[name="txt_ma_mh"]').val();
+        window.open(window.location.protocol + "//" + window.location.host +_base_url+ "?controller=admin-exam&&action=list-ch&ma_mh="+monhoc,"popupWindow", "width=800,height=800,scrollbars=yes");
+    });
+
+    //save select value
+    var subjectValue = localStorage.getItem("subjectValue");
+    if(subjectValue != null) {
+        $("#select").val(subjectValue);
+    }
+
+    $("#select").on("change", function() {
+        localStorage.setItem("subjectValue", $(this).val());
+        console.log($(this).val());
+    });
+
+// On change store the value
+
+
+
+
+});
+   
+</script>

@@ -1,0 +1,37 @@
+
+   
+<?php
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
+?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+    <div class="manager-nav">
+        <h2>
+            <i class="fas fa-users"></i> <a href="?controller=admin-user&action=list">Quản lý tài khoản </a> 
+            <span>
+                <?php
+                if(!empty($this->view['msg'])){
+                        echo $this->view['msg'];
+                }
+                ?>
+            </span>
+        </h2>
+        </div>
+        <div >
+            <input type="hidden" name="id_tai_khoan" value="<?php echo  $this->view['data']['id']; ?>">
+            <h1 <?php echo isset($this->view['data'])?"":"hidden"; ?>>Chắc chắn xóa tài khoản: <?php echo @$this->view['data']['username']; ?> ? </h1>
+            
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
+                echo '<button class="btn-delete btn-return"><a href="?controller=admin-user&action=list">Trở về</a></button>';
+            }
+            ?>
+        </div>  
+    </form>
+</div>

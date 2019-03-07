@@ -1,0 +1,30 @@
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-book"></i> <a href="?controller=admin-class&action=list">Quản lý môn học </a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                            echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+            </h2>
+        </div>
+        <div class="form_row">
+            <input type="hidden" name="ma_mh" value="<?php echo $this->view['data']['ma_mh'];?>">
+            <h1>Chắc chắn xóa môn: <?php echo $this->view['data']['ten_mh']; ?> ? </h1>
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
+                echo '<button class="btn-delete btn-return"><a href="?controller=admin-subject&action=list">Trở về</a></button>';
+            }
+            ?>
+        </div> 
+    </form>
+
+</div>

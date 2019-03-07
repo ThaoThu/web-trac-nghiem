@@ -1,0 +1,43 @@
+
+<?php
+echo '<pre>';
+print_r($this->view);
+echo '</pre>';
+?>
+<div class="clear"></div>
+<div id="form_row">
+
+    <form action="" method="post">
+    <div class="manager-nav">
+        <h2>
+            <i class="fas fa-users"></i> <a href="?controller=admin-student&action=list">Quản lý học sinh </a> 
+            <span>
+                <?php
+                if(!empty($this->view['msg'])){
+                        echo $this->view['msg'];
+                }
+                ?>
+            </span>
+        </h2>
+        </div>
+        <div class="form_row">
+            
+            <?php
+            if(isset($this->view['data'])){
+                echo '<input type="hidden" name="ma_thisinh" value="'.$this->view['data']['ma_ts'].'">';
+                echo '<h1>Chắc chắn xóa học sinh: '.$this->view['data']['ten'].'</h1>';
+            }
+            ?>
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
+                echo '<button class="btn-delete btn-return"><a href="?controller=admin-student&action=list">Trở về</a></button>';
+            }
+            ?>
+        </div> 
+
+</form>
+
+</div>

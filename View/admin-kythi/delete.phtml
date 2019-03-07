@@ -1,0 +1,35 @@
+<div class="clear"></div>
+<?php
+echo '<pre>';
+print_r($this->view);
+echo '</pre>';
+?>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-book"></i> <a href="?controller=admin-kythi&action=list">Quản lý kỳ thi </a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                            echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+            </h2>
+        </div>
+        <div class="form_row">
+            <input type="hidden" name="id_kt" value="<?php echo $this->view['data']['id_kt'];?>">
+            <h1>Chắc chắn xóa kỳ thi: <?php echo $this->view['data']['ten_kt']; ?> ? </h1>
+        </div>
+        <div class="form_row">
+            <?php
+            if(isset($this->view['data'])) {
+                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
+                echo '<button class="btn-delete btn-return"><a href="?controller=admin-kythi&action=list">Trở về</a></button>';
+            }
+            ?>
+        </div> 
+    </form>
+
+</div>

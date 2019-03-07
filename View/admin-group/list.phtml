@@ -1,0 +1,49 @@
+<div class="center_content">
+    <div id="right_wrap">
+        <div id="right_content">
+            <h2><i class="fas fa-users"></i>Nhóm tài khoản<a href="?controller=admin-group&&action=add"><i class="fas fa-2x fa-plus-circle add-icon"> </i></a><a href="?controller=admin-group&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+            <table id="rounded-corner">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên nhóm</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="12"></td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr class="odd">
+                        <?php
+                        $count=0;
+                        foreach($this->view['list'] as $row){
+                            $count++;
+                            $link = '?controller=admin-group&action=edit&id='.$row['gid'];
+                            $link_delete = '?controller=admin-group&action=delete&id='.$row['gid'];
+                            echo '<tr><td>'.$count.'</td><td><a href="'.$link.'">'.$row['name'].'</a></td><td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td><td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td></tr>';
+                        }
+                        ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Quản lý tài khoản</h2>
+
+        <ul>
+            <li><a href="?controller=admin-user&&action=list">Tài khoản</a></li>
+            <li><a href="?controller=admin-student&action=list&page=1">Học sinh</a></li> 
+            <li><a href="?controller=admin-teacher&action=list&page=1">Giáo Viên</a></li> 
+            <li><a href="#">Phân quyền</a></li>
+        </ul>
+
+        
+
+    </div>
+</div> 

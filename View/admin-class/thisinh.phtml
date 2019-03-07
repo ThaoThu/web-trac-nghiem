@@ -1,0 +1,108 @@
+<?php
+/**
+ * Created by ThaoNTT
+ * User: Administrator
+ * Date: 12/30/2017
+ * Time: 3:31 PM
+ */
+
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//print_r($this->view);
+//echo '</pre>';?>
+<div class="center_content">
+
+
+    <div id="right_wrap">
+        <div id="right_content">
+            <h2><?php echo $this->view['hoten']; ?></h2>
+
+
+            <table id="rounded-corner">
+                <thead>
+                <tr>
+                    <th>Mã bài thi</th>
+                    <th>Môn thi</th>
+                    <th>Ngày Thi</th>
+                    <th>điểm</th>
+                    <th>Thời Gian làm bài</th>
+
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="12"></td>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr class="odd">
+
+
+                    <?php
+                    if(isset($this->view['list'] )){
+                        foreach($this->view['list'] as $row){
+                        echo '
+                            <tr>
+                                <td style="height: 50px;"><b>'.$row['ma_bt'].'</b></td>
+                                <td style="height: 50px;"><a href="?controller=admin-test&action=xembai&ma_ts='.$this->view['id'].'&id='.$row['ma_bt'].'">'.$row['ten_mh'].'</a></td>
+                                <td>'.substr($row['ngay_thi'],0,10).'</td>
+                                <td>'.($row['diem']*10).'</td>
+                                <td>'.$row['thoi_gian_lam_bai'].'</td>
+                             </tr>';
+
+                        }
+                    }
+
+                    ?>
+
+
+                </tr>
+                <tr><td colspan="10">
+                        <?php
+
+                        // hiển thị chỉ số trang của danh sách
+                        if (isset($this->view['total_pages'])){
+                        if($this->view['total_pages']>1){?>
+
+                        <div class="page-number">
+                            <ul>
+                                <?php
+                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
+                                    echo '<li><a href="?controller=admin-class&action=class&id=3&page='.$page.'">'.$page.'</a></li>';
+                                }
+                                ?>
+                                <?php } }?>
+                    </td></tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div><!-- end of right content-->
+    <!--        <div class="clear"></div>-->
+    <!--        <div style="clear: both"></div>-->
+
+    <div class="sidebar" id="sidebar">
+        <h2>Danh sách </h2>
+
+        <ul>
+            <li><a href="?controller=admin-student&&action=list" >Thí sinh</a></li>
+            <li><a href="?controller=admin-student&&action=listtk">Thí sinh & tài khoản</a></li>
+        </ul>
+
+        <h2>Help</h2>
+
+        <ul>
+            <li><a href="#">Help</a></li>
+        </ul>
+
+        <h2>Text Section</h2>
+        <div class="sidebar_section_text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+</div> <!--end of center_content-->
