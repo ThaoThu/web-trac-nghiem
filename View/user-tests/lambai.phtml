@@ -1,7 +1,7 @@
 <?php
-echo '<pre>';
-print_r($this->view);
-echo '</pre>';
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
 ?>
         <div class="container">
         <div class="col-lg-8 d-block m-auto bg-light quizsetting ">
@@ -50,6 +50,10 @@ echo '</pre>';
     </div>
 </div>
     <script type="text/javascript">
+ $(window).bind('beforeunload', function(e) { 
+    return "Unloading this page may lose data. What do you want to do..."
+    e.preventDefault();
+});
      var h = null; // Giờ
         var m = null; // Phút
         var s = null; // Giây

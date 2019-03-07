@@ -1,5 +1,21 @@
 <?php
 class AdminExamModel extends Model{
+    function xemketqua(){
+       $sql ="select ma_bt,baithi.so_cau_dung,baithi.ngay_thi,baithi.trang_thai,thisinh.ma_ts,lop.ten_lop,thisinh.ho_dem,thisinh.ten,baithi.diem FROM baithi,thisinh,lop where  trang_thai='1'AND baithi.ma_ts = thisinh.ma_ts and baithi.ma_lp=lop.ma_lop";
+
+        // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
+        $res = mysqli_query($this->conn, $sql);
+        if($res === false){
+            // có lỗi
+            return 'Error load : '. mysqli_error($this->conn);
+        }
+
+        $data = array();
+        while ($row = mysqli_fetch_assoc($res)){
+            $data[] = $row;
+        }
+        return $data;
+    }
 
     public function loadList($params=null)
 

@@ -1,6 +1,17 @@
 <?php
 class AdminExamController extends Controller{
-
+    function xemketquaAction(){
+        $AdminExamModel = new AdminExamModel();
+        
+        $list =$AdminExamModel ->xemketqua();
+        
+        if(is_array($list)){
+            $this->view['list']  = $list;
+           
+        }else{
+            $this->view['msg'] = $list;
+        }
+    }
     function listAction(){
         $AdminExamModel = new AdminExamModel();
         $mh = new AdminSubjectModel();
