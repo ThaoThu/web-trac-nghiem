@@ -181,9 +181,9 @@ class AdminTeacherModel extends Model{
            
             $res = mysqli_query($this->conn,$sql);
             if($res ===false){
-                return "Lỗi INSERT: ". mysqli_error($this->conn);
+                return  mysqli_error($this->conn);
             }
-            // return true;
+             return res;
         }
     }
     function SelectArrayKyThi(){

@@ -229,7 +229,19 @@ class AdminTeacherController extends Controller{
             if(!$this->view['msg']){
                 $ma_dt = $_POST['id_dt'];
                 $res_insert= $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt);
-                $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
+                if($res_insert===true){
+                     $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
+                }else{
+                    
+                    if(substr($res_insert,0,9)=='Duplicate'){
+                        $this->view['msg'][]="Lỗi. Đã tạo bài thi cho lớp này rồi !";
+                    }else{
+                        
+                        $this->view['msg'][]="Có lỗi xảy ra, không thể tạo đề thi";
+                    }
+                     
+                }
+               
                 
                 
             }
