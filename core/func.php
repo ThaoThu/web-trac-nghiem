@@ -98,8 +98,8 @@ class func{
         }else return true;}
     public function validateTg($string){
 
-        if($string<2){
-            return "Thời gian phải lớn hơn 2 phút . ";
+        if($string<1){
+            return "Thời gian ít nhất 1 phút . ";
         }else return true;}
     
     public function validateQuestion ($string){
