@@ -7,6 +7,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Tên nhóm</th>
+                        <th>Phân Quyền</th>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -21,10 +22,12 @@
                         <?php
                         $count=0;
                         foreach($this->view['list'] as $row){
+                            $link_key = '?controller=admin-group&action=permission&id='.$row['gid'];
                             $count++;
                             $link = '?controller=admin-group&action=edit&id='.$row['gid'];
                             $link_delete = '?controller=admin-group&action=delete&id='.$row['gid'];
-                            echo '<tr><td>'.$count.'</td><td><a href="'.$link.'">'.$row['name'].'</a></td><td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td><td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td></tr>';
+                            echo '<tr><td>'.$count.'</td><td><a href="'.$link.'">'.$row['name'].'</a></td><td><a href='.$link_key.'><img src="Public/backend/images/key.png" alt="phân quyền" title="phân quyền" border="0" height="30px" /></a><td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td><td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td></tr>';
+                         
                         }
                         ?>
                     </tr>
@@ -40,7 +43,7 @@
             <li><a href="?controller=admin-user&&action=list">Tài khoản</a></li>
             <li><a href="?controller=admin-student&action=list&page=1">Học sinh</a></li> 
             <li><a href="?controller=admin-teacher&action=list&page=1">Giáo Viên</a></li> 
-            <li><a href="#">Phân quyền</a></li>
+            
         </ul>
 
         

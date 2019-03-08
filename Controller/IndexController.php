@@ -10,8 +10,9 @@ class IndexController extends Controller{
         {
             if($_SESSION['userLogin']['gid']==4||$_SESSION['userLogin']['gid']==5)
                 header("Location: ".$_base_path.'?controller=admin-class&action=list&page=1');
-            else
+            else if($_SESSION['userLogin']['gid']==6)
                 header("Location: ".$_base_path.'?controller=user-tests&action=list&page=1');
+             
         }
         if(isset($_POST['btnLogin'])){
             $username = $_POST['txt_username'];

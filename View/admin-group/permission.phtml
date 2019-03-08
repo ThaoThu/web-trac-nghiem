@@ -1,0 +1,48 @@
+<?php
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//print_r($this->view);
+//echo '</pre>';?>
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="form_row">
+            <h2 id="h2">Phân quyền người dùng</h2>
+            <table border="0">
+                <tr>
+                    <td>Tên nhóm</td>
+                    <td><b><?php echo $this->view['info']['name']; ?></b></td>
+                </tr>
+                <tr>
+                    <td>Chức năng</td>
+                    <td>
+                        <?php
+                        foreach ($this->view['list_func'] as $row){
+                            $id_chuc_nang = $row['id'];
+                            $ten = $row['ten_chuc_nang'];
+                            $link = $row['link'];
+
+                            $check = '';
+                            foreach ($this->view['list_pms'] as $pms){
+                                if($pms['id_chuc_nang'] ==$id_chuc_nang )
+                                {
+                                    $check = ' checked ';
+                                    break;
+                                }
+                            }
+
+                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'>$ten ($link) <br>";
+
+                        }
+                        ?>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="form_submit" value="Phân quyền" name="btnSave"></td>
+                </tr>
+            </table>
+
+        </div>
+    </form>
+</div>

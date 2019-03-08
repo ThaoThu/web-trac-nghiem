@@ -23,7 +23,7 @@ function __autoload($className){
 
 }
 
-function getDbConnecttion(){
+function getDbConnection(){
     if(!empty($GLOBALS['conn']))
         return $GLOBALS['conn'];
     else{
@@ -34,6 +34,15 @@ function getDbConnecttion(){
 }
 
 class MyMVC{
+    function getDbConnection(){
+        if(!empty($GLOBALS['conn']))
+            return $GLOBALS['conn'];
+        else{
+            $conn = null;
+            require app_path.'/Config/connect.php';
+            return $conn;
+        } 
+    }
 
     public function run(){
         //2. Lấy tham số truyền vào
@@ -46,7 +55,7 @@ class MyMVC{
 //Khoa chuc nang phan quyen
 //        if(!$this->CheckAcl($controller,$action)){
 //            echo '<b>Ban khong co quyen su dung chuc nang nay</b>';
-////
+// //
 //            exit();
 //        }
 
@@ -89,14 +98,15 @@ class MyMVC{
         if(empty($_SESSION['userLogin'])){
             return false;
         }
+    
 
 
         if(empty($_SESSION['userLogin']['permission_allow'])){
-
+ 
             $id_nhom_tai_khoan = $_SESSION['userLogin']['gid'];
 
             $sql_check_acl ="SELECT * FROM quyen INNER JOIN chucnangweb ON quyen.id_chuc_nang = chucnangweb.id WHERE quyen.id_nhom_tk =  $id_nhom_tai_khoan AND quyen.trang_thai=1 ";
-            $res = mysqli_query(getDbConnection(),$sql_check_acl);
+            $res = mysqli_query($this->getDbConnection(),$sql_check_acl);
 
             $auth = array();
             while ($row = mysqli_fetch_assoc($res)) {
@@ -107,10 +117,10 @@ class MyMVC{
 
         //check acl
 
-        if(in_array($str_check,$_SESSION['userLogin']['permission_allow'])){
-            return true;
-        }else
-            return false;
+    //     if(in_array($str_check,$_SESSION['userLogin']['permission_allow'])){
+    //         return true;
+    //     }else
+    //         return false;
 
     }
 

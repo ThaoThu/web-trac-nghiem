@@ -11,8 +11,8 @@
 			 </thead>
 			 <tbody>
 				 <tr>
-					 <td><?php if(isset($_SESSION['so_cau_dung'])) echo $_SESSION['so_cau_dung'];  ?></td>
-					 <td> <?php if(isset($_SESSION['diem'])) echo $_SESSION['diem'];  ?></td>
+					 <td><?php echo isset($_SESSION['so_cau_dung'])? $_SESSION['so_cau_dung'] : 0; unset($_SESSION['so_cau_dung'])  ?></td>
+					 <td> <?php echo isset($_SESSION['diem']) ?$_SESSION['diem']:0; unset($_SESSION['diem']) ?></td>
 				 </tr>
 				 
 			 </tbody>

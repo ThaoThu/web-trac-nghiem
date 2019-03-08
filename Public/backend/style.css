@@ -55,9 +55,9 @@ h3.logintitle{margin:5px 0;}
     width: 80%;
     margin: 0 auto;}
 
-.menu{ float:left; clear:both; padding:27px 0 0 15px;}
+.menu{ float:right; clear:both; padding:27px 0 0 15px;}
 .menu ul{ padding:0px; margin:0px; list-style:none;}
-.menu ul li{ float:left; padding:0px; margin:0px; font-size:13px;}
+.menu ul li{ float:left; padding:0px; margin:0px; font-size:20px;}
 .menu ul li a{ display:block; float:left; background-color:#f3d987; padding:7px 12px 5px 12px; color:#000; text-decoration:none;
 margin:0 4px 0 0;
 -moz-border-radius-topleft:6px;-webkit-border-top-left-radius:6px;-khtml-border-top-left-radius:6px;border-top-left-radius:6px;
@@ -223,7 +223,7 @@ input.loginform_submit{background: #228ccd;
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding-bottom:4px;
+    padding-bottom:14px;
 }
 .footer small{
     display: block;

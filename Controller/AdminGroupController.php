@@ -1,5 +1,69 @@
 <?php
 class AdminGroupController extends Controller{
+    function permissionAction(){
+        $permis = new AdminFuncModel();
+        $group= new AdminGroupModel();
+        $id= $_GET['id'];
+        if(!is_numeric($id)){
+            $this->view ['msg'][] = 'Không xác định ID nhóm!';
+        }
+        // xử lý post ngay dưới lấy ID
+        if(isset($_POST['btnSave'])){
+
+//
+//        echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//            print_r($_POST);
+//        echo '</pre>';
+
+            $array_chuc_nang = array();
+            foreach ($_POST as $param_name =>$value){
+                if(substr($param_name,0, 3) =='cn_'){
+                    $array_chuc_nang[] = intval(str_replace('cn_','',$param_name));
+                }
+            }
+
+//        echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//            print_r($array_chuc_nang);
+//        echo '</pre>';
+
+            $res = $permis->UpdatePermission($id, $array_chuc_nang);
+
+            foreach ($res as $msg )
+                $this->view ['msg'][] = $msg;
+
+        }
+
+
+
+
+
+        // lấy thông tin nhóm
+        $row_info = $group->loadOne($id);
+        if(is_array($row_info)){
+            $this->view ['info'] = $row_info;
+        }else{
+            $this->view ['msg'][]  = $row_info;  // có lỗi
+        }
+
+        // lấy ds chức năng
+        $list_func = $permis->SelectAllFunc();
+        if(is_array($list_func)){
+            $this->view ['list_func'] = $list_func;
+        }else{
+            $this->view ['msg'][]  = $list_func;  // có lỗi
+        }
+
+
+        // lấy danh sách quyền đã được cấp
+        $list_pms = $permis->SelectEnabledPermission($id);
+        if(is_array($list_pms)){
+            $this->view ['list_pms'] = $list_pms;
+        }else{
+            $this->view ['msg'][]  = $list_pms;  // có lỗi
+        }
+
+
+    }
     function listAction(){
         $admingroupModel = new AdminGroupModel();
         $list = $admingroupModel->loadList();
