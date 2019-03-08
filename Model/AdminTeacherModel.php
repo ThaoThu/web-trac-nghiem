@@ -183,7 +183,7 @@ class AdminTeacherModel extends Model{
             if($res ===false){
                 return  mysqli_error($this->conn);
             }
-             return res;
+             return $res;
         }
     }
     function SelectArrayKyThi(){

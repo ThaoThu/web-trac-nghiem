@@ -2,7 +2,7 @@
 class AdminExamModel extends Model{
     function xemketqua($ma_lop){
        $sql ="select baithi.ma_bt, ma_ts ,so_cau_dung,diem,ngay_thi,kythi.ten_kt from  dethi inner join kythi on dethi.ma_kt =kythi.id_kt INNER JOIN baithi on baithi.ma_dt = dethi.ma_dt
-       WHERE ma_lp =$ma_lopgit and trang_thai =1";
+       WHERE ma_lp =$ma_lop and trang_thai =1";
 
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);
@@ -71,7 +71,7 @@ class AdminExamModel extends Model{
       
         
 
-        $sql = "INSERT INTO dethi (ma_kt,ma_mh,so_luong_cau_hoi,ds_id_ch,tong_diem,thoi_gian_lam_bai,ngaytao,nguoitao,unique_val) VALUES ('$ma_kt','$ma_mh','$sl','$ds_id','$tong_diem','$tg',$date,'$nguoi_tao','$unique')";
+        $sql = "INSERT INTO dethi (ma_kt,ma_mh,so_luong_cau_hoi,ds_id_ch,tong_diem,thoi_gian_lam_bai,ngaytao,nguoitao,unique_val) VALUES ('$ma_kt','$ma_mh','$sl','$ds_id','$tong_diem','$tg','$date','$nguoi_tao','$unique')";
 //        $sql.=";update monhoc set locked='1' where monhoc.ma_mh=$ma_mh)";
 
         $res = mysqli_query($this->conn,$sql);

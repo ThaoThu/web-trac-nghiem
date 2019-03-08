@@ -47,7 +47,7 @@ class AdminKythiModel extends Model{
     }
 
     public  function  Insert_kt($params){
-        $ten_mh=$params['ten_kt'];
+        $ten_kt=$params['ten_kt'];
         $thoi_gian_bat_dau=$params['thoi_gian_bat_dau'];
         $thoi_gian_ket_thuc=$params['thoi_gian_ket_thuc'];
         $sql = "INSERT INTO kythi (ten_kt,thoi_gian_bat_dau,thoi_gian_ket_thuc) VALUES ('$ten_kt','$thoi_gian_bat_dau','$thoi_gian_ket_thuc')";

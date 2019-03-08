@@ -231,6 +231,7 @@ class AdminTeacherController extends Controller{
                 $res_insert= $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt);
                 if($res_insert===true){
                      $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
+                     echo ' <meta http-equiv="refresh" content="3; url='.base_path.'?controller=admin-baithi&action=list'.'" />';
                 }else{
                     
                     if(substr($res_insert,0,9)=='Duplicate'){

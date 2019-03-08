@@ -43,7 +43,7 @@ class AdminKythiController extends Controller{
         $func= new func();
         $adminktModel= new AdminKythiModel();
         if(isset($_POST['btnSave_x'])){
-            $ten_mh = $_POST['txt_ten_kt'];
+            $ten_kt = $_POST['txt_ten_kt'];
             $time_start=$_POST['time_start'];
             $time_finish=$_POST['time_finish'];
             
@@ -51,7 +51,7 @@ class AdminKythiController extends Controller{
                 $this->view['msg']='Lỗi :Thời gian bắt đầu lớn hơn kết thúc!';
             }else{
                  // gọi hàm lưu vào CSDL
-                $data_save = array('ten_kt'=>$ten_mh,'thoi_gian_bat_dau'=>$time_start,'thoi_gian_ket_thuc'=>$time_finish);
+                $data_save = array('ten_kt'=>$ten_kt,'thoi_gian_bat_dau'=>$time_start,'thoi_gian_ket_thuc'=>$time_finish);
                 $res_insert= $adminktModel->Insert_kt($data_save);
                 if($res_insert === true){
                     $this->view['msg'] = "Thêm  mới kỳ thi thành công!";
