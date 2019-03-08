@@ -1,9 +1,51 @@
 <?php
 class AdminExamController extends Controller{
+    function listKqLopAction(){
+       
+        $adminclassModel = new AdminClassModel();
+        $count = $adminclassModel->count();
+        $_admin_page_limit = 6;
+        // Công việc dành cho phân trang
+        $total_records = $count;
+        if(!is_numeric($total_records)){
+            $this->view['msg'] = $total_records;
+
+        }
+
+        $total_pages = ceil($total_records / $_admin_page_limit);
+
+        if($total_pages<=0){
+            $this->view['msg'] = "Chưa có dữ liệu!";
+
+        }
+
+        $current_page = @intval($_GET['page']);
+        if($current_page <1)
+            $current_page = 1;
+        if($current_page > $total_pages)
+            $current_page = $total_pages;
+
+        $offset = ($current_page-1) * $_admin_page_limit ;
+        //
+
+        $list =$adminclassModel->loadList($offset);
+        $adminclass = new AdminClassModel();
+        $ds_lop =$adminclass->Select_All_Class();
+        if(is_array($ds_lop)){
+            $this->view['list'] = $ds_lop;
+            $this->view['total_pages'] = $total_pages;
+        }
+        else
+        {
+            $this->view['msg'][] = $ds_lop;
+        }
+    }
     function xemketquaAction(){
+        $ma_lop = $_GET['id'];
+        
         $AdminExamModel = new AdminExamModel();
         
-        $list =$AdminExamModel ->xemketqua();
+        $list =$AdminExamModel ->xemketqua($ma_lop);
         
         if(is_array($list)){
             $this->view['list']  = $list;

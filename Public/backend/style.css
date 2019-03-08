@@ -74,7 +74,7 @@ margin:0 4px 0 0;
 .submenu ul{ padding:5px 0 5px 25px; margin:0px; list-style:none;}
 .submenu ul li{ float:left; padding:0px; margin:0px;}
 .submenu ul li a{ display:block; float:left; padding:3px 6px 3px 6px; text-decoration:none;
-margin:5px 4px 10px 0;font-size:19px;}
+margin:5px 4px 10px 0;font-size:21px;}
 .submenu ul li a.selected{display:block; float:left; padding:3px 6px 3px 6px; color:#FFFFFF; text-decoration:none;
 margin:5px 4px 8px 0;color:#FFFFFF; font-size:12px; background-color:#366082;
 -moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;
@@ -147,7 +147,7 @@ border-collapse: collapse;
 {
 padding: 8px;
 font-weight: bold;
-font-size:12px;
+font-size:16px;
 color: #535E66;
 background: #dde8f0; text-shadow:1px 1px #F2F8FC;
 }

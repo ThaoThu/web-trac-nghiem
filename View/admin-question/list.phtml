@@ -11,11 +11,11 @@
             <table id="rounded-corner">
                 <thead>
                 <tr>
-                    <th>mã câu hỏi</th>
+                    <th>Mã câu hỏi</th>
                     <th>Nội Dung câu hỏi</th>
                     <th>Mã học phần</th>
                     <th>Mã môn học</th>
-                    <th>số lượng đáp án</th>
+                    <th>Số lượng đáp án</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
 
@@ -71,9 +71,9 @@
                                 echo '<tr>
                                     
                                     <td>' . $row['ma_ch'] . '</td>
-                                    <td class= "text-left">' . substr($row['noi_dung_ch'], 0, 30).'...' . '</td>
+                                    <td >' . substr($row['noi_dung_ch'], 0, 30).'...' . '</td>
                                     <td>' . $ten_hp . '</td>
-                                    <td class= "text-left">' . $ten_mh. '</td>
+                                    <td >' . $ten_mh. '</td>
                                     <td>' . $row['so_luong_dap_an'] . '</td>
                                     <td><a href=' . $link . '>'.$img_edit.'</a></td>
                                     <td><a href=' .$link_delete . '>'.$img_delete.'</td>

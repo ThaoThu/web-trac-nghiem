@@ -6,41 +6,40 @@
 <div class="center_content">
 
     <div id="right_wrap">
-        <div id="right_content" >
+        <div id="right_content" style="margin:10px">
             <h2>Kết Quả</h2>
 
             <table id="rounded-corner">
                 <thead>
                     <tr>
+
+                        <th>Mã Bài thi</th> 
                         <th>Mã thí sinh</th>
-                        <th>Thí Sinh</th>
-                        <th>Lớp</th>
-                        <th>Mã Bài thi</th>
-                        <!-- <th>Kỳ Thi</th> -->
-                        <th>Ngày Thi</th>
                         <th>Số Câu Đúng</th>
                         <th>Điểm</th>
+                        <th>Kỳ thi</th>
+                        <th>Ngày Thi</th>
+                     
                     </tr>
                 </thead>
                 <tr>
                     <?php
 
                         foreach ($this->view['list'] as $row){
-                            if($row['trang_thai']!=0){
+                            
                                 echo "<tr>";
                                 echo "
+                                <td>".$row['ma_bt']."</td>
                                 <td>".$row['ma_ts']."</td>
-                                <td>".$row['ho_dem'].' '.$row['ten']."</td>
-                                <td>".$row['ten_lop']."</td>
-                                    <td>".$row['ma_bt']."</td>
-                                    
-                                    <td>".$row['ngay_thi']."</td>
-                                    <td>".$row['so_cau_dung']."</td>
-                                    <td>".$row['diem']."</td>
+                                <td>".$row['so_cau_dung']."</td>
+                                <td>".$row['diem']."</td>
+                                <td>".$row['ten_kt']."</td>
+                                <td>".$row['ngay_thi']."</td>
+                                
                                    
                                 ";
                                 
-                            }
+                            
                         }
 
                     ?>
