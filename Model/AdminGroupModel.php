@@ -1,5 +1,29 @@
 <?php
 class AdminGroupModel extends Model{
+    function Update_quyen($id, $ten_chuc_nang,$link){
+        $sql = "UPDATE chucnangweb SET ten_chuc_nang = '$ten_chuc_nang',link='$link' WHERE id=$id ";
+        $res = mysqli_query($this->conn,$sql);
+        if($res ===false){
+            return "Lỗi UPDATE: ". mysqli_error($this->conn);
+        }
+        return true;
+    }
+    public function loadOneQuyen($id)
+    {
+            $sql = "SELECT * FROM chucnangweb WHERE id = $id";
+           
+            $res = mysqli_query($this->conn,$sql);
+            if(mysqli_errno($this->conn)){
+                return  "Lỗi lấy thông tin : ". mysqli_error($this->conn);
+            }
+            if(mysqli_num_rows($res)==1){
+                $row = mysqli_fetch_assoc($res);
+                return $row;
+            }
+            else{
+                return 'Không tồn tại nhóm có ID là '.$id;
+            }
+        }
 
     public function loadList($params=null)
     {

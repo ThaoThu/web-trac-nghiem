@@ -6,7 +6,7 @@
 <div id="form_row">
     <form action="" method="post">
         <div class="form_row">
-            <h2 id="h2">Phân quyền người dùng</h2>
+            <h2 class ="text-primary" >Phân quyền người dùng</h2>
             <table border="0">
                 <tr>
                     <td>Tên nhóm</td>
@@ -30,7 +30,7 @@
                                 }
                             }
 
-                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'>$ten ($link) <br>";
+                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
 
                         }
                         ?>

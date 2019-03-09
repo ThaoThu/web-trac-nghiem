@@ -1,5 +1,35 @@
 <?php
 class AdminGroupController extends Controller{
+    function editquyenAction(){
+        $func= new func();
+        $admingroupModel= new AdminGroupModel();
+        $id= $_GET['id'];
+        if(!is_numeric($id)){
+            $this->view['msg'][] = 'Không xác định ID chức năng!';
+        }
+        if(isset($_POST['btnSave_x'])){
+            $ten_chuc_nang = $_POST['txt_ten_cn'];
+            $nguoidung = $_POST['nguoidung'];
+            $chucnang = $_POST['chucnang'];
+            $link = $nguoidung.'-'.$chucnang;
+                $res_update = $admingroupModel->Update_quyen($id, $ten_chuc_nang,$link);
+                if($res_update === true){
+                    header("Location: ".base_path.'?controller=admin-group&action=list');
+                }
+                else
+                    $this->view['msg'][]  = $res_update;
+            
+            }
+        $row_info =  $admingroupModel->loadOneQuyen($id);
+        if(is_array($row_info)){
+           
+            $this->view['data'] = $row_info; 
+        }else{
+            $this->view['msg'][]  = $row_info;  // có lỗi
+        }
+    }
+
+
     function addquyenAction(){
         $admingroupModel= new AdminGroupModel();
         if(isset($_POST['btnSave_x'])){
