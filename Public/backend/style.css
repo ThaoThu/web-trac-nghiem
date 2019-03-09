@@ -216,6 +216,7 @@ input.loginform_submit{background: #228ccd;
     font-size: 20px;}
 
 .footer{
+    
     background-color: #e4e3e0;
     border-top: 1px #fff solid;
     line-height: 50px;
@@ -390,4 +391,8 @@ width: 20px;
     font-size: 16px;
     width: 200px;
     float:right
+}
+fieldset{
+    width: 500px;
+    margin: 0 auto;
 }

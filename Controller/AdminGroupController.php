@@ -1,5 +1,26 @@
 <?php
 class AdminGroupController extends Controller{
+    function addquyenAction(){
+        $admingroupModel= new AdminGroupModel();
+        if(isset($_POST['btnSave_x'])){
+            $ten_chuc_nang = $_POST['txt_ten_cn'];
+            $nguoidung = $_POST['nguoidung'];
+            $chucnang = $_POST['chucnang'];
+            $link = $nguoidung.'-'.$chucnang;
+            
+            
+                // gọi hàm lưu vào CSDL
+                $res_insert= $admingroupModel->them_chuc_nang_web($ten_chuc_nang,$link);
+                if($res_insert === true){
+                    $this->view['msg'] = "Thêm chức năng mới thành công!";
+                   
+                }
+                else
+                    $this->view['msg'] = $res_insert;
+            
+            
+        }
+    }
     function permissionAction(){
         $permis = new AdminFuncModel();
         $group= new AdminGroupModel();

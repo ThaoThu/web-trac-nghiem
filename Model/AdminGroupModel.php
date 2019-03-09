@@ -43,6 +43,16 @@ class AdminGroupModel extends Model{
         }
         return true;
     }
+    public function them_chuc_nang_web($chucnang,$link){
+       
+        $sql = "INSERT INTO chucnangweb (ten_chuc_nang,link) VALUES ('$chucnang','$link')";
+        $res = mysqli_query($this->conn,$sql);
+        
+        if($res ===false){
+            return "Có Lỗi Xảy Ra. Không Thể Thêm";
+        }
+        return true;
+    }
     function Update_ten_nhom($id, $ten_nhom){
         $sql = "UPDATE nhomtaikhoan SET name = '$ten_nhom' WHERE gid=$id ";
         $res = mysqli_query($this->conn,$sql);

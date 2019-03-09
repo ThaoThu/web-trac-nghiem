@@ -1,0 +1,40 @@
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post">
+        <div class="manager-nav">
+            <h2>
+               Chức Năng Web
+                <span>
+                    <?php
+                    if(!empty($this->view['msg'])){
+                        if(is_array($this->view['msg'])){
+                             foreach ($this->view['msg'] as $item_msg)
+                            echo '<b>'.$item_msg."</b>";
+                        }else echo $this->view['msg'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset>
+            <legend>Thêm chức năng</legend>
+            <div class="form_row">
+            
+                <label for ="tennhom" class="require">Tên chức năng</label>
+                <input type="text" required class="form_input" name="txt_ten_cn"  />
+            </div>
+            <div class="form_row">
+            
+                <label for ="tennhom" class="require">Người Dùng</label>
+                <input type="radio" required  name="nguoidung" value ="admin" />Admin
+                <input type="radio" required  name="nguoidung" value ="user" />Học Sinh
+            </div>
+            <div class="form_row">
+            
+                <label for ="tennhom" class="require">Chức năng</label>
+                <input type="text" required class="form_input" name="chucnang"  />
+            </div>
+        </fieldset>
+    </form>
+</div>
