@@ -228,20 +228,24 @@ class AdminTeacherController extends Controller{
             if(!isset($_POST['id_dt']))$this->view['msg'][] = "Chưa chọn đề thi";
             if(!$this->view['msg']){
                 $ma_dt = $_POST['id_dt'];
-                $res_insert= $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt);
-                if($res_insert===true){
-                     $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
-                     echo ' <meta http-equiv="refresh" content="3; url='.base_path.'?controller=admin-baithi&action=list'.'" />';
-                }else{
-                    
-                    if(substr($res_insert,0,9)=='Duplicate'){
-                        $this->view['msg'][]="Lỗi. Đã tạo bài thi cho lớp này rồi !";
-                    }else{
-                        
-                        $this->view['msg'][]="Có lỗi xảy ra, không thể tạo đề thi";
-                    }
+               
+               
+               // $res_insert=  khong co resinsert vì nếu để resinsert thì ko add đc nghiều bài thi
+                $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt);
+               // if($res_insert===true){
+                    // $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
+                    header("Location: ".base_path.'?controller=admin-baithi&action=list');
                      
-                }
+               // }else{
+                    
+                //    if(substr($res_insert,0,9)=='Duplicate'){
+                  //      $this->view['msg'][]="Lỗi. Đã tạo bài thi cho lớp này rồi !";
+                 //   }else{
+                        
+                   //     $this->view['msg'][]="Có lỗi xảy ra, không thể tạo đề thi";
+                  //  }
+                     
+               // }
                
                 
                 

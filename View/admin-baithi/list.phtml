@@ -17,23 +17,7 @@
                 </tr>
                 </thead>
                 <tfoot>
-                <tr>
-                <td colspan="6">
-                        <?php
-
-                        // hiển thị chỉ số trang của danh sách
-                        if($this->view['total_pages']>1){?>
-
-                        <div class="page-number">
-                            <ul>
-                                <?php
-                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
-                                    echo '<li><a href="?controller=admin-baithi&action=list&page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                                <?php }?>
-                    </td>
-                </tr>
+                
                 </tfoot>
                 <tbody>
                 <tr class="odd">
