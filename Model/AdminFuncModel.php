@@ -17,7 +17,7 @@ class AdminFuncModel extends Model{
         // TODO: Implement loadOne() method.
     }
     function SelectAllFunc(){
-        $sql = "SELECT * FROM chucnangweb ORDER BY id DESC ";
+        $sql = "SELECT * FROM chucnangweb ORDER BY ten_chuc_nang ASC ";
         $res = mysqli_query($this->conn,$sql);
 
         if(mysqli_errno($this->conn)){
