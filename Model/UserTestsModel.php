@@ -85,7 +85,7 @@ class UserTestsModel extends Model
         return $row;
     }
     function editpassAction(){
-//        echo 'ahihi';
+
         $adminuserModel = new AdminUserModel();
         $id=$_SESSION['userLogin']['id'];//$_GET['id'];
         $xxx =$adminuserModel->SELECT_One_user($id);
@@ -96,11 +96,11 @@ class UserTestsModel extends Model
             $mk2=md5($_POST['mk_2']);
 
             if( !($adminuserModel->SELECT_One_pass($mkcu))) {
-                $this->view['msg'] = 'Mật Khẩu không đúng';
+                $this->view['msg'] = 'Mật Khẩu Cũ Sai';
             }
             else{
                 if ($mk1!=$mk2){
-                    $this->view['msg'][] = 'Mật Khẩu 1 và Mật Khẩu 2 không khớp';
+                    $this->view['msg'][] = 'Xác nhận mật khẩu không khớp';
                 }
                 else{
                     $adminuserModel->edit_pass($id,$mk1);
