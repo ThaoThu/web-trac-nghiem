@@ -6,19 +6,15 @@ class AdminGroupController extends Controller{
             $ten_chuc_nang = $_POST['txt_ten_cn'];
             $nguoidung = $_POST['nguoidung'];
             $chucnang = $_POST['chucnang'];
-            $link = $nguoidung.'-'.$chucnang;
-            
-            
-                // gọi hàm lưu vào CSDL
+            $arr_chucnang = explode(',',$chucnang);
+            foreach ($arr_chucnang as $row) {
+                $link = $nguoidung.'-'.$row;
                 $res_insert= $admingroupModel->them_chuc_nang_web($ten_chuc_nang,$link);
-                if($res_insert === true){
-                    $this->view['msg'] = "Thêm chức năng mới thành công!";
-                   
-                }
-                else
-                    $this->view['msg'] = $res_insert;
+
+            }
             
-            
+            header("Location:".base_path.'?controller=admin-group&action=list');
+        
         }
     }
     function permissionAction(){
