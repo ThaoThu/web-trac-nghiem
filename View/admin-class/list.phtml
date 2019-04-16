@@ -1,74 +1,100 @@
 <?php
-//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
-//    print_r($this->view);
-//echo '</pre>';?>
-<div class="center_content ">
-    <div id="right_wrap">
-        <div id="right_content" class="nomargin">
-        <h2><i class="fas fa-school"></i> Lớp<a href="?controller=admin-class&&action=add"><i class="fas fa-2x fa-plus-circle add-icon "> </i></a><a href="?controller=admin-class&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
+// //echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// //    print_r($this->view);
+// //echo '</pre>';?>
 
-            <table id="rounded-corner" style="margin:10px;width:99%">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên lớp</th>
-                    <th>Ghi chú</th>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                <td colspan="6">
-                        <?php
+       
+            <div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Lớp</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách lớp</h1>
+                                    <div class="add-product ">
+                                        <a href="?controller=admin-class&action=add">Thêm </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="name" data-editable="true">STT</th>
+                                                <th data-field="class" data-editable="true">Tên Lớp</th>
+                                                <th data-field="note" data-editable="true">Ghi Chú</th>
+                                                <th data-field="action" >Cài Đặt</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            $stt = 0;
+                                            foreach($this->view['list'] as $row){
+                                            $stt++;
+                                            $link = '?controller=admin-class&action=edit&id='.$row['ma_lop'];
+                                            $link_delete = '?controller=admin-class&action=delete&id='.$row['ma_lop'];
+                                                echo '<tr>
+                                                        <td>'.$stt.'</td>
+                                                        <td>'.$row['ten_lop'].'</td>
+                                                        <td>'.$row['ghi_chu'].'</td>
+                                                        <td>
+                                                            <a href='.$link.'><button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                            <a href='.$link_delete.'><button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                        </td>
+                                                    </tr>';
 
-                        // hiển thị chỉ số trang của danh sách
-                        if($this->view['total_pages']>1){?>
+                                            }
 
-                        <div class="page-number">
-                            <ul>
-                                <?php
-                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
-                                    echo '<li><a href="?controller=admin-class&action=list&page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                                <?php }?>
-                            </ul>
-                    </td>
-                </tr>
-                </tfoot>
-                <tbody>
-                <tr class="odd">
-
-                    <?php
-                    $stt = 0;
-                    foreach($this->view['list'] as $row){
-                        $stt++;
-                        $link = '?controller=admin-class&action=edit&id='.$row['ma_lop'];
-                        $link_delete = '?controller=admin-class&action=delete&id='.$row['ma_lop'];
-                        echo '<tr>
-                            <td>'.$stt.'</td>
-                            <td><a href="?controller=admin-class&action=class&id='.$row['ma_lop'].'">'.$row['ten_lop'].'</a></td>
-                            <td>'.$row['ghi_chu'].'</td>
-                            <td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td>
-                            <td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td></tr>';
-
-                    }
-
-                    ?>
-
-
-                </tr>
-                </tbody>
-            </table>
-
-
-            
-
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div><!-- end of right content-->
-   
+        <!-- Static Table End -->
+        
+  
 
-
-    <div class="clear"></div>
-</div> <!--end of center_content-->

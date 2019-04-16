@@ -60,30 +60,8 @@ class AdminExamController extends Controller{
         $kt = new AdminKythiModel();
         $list_mh = $mh->Select_All_Subject();
         $list_kt = $kt->Select_All_Kythi();
-        $count = $AdminExamModel->count();
-        $_admin_page_limit = 6;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
-        }
 
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
-        //
-
-        $list =$AdminExamModel->loadList($offset);
+        $list =$AdminExamModel->loadList();
         if(is_array($list_mh)){
             $this->view['list_mh']  = $list_mh;
            
@@ -101,7 +79,7 @@ class AdminExamController extends Controller{
 
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
+         
             $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;
@@ -135,6 +113,7 @@ class AdminExamController extends Controller{
             $id_ch = $_SESSION['id'];
            
             $so_luong_cau_hoi = count($id_ch);
+            //thua dong nay khong??
             $string_ds_id = serialize($id_ch);
             $tong_diem= $_POST['txt_tong_diem'];
             $thoi_gian_lam_bai =  $_POST['txt_thoi_gian_lam_bai'];

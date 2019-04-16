@@ -4,9 +4,8 @@ class AdminClassModel extends Model{
     public function loadList($params = null)
     {
 
-        // TODO: Implement loadList() method.
-        $limit = $_admin_page_limit=6;
-        $sql = "SELECT * FROM lop ORDER BY ma_lop ASC LIMIT $params,$limit ";
+       
+        $sql = "SELECT * FROM lop ORDER BY ma_lop ASC";
 
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);

@@ -361,6 +361,15 @@ h1 {
   margin-top:20px;
   margin-bottom: 80px;
 }
+.fixed-table-loading{
+  display: none!important;
+  
+}
+.main-sparkline13-hd h1{
+
+  color: #303030;
+  margin-bottom: 20px;
+}
 
 
 
