@@ -5,7 +5,7 @@ class AdminUserModel extends Model{
     {
         // TODO: Implement loadList() method.
         $limit = $_admin_page_limit=9;
-        $sql = "SELECT * FROM taikhoan ORDER BY id DESC LIMIT $params,$limit ";
+        $sql = "SELECT * FROM taikhoan ORDER BY id DESC  ";
 
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);

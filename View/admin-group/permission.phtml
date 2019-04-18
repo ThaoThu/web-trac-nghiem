@@ -2,149 +2,106 @@
 // echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
 // print_r($this->view);
 // echo '</pre>';?>
-<div class="clear"></div>
-<div id="form_row" style="width:100%">
+
+<div>
     <form action="" method="post">
         <h2 class ="text-primary" >Phân quyền người dùng</h2>
         <div class="container-fluid" style="margin:0">
             <h3>Tên nhóm : <b><?php echo $this->view['info']['name']; ?></b></h3>
             <div class="row">
-                <div class="col-sm-4">
-                    <table border="0">
-                            
-                            <tr>
-                                <tr>Thêm</tr>
-                                <td>
-                                    <?php
-                                    foreach ($this->view['list_func'] as $row){
-                                        $id_chuc_nang = $row['id'];
-                                        $ten = $row['ten_chuc_nang'];
-                                        $link = $row['link'];
-
-                                        $check = '';
-                                        foreach ($this->view['list_pms'] as $pms){
-                                            if($pms['id_chuc_nang'] ==$id_chuc_nang )
-                                            {
-                                                $check = ' checked ';
-                                                break;
-                                            }
-                                        }
-                                        if(lcfirst(substr($row['ten_chuc_nang'],0,5)) =='thêm')
-                                        echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
-
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                        
-                        </table>
-                </div>
-                <div class="col-sm-4">
-                    <table border="0">
-                                <tr>
-                                
-                                    <tr>Sửa</tr>
-                                    <td>
-                                        <?php
-                                        foreach ($this->view['list_func'] as $row){
-                                            $id_chuc_nang = $row['id'];
-                                            $ten = $row['ten_chuc_nang'];
-                                            $link = $row['link'];
-
-                                            $check = '';
-                                            foreach ($this->view['list_pms'] as $pms){
-                                                if($pms['id_chuc_nang'] ==$id_chuc_nang )
-                                                {
-                                                    $check = ' checked ';
-                                                    break;
-                                                }
-                                            }
-                                            //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
-                                            if(lcfirst(substr($row['ten_chuc_nang'],0,1)) =='s')
-                                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
-
-                                        }
-                                        ?>
-
-                                    </td>
-                                </tr>
-                            
-                        </table>
-                </div>
-                <div class="col-sm-4">
-                    <table border="0">
-                                <tr>
-                                    
-                                    <tr>Xóa</tr>
-                                    <td>
-                                        <?php
-                                        foreach ($this->view['list_func'] as $row){
-                                            $id_chuc_nang = $row['id'];
-                                            $ten = $row['ten_chuc_nang'];
-                                            $link = $row['link'];
-
-                                            $check = '';
-                                            foreach ($this->view['list_pms'] as $pms){
-                                                if($pms['id_chuc_nang'] ==$id_chuc_nang )
-                                                {
-                                                    $check = ' checked ';
-                                                    break;
-                                                }
-                                            }
-                                            //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
-                                            if(lcfirst(substr($row['ten_chuc_nang'],0,4)) =='xóa')
-                                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
-
-                                        }
-                                        ?>
-
-                                    </td>
-                                </tr>
-                            
-                    </table>
-                </div>
-                <div class="col-sm-4">
-                    <table border="0">
-                                <tr>
-                                
-                                    <tr>Xem</tr>
-                                    <td>
-                                        <?php
-                                        foreach ($this->view['list_func'] as $row){
-                                            $id_chuc_nang = $row['id'];
-                                            $ten = $row['ten_chuc_nang'];
-                                            $link = $row['link'];
-
-                                            $check = '';
-                                            foreach ($this->view['list_pms'] as $pms){
-                                                if($pms['id_chuc_nang'] ==$id_chuc_nang)
-                                                {
-                                                    $check = ' checked ';
-                                                    break;
-                                                }
-                                            }
-                                            //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
-                                            if(lcfirst(substr($row['ten_chuc_nang'],0,3)) =='xem')
-                                            echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
-
-                                        }
-                                        ?>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                   
-                                    <td><input type="submit" class="form_submit" value="Phân quyền" name="btnSave"></td>
-                                </tr>
-                            
-                    </table>
-                </div>
-                <div class="col-sm-4">
-                    <table border="0">
-                        <tr>Khác</tr>
+                <div class="">
+                    <table border="0">                   
                         <tr>
-  
+                            <td>Thêm</td>
+                            <td>
+                                <?php
+                                foreach ($this->view['list_func'] as $row){
+                                    $id_chuc_nang = $row['id'];
+                                    $ten = $row['ten_chuc_nang'];
+                                    $link = $row['link'];
+
+                                    $check = '';
+                                    foreach ($this->view['list_pms'] as $pms){
+                                        if($pms['id_chuc_nang'] ==$id_chuc_nang )
+                                        {
+                                            $check = ' checked ';
+                                            break;
+                                        }
+                                    }
+                                    if(lcfirst(substr($row['ten_chuc_nang'],0,5)) =='thêm')
+                                    echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
+
+                                }
+                                ?>
+
+                            </td>
+                        </tr> 
+                    </table>
+                </div>
+                <div class="">
+                    <table border="0">
+                        <tr>
+                            <td>Sửa</td>
+                            <td>
+                                <?php
+                                foreach ($this->view['list_func'] as $row){
+                                    $id_chuc_nang = $row['id'];
+                                    $ten = $row['ten_chuc_nang'];
+                                    $link = $row['link'];
+
+                                    $check = '';
+                                    foreach ($this->view['list_pms'] as $pms){
+                                        if($pms['id_chuc_nang'] ==$id_chuc_nang )
+                                        {
+                                            $check = ' checked ';
+                                            break;
+                                        }
+                                    }
+                                    //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
+                                    if(lcfirst(substr($row['ten_chuc_nang'],0,1)) =='s')
+                                    echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
+
+                                }
+                                ?>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="">
+                    <table border="0">
+                        <tr>
+                            <td>Xóa</td>
+                            <td>
+                                <?php
+                                foreach ($this->view['list_func'] as $row){
+                                    $id_chuc_nang = $row['id'];
+                                    $ten = $row['ten_chuc_nang'];
+                                    $link = $row['link'];
+
+                                    $check = '';
+                                    foreach ($this->view['list_pms'] as $pms){
+                                        if($pms['id_chuc_nang'] ==$id_chuc_nang )
+                                        {
+                                            $check = ' checked ';
+                                            break;
+                                        }
+                                    }
+                                    //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
+                                    if(lcfirst(substr($row['ten_chuc_nang'],0,4)) =='xóa')
+                                    echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
+
+                                }
+                                ?>
+
+                            </td>
+                        </tr>      
+                    </table>
+                </div>
+                <div class ="">
+                    <table border="0">
+                            <tr>
+                                <td>Khác</td>
                                 <td>
                                     <?php
                                     foreach ($this->view['list_func'] as $row){
@@ -160,25 +117,55 @@
                                                 break;
                                             }
                                         }
-                                        //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
-                                        if(lcfirst(substr($row['ten_chuc_nang'],0,3)) !=='xem' && lcfirst(substr($row['ten_chuc_nang'],0,1)) !=='s' && lcfirst(substr($row['ten_chuc_nang'],0,5)) !=='thêm' && lcfirst(substr($row['ten_chuc_nang'],0,4)) !=='xóa')
-                                        echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
+                                    //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
+                                    if(lcfirst(substr($row['ten_chuc_nang'],0,3)) !=='xem' && lcfirst(substr($row['ten_chuc_nang'],0,1)) !=='s' && lcfirst(substr($row['ten_chuc_nang'],0,5)) !=='thêm' && lcfirst(substr($row['ten_chuc_nang'],0,4)) !=='xóa')
+                                    echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
 
-                                    }
-                                    ?>
+                                }
+                                ?>
 
-                                </td>
+                            </td>
                         </tr>
                     <table>
                 </div>
+                <div class ="">
+
+                    <table border="0">
+                        <tr>
+                            <td>Xem</td>
+                            <td>
+                                <?php
+                                foreach ($this->view['list_func'] as $row){
+                                    $id_chuc_nang = $row['id'];
+                                    $ten = $row['ten_chuc_nang'];
+                                    $link = $row['link'];
+
+                                    $check = '';
+                                    foreach ($this->view['list_pms'] as $pms){
+                                        if($pms['id_chuc_nang'] ==$id_chuc_nang)
+                                        {
+                                            $check = ' checked ';
+                                            break;
+                                        }
+                                    }
+                                    //echo lcfirst(substr($row['ten_chuc_nang'],0,3));
+                                    if(lcfirst(substr($row['ten_chuc_nang'],0,3)) =='xem')
+                                    echo "<input $check type='checkbox' name='cn_$id_chuc_nang'><a href='?controller=admin-group&action=editquyen&id=$id_chuc_nang'> $ten ($link)</a> <br>";
+
+                                }
+                                ?>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            
+                            <td><input type="submit" class="form_submit" value="Phân quyền" name="btnSave"></td>
+                        </tr>
+                    </table>
+                </div>
+               
             </div>
         </div>    
     </form>
 </div>
-<script >
-$( document ).ready(function() {
-    console.log( "ready!" );$('.footer').hide();
-});
 
-
-</script>

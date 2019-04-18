@@ -16,7 +16,7 @@ class AdminClassController extends Controller{
     function addAction(){
         $func= new func();
         $adminclassModel = new AdminClassModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_lop = $_POST['txt_ten_lop'];
             $ghi_chu=$_POST['txt_ghi_chu'];
             $res_validate = $func->validateClass($ten_lop);
@@ -129,7 +129,7 @@ class AdminClassController extends Controller{
             $this->view['msg'][] = 'Không xác định ID mon!';
         }
 
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
 
 
             $ten_lop = $_POST['txt_ten_lop'];

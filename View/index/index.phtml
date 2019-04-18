@@ -6,7 +6,7 @@
         <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div id="loginpanelwrap">
+        <div id="loginpanelwrap" style ="padding:50px 0">
             <img src="Public/imgs/images.jpg" class="logologin"alt="">
             <div class="loginheader">
                 <h3 class="logintitle">Thi trắc nghiệm</h3>
@@ -22,19 +22,24 @@
                     <div class="loginform_row">
                         <input type="password" placeholder = "Mật khẩu" class="loginform_input" name="txt_passwd" />
                     </div>
-                    <div class="loginform_row">
+                    <div class="loginform_row ">
                         <input type="submit" class="loginform_input loginform_submit" value="Đăng Nhập" name="btnLogin" />
                     </div>
-                     <!-- <a href="#">Lấy lại mật khẩu</a>  -->
                     <div class="clear"></div>
+                    <div class="loginform_row ">
+                        <?php
+                        if(!empty($this->view['msg'])){
+                            foreach ( $this->view['msg'] as $msg) {
+                                echo '- <b>'.$msg.'</b><br>';
+                            }
+                        }
+                        ?>
+                    </div>
                 </form>
-                <?php
-                if(!empty($this->view['msg'])){
-                    foreach ( $this->view['msg'] as $msg) {
-                        echo '- <b>'.$msg.'</b><br>';
-                    }
-                }
-                ?>
+                
+
+                
+               
             </div>
         </div>      
     </body>

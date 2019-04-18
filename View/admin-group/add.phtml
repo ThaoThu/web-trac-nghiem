@@ -3,29 +3,61 @@
 // print_r($_POST);
 // echo '</pre>';
 ?>
-<div class="clear"></div>
-<div id="form_row">
-    <form action="" method="post">
-        <div class="manager-nav">
-            <h2>
-                <i class="fas fa-users"></i> <a href="?controller=admin-group&action=list">Quản lý nhóm </a> 
-                <span>
-                    <?php
-                    if(!empty($this->view['msg'])){
-                        if(is_array($this->view['msg'])){
-                             foreach ($this->view['msg'] as $item_msg)
-                            echo '<b>'.$item_msg."</b>";
-                        }else echo $this->view['msg'];
-                    }
-                    ?>
-                </span>
-                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
-            </h2>
+  <div class="product-status mg-b-15 ">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list single-page-breadcome">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <span>
+                                    <?php
+                                    if(!empty($this->view['msg'])){
+                                        if(is_array($this->view['msg'])){
+                                            foreach ($this->view['msg'] as $item_msg)
+                                            echo '<b>'.$item_msg."</b>";
+                                        }else echo $this->view['msg'];
+                                    }
+                                    ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Nhóm tài khoản</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <fieldset>
-            <legend>Thêm nhóm tài khoản</legend>
-                <label for ="tennhom" class="require">Tên nhóm</label>
-                <input type="text" required class="form_input" name="txt_ten_nhom" id="tennhom" />
-        </fieldset>
-    </form>
-</div>
+    </div>
+</div> 
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="text-center">Thêm nhóm tài khoản</h2>
+        <form action="" method="post" >
+            <div class="col-xs-6 col-xs-offset-3 ">
+                <div class="form-group">
+                    <label for ="tennhom" class="require">Tên nhóm</label>
+                    <input type="text" required class="form-control" name="txt_ten_nhom" id="tennhom" />
+                </div> 
+                
+            </div>
+            
+            <div class="col-lg-12">
+                <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<div>

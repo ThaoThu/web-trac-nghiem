@@ -4,49 +4,74 @@
 // echo '</pre>';
 //  echo $this->view['data']['ten_kt']
 ?>
-<div class="clear"></div>
-<div id="form_row">
-    <form action="" method="post">
-        <div class="manager-nav">
-                <h2>
-                    <i class="fas fa-book"></i> <a href="?controller=admin-group&action=list">Quản lý kỳ thi </a> 
-                    <span>
-                        <?php
-                        if(!empty($this->view['msg'])){
-                            if(is_array($this->view['msg'])){
-                                foreach ($this->view['msg'] as $item_msg)
-                                echo '<b>'.$item_msg."</b>";
-                            }else echo $this->view['msg'];
-                        }
-                        ?>
-                    </span>
-                    <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
-                </h2>
+<div class="product-status mg-b-15 ">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list single-page-breadcome">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <span>
+                                    <?php
+                                    if(!empty($this->view['msg'])){
+                                        if(is_array($this->view['msg'])){
+                                            foreach ($this->view['msg'] as $item_msg)
+                                            echo '<b>'.$item_msg."</b>";
+                                        }else echo $this->view['msg'];
+                                    }
+                                    ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Kỳ thi</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <fieldset>
-                <legend>Sửa kỳ thi</legend>
-                <div class="form_row">
-                    <input type="hidden" class="form_input" name="txt_ma_kt" value="<?php echo $this->view['data']['id_kt'];?>">
+        </div>
+    </div>
+</div> 
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="text-center">Sửa kỳ thi</h2>
+        <form action="" method="post" >
+            <div class="col-xs-6 col-xs-offset-3 ">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="txt_ma_kt" value="<?php echo $this->view['data']['id_kt'];?>">
                     <label class="require">Tên kỳ thi</label>
-                    <input type="text" class="form_input" name="txt_ten_kt" value="<?php echo $this->view['data']['ten_kt'];?>">
-                </div>
-                <div class="form_row">
-
-                <label class="require">Bắt đầu</label>
-                <input type="datetime-local" required class="form_input" name="time_start" id="" value="<?php echo $this->view['data']['thoi_gian_bat_dau']?>">
-                </div>
-                <div class="form_row">
+                    <input type="text" class="form-control" name="txt_ten_kt" value="<?php echo $this->view['data']['ten_kt'];?>">
+                </div> 
+                <div class="form-group">
+                    <label class="require">Bắt đầu</label>
+                    <input type="datetime-local" required class="form-control" name="time_start" id="" value="<?php echo $this->view['data']['thoi_gian_bat_dau']?>">
+                </div> 
+                <div class="form-group">
                     <label class="require">Kết thúc</label>
-                    <input type="datetime-local" required class="form_input" name="time_finish" id="" value="<?php echo $this->view['data']['thoi_gian_ket_thuc']?>">
+                    <input type="datetime-local" required class="form-control" name="time_finish" id="" value="<?php echo $this->view['data']['thoi_gian_ket_thuc']?>">
+                </div> 
+                
+            </div>
+            
+            <div class="col-lg-12">
+                <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
                 </div>
-                <div class="form_row checkbox">
-                    <input type="checkbox" checked name="khoa" id="" value='0'> Không Khóa
-                    <input type="checkbox" name="khoa" id="" value='1'> Khóa
-                </div>
+            </div>
+        </form>
+    </div>
+<div>
 
-            </fieldset>
-    </form>
-</div>
 
 
 

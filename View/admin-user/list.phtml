@@ -4,86 +4,116 @@
 // print_r($this->view);
 // echo '</pre>';
 ?>
-<div class="center_content">
-    <div id="right_wrap">
-        <div id="right_content">
-        <h2><i class="fas fa-users"></i>Tài khoản<a href="?controller=admin-user&&action=add"><i class="fas fa-2x fa-plus-circle add-icon"> </i></a><a href="?controller=admin-user&&action=add"><span class="themmoi">Thêm Mới</span></a></h2>
-            <table id="rounded-corner">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên đăng nhập</th>
-                    <th>Email</th>
-                    <th>Nhóm tài khoản</th>
-                    <th>Sửa</th><th>Xóa</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <td colspan="12"></td>
-                </tr>
-                </tfoot>
-                <tbody>
-                <tr class="odd">
-                    <?php
-                    if(!empty($this->view['list'])){
-                    $stt = 0;
-                    foreach($this->view['list'] as $row  ){
-                        $stt ++;
-                        $id = $row['id'];
-                        $ten_dang_nhap = $row['username'];
-                        $email = $row['email'];
-                        foreach($this->view['group_acc'] as $group_name){
-                            if($row['gid']===$group_name['gid'])$nhom = $group_name['name'] ;
-                        }
-                        
-                        $link = '?controller=admin-user&action=edit&id='.$row['id'];
-                        $link_delete = '?controller=admin-user&action=delete&id='.$row['id'];
-                        echo '
-                            <tr>
-                                <td>'.$stt.'</td>
-                                <td>'.$ten_dang_nhap.'</td>
-                                <td>'.$email.'</td>
-                                <td>'.$nhom .'</td>
-                                <td><a href='.$link.'><img src="Public/backend/images/edit.png" alt="" title="" border="0" /></a></td>
-                                <td><a href='.$link_delete.'><img src="Public/backend/images/trash.gif" alt="" title="" border="0" /></a></td>
-                               
-                            </tr>
-                        ';
-                    }}
-
-                    ?>
-
-
-                </tr>
-                <tr><td colspan="10">
-                        <?php
-                        if($this->view['total_pages']>1){?>
-
-                        <div class="page-number">
-                            <ul>
-                                <?php
-                                for($page = 1; $page <=$this->view['total_pages'];$page ++ ){
-                                    echo '<li><a href="?controller=admin-user&action=list&page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                                <?php }?>
-                    </td></tr>
-
-
-                </tbody>
-            </table>
+<div class="product-status mg-b-15 ">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list single-page-breadcome">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <span>
+                                    <?php
+                                    if(!empty($this->view['msg'])){
+                                        if(is_array($this->view['msg'])){
+                                            foreach ($this->view['msg'] as $item_msg)
+                                            echo '<b>'.$item_msg."</b>";
+                                        }else echo $this->view['msg'];
+                                    }
+                                    ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Tài khoản</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="sidebar" id="sidebar">
-        <h2>Quản lý tài khoản</h2>
-        <ul>
-            <li><a href="?controller=admin-group&&action=list" >Nhóm tài khoản</a></li>
-            <li><a href="?controller=admin-teacher&&action=list">Giáo Viên</a></li>
-            <li><a href="?controller=admin-student&&action=list">Học Sinh</a></li>
-        </ul>
+</div> 
+<div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách môn học</h1>
+                                    <div class="add-product ">
+                                        <a href="?controller=admin-user&action=add">Thêm </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên đăng nhập</th>
+                                                <th>Email</th>
+                                                <th>Nhóm tài khoản</th>
+                                                <th>Cài Đặt</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        if(!empty($this->view['list'])){
+                                        $stt = 0;
+                                        foreach($this->view['list'] as $row  ){
+                                            $stt ++;
+                                            $id = $row['id'];
+                                            $ten_dang_nhap = $row['username'];
+                                            $email = $row['email'];
+                                            foreach($this->view['group_acc'] as $group_name){
+                                                if($row['gid']===$group_name['gid'])$nhom = $group_name['name'] ;
+                                            }
+                                            
+                                            $link = '?controller=admin-user&action=edit&id='.$row['id'];
+                                            $link_delete = '?controller=admin-user&action=delete&id='.$row['id'];
+                                            echo '
+                                                <tr>
+                                                    <td>'.$stt.'</td>
+                                                    <td>'.$ten_dang_nhap.'</td>
+                                                    <td>'.$email.'</td>
+                                                    <td>'.$nhom .'</td>
+                                                    <td>
+                                                        <a href='.$link.'><button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                        <a href='.$link_delete.'><button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            ';
+                                        }}
 
-
+                                        ?>
+                                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="clear"></div>
-</div> <!--end of center_content-->
+</div>
+</div>
+</div>
+</div>
+
+

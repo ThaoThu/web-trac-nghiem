@@ -7,7 +7,7 @@ class AdminHocphanModel extends Model{
     {
         // TODO: Implement loadList() method.
         $limit = $_admin_page_limit=6;
-        $sql = "SELECT 	* FROM hocphan ORDER BY ma_hp ASC LIMIT $params,$limit ";
+        $sql = "SELECT 	* FROM hocphan ORDER BY ma_hp ASC  ";
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);
         if($res === false){

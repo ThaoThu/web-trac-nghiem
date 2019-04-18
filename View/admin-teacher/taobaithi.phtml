@@ -4,114 +4,132 @@
 // echo '</pre>';?>
 
 
-    <div id="right_wrap">
-        <div id="right_content">
-            <form action="" method="post">
-            <fieldset>
-            <legend>Tạo bài thi</legend>
-            
-            <h2>Danh Sách Đề Thi</h2>
-            <table id="rounded-corner" name="txt_ch" <?php echo isset($this->view['list'])?"":"hidden"; ?>>
-                <thead>
-                <tr>
-                    <th>Chọn đề thi</th>
-                    <th>Kỳ Thi</th>
-                    <th>Môn Học</th>
-                    <th>Số Lượng Câu Hỏi</th>
-                    <th>Tổng Điểm</th>
-                    <th>Người tạo</th>
-                    <th>Ngày tạo</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <td colspan="12"></td>
-                </tr>
-                </tfoot>
-                <tbody>
-                <tr class="odd">
-
-                    <?php
-                        if(isset($this->view['list'])){
-                            foreach(@$this->view['list'] as $row){
-                                foreach($this->view['list_mh'] as $row1){
-                                    if($row['ma_mh']===$row1['ma_mh']){
-                                        $ten_mh = $row1['ten_mh'];
-                                    }
-                                }
-                                foreach($this->view['list_kt'] as $row2){
-                                    if($row['ma_kt']===$row2['id_kt']){
-                                        $ten_kt = $row2['ten_kt'];
-                                    }}
-
-                                echo '<tr>
-                                    <td>
-                                        <input type="radio" name="id_dt" id="cid" value="'.$row['ma_dt'].'"> 
-                                    </td>
-                     
-                                    <td>'.$ten_kt.'</td>
-                                    <td>'.$ten_mh.'</td>
-                                    <td>'.$row['so_luong_cau_hoi'].'</td>
-                                    <td>'.$row['tong_diem'].'</td>
-                                    <td>'.$row['nguoitao'].'</td>
-                                    <td>'.$row['ngaytao'].'</td>
-
-                                 
-                 
-                                 </tr>';
-
-                            }
-                        }
-                       
-
-
-                    ?>
-
-
-
-                </tr>
-                <tr>
-
-
-                </tbody>
-            </table>
-            <div class="form_row mt-3">
-                <label>Lớp</label>
-                <select name="txt_ma_lp" style="" class="form_input">
-                    <?php
-                    $ma_lp = isset($_POST['txt_ma_lp'])?$_POST['txt_ma_lp']:'';
-                    if(isset($this->view['list_class'])){
-                        foreach ($this->view['list_class'] as $row){
-                            echo '<option  value="'.$row['ma_lop'].'" >'.$row['ten_lop'].'</option>';
-                        }
-                    }
-                    ?>
-                </select>
-           <input type="submit" name = "btnSave" value="Lưu" class="btn-delete ">
+    <div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Bài thi</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="clear"></div>
-            <p>
-            <?php
-            if(@$this->view['msg']!==null)
-            if(is_array($this->view['msg']))
-                foreach($this->view['msg'] as $row)
-                echo $row.'<br />';
-                
-            ?></p>
-            </fieldset>
-            </form>
-            
-            
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách đề thi</h1>
+                                    <div class="add-product ">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="" method="post">
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th >Chọn đề thi</th>
+                                                <th >Kỳ Thi</th>
+                                                <th >Môn Học</th>
+                                                <th >Số Lượng Câu Hỏi</th>
+                                                <th >Tổng Điểm</th>
+                                                <th >Người tạo</th>
+                                                <th >Ngày tạo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        <?php
+                                            if(isset($this->view['list'])){
+                                                foreach(@$this->view['list'] as $row){
+                                                    foreach($this->view['list_mh'] as $row1){
+                                                        if($row['ma_mh']===$row1['ma_mh']){
+                                                            $ten_mh = $row1['ten_mh'];
+                                                        }
+                                                    }
+                                                    foreach($this->view['list_kt'] as $row2){
+                                                        if($row['ma_kt']===$row2['id_kt']){
+                                                            $ten_kt = $row2['ten_kt'];
+                                                        }}
 
+                                                    echo '<tr>
+                                                        <td>
+                                                            <input type="radio" name="id_dt" id="cid" value="'.$row['ma_dt'].'"> 
+                                                        </td>
+                                        
+                                                        <td>'.$ten_kt.'</td>
+                                                        <td>'.$ten_mh.'</td>
+                                                        <td>'.$row['so_luong_cau_hoi'].'</td>
+                                                        <td>'.$row['tong_diem'].'</td>
+                                                        <td>'.$row['nguoitao'].'</td>
+                                                        <td>'.$row['ngaytao'].'</td>
+                                                    </tr>';
+
+                                                }
+                                            }
+                                        ?>
+                                       
+                                        </tbody>
+                                    </table>
+                                    <div class="form_row mt-3">
+                                        <label>Lớp</label>
+                                        <select name="txt_ma_lp" style="" class="form_input">
+                                            <?php
+                                            $ma_lp = isset($_POST['txt_ma_lp'])?$_POST['txt_ma_lp']:'';
+                                            if(isset($this->view['list_class'])){
+                                                foreach ($this->view['list_class'] as $row){
+                                                    echo '<option  value="'.$row['ma_lop'].'" >'.$row['ten_lop'].'</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                        <input type="submit" name = "btnSave" value="Lưu" class="btn-delete ">
+                                    </div>
+                                    <p>
+                                    <?php
+                                    if(@$this->view['msg']!==null)
+                                    if(is_array($this->view['msg']))
+                                        foreach($this->view['msg'] as $row)
+                                        echo $row.'<br />';
+                                        
+                                    ?></p>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="sidebar" id="sidebar">
-        <h2>Quản lý Bài thi</h2>
-        <ul>
-            <li><a href="?controller=admin-exam&&action=list" >Bài thi</a></li>
-        </ul>
-    </div>
-    
-    <div class="clear"></div>
-    </div><!-- end of right content-->

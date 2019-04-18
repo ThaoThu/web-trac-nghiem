@@ -1,0 +1,80 @@
+<div class="clear"></div>
+<div id="form_row">
+    <form action="" method="post" >
+        <div class="manager-nav">
+            <h2>
+                <i class="fas fa-users"></i> <a href="?controller=admin-student&action=list">Quản lý học sinh</a> 
+                <span>
+                    <?php
+                    if(!empty($this->view['msg']['success'])){
+                     echo $this->view['msg']['success'];
+                    }
+                    ?>
+                </span>
+                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
+            </h2>
+        </div>
+        <fieldset class="fieldset _tk">
+            <legend>Sửa thông tin học sinh</legend>
+            <div class="form_row taikhoan">
+                <input hidden type="text" class="form_input" name="txt_ma_ts" value="<?php echo$this->view['data']['ma_ts'];?>">
+                    <input hidden type="text" class="form_input small_input" name="txt_ma_ts" value="<?php echo$this->view['data']['ma_ts'];?>">
+                    <label class= "require">Mã lớp</label>
+                    <select name="txt_ma_lp" class="form_input small_input" >    
+                        <?php
+                        $ma_lp = isset($_POST['txt_ma_lp'])?$_POST['txt_ma_lp']:'';
+                        if(isset($this->view['list_class'])){
+                            foreach ($this->view['list_class'] as $row){
+                                echo '<option  value="'.$row['ma_lop'].'" >'.$row['ten_lop'].'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+            </div>     
+            <div class="form_row taikhoan">
+                <label class= "require">Họ, Tên đệm</label>
+                <input type="text" required class="form_input small_input" name="txt_ho" value="<?php echo$this->view['data']['ho_dem'];?>">
+            </div>
+
+            <div class="form_row taikhoan">
+                <label class= "require">Tên</label>
+                <input type="text" required class="form_input small_input" name="txt_ten" value="<?php echo$this->view['data']['ten'];?>">           
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Ngày sinh</label>
+                <input type="date" required class="form_input small_input" name="txt_ns"value="<?php echo substr($this->view['data']['ngay_sinh'],0,10);?>" >
+            
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Giới tính</label>
+                <input type="radio" name="gt" value="0" checked>Nam<input type="radio" name="gt" value="1">Nữ
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Địa chỉ</label>
+                <input type="text" required class="form_input small_input" name="txt_dc" value="<?php echo$this->view['data']['dia_chi'];?>" >
+
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Điện thoại</label>
+                <input type="text" required class="form_input small_input" name="txt_dt" value="<?php echo$this->view['data']['dien_thoai'];?>">
+                <div class="err small_err">
+                    <?php echo isset($this->view['msg']['phone'])? $this->view['msg']['phone']:''   ?>
+                </div>
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Mật Khẩu</label>
+                <input type="password" required class="form_input small_input" name="txt_passwd" >
+                <div class="err small_err">
+                    <?php echo isset($this->view['msg']['pass'])? $this->view['msg']['pass']:''   ?>
+                </div>
+            </div>
+            <div class="form_row taikhoan">
+                <label class= "require">Email</label>
+                <input type="email" required class="form_input small_input" name="txt_email"value="<?php echo isset($this->view['msg'][0]['email'])? $this->view['msg'][0]['email']:'' ?>">
+                <div class="err small_err">
+                    <?php echo isset($this->view['msg']['mail'])? $this->view['msg']['mail']:''   ?>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

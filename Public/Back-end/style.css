@@ -4726,3 +4726,14 @@ margin-top:55px;
 .admin-logo{
     height: 70px;
 }
+.img-save{
+    width: 50px;
+}
+.require::after{
+    content :' *';
+    color:red
+
+}
+.err{
+    color:red
+}

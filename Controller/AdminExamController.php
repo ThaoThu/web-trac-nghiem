@@ -106,7 +106,7 @@ class AdminExamController extends Controller{
         }else{
             $this->view['msg'] = $list_kt;
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
     
             $ma_kt = $_POST['txt_ma_kt'];
             $ma_mh= $_POST['txt_ma_mh'];

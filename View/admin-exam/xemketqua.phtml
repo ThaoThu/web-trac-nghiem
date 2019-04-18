@@ -3,70 +3,98 @@
 // print_r($this->view);
 // echo '</pre>';
 ?>
-<div class="center_content">
 
-    <div id="right_wrap">
-        <div id="right_content" style="margin:10px">
-            <h2><a href="?controller=admin-exam&action=list-kq-lop"><i class="fas fa-long-arrow-alt-left"></i></a> Kết Quả</h2>
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Kết quả</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách </h1>
+                                    <div class="add-product ">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã Bài thi</th> 
+                                                <th>Mã thí sinh</th>
+                                                <th>Số Câu Đúng</th>
+                                                <th>Điểm</th>
+                                                <th>Kỳ thi</th>
+                                                <th>Ngày Thi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
 
-            <table id="rounded-corner">
-                <thead>
-                    <tr>
+                                            foreach ($this->view['list'] as $row){
+                                                
+                                                    echo "<tr>";
+                                                    echo "
+                                                    <td>".$row['ma_bt']."</td>
+                                                    <td>".$row['ma_ts']."</td>
+                                                    <td>".$row['so_cau_dung']."</td>
+                                                    <td>".$row['diem']."</td>
+                                                    <td>".$row['ten_kt']."</td>
+                                                    <td>".$row['ngay_thi']."</td>
+                                                    
+                                                    
+                                                    ";
+                                                    
+                                                
+                                            }
 
-                        <th>Mã Bài thi</th> 
-                        <th>Mã thí sinh</th>
-                        <th>Số Câu Đúng</th>
-                        <th>Điểm</th>
-                        <th>Kỳ thi</th>
-                        <th>Ngày Thi</th>
-                     
-                    </tr>
-                </thead>
-                <tr>
-                    <?php
-
-                        foreach ($this->view['list'] as $row){
-                            
-                                echo "<tr>";
-                                echo "
-                                <td>".$row['ma_bt']."</td>
-                                <td>".$row['ma_ts']."</td>
-                                <td>".$row['so_cau_dung']."</td>
-                                <td>".$row['diem']."</td>
-                                <td>".$row['ten_kt']."</td>
-                                <td>".$row['ngay_thi']."</td>
-                                
-                                   
-                                ";
-                                
-                            
-                        }
-
-                    ?>
-
-
-
-                
-            </table>
+                                        ?>
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- <div class="sidebar" id="sidebar">
-
-        <input type="checkbox" id="menuTrigger"/>
-        <div class="menu">
-            <h3>Quản Lý </h3>
-            <label for="menuTrigger" class="trigger">
-            <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </label>
-            <ul class="links">
-                <li class="link"><a href="?controller=user-tests&action=list">Làm Bài Thi</a></li>
-                <li class="link"><a href="?controller=user-tests&action=xemketqua">Xem Kết Quả</a></li>
-            </ul>
-        </div>
-    </div> -->
-
-
-    <div class="clear"></div>
-</div> <!--end of center_content-->

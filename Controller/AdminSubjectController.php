@@ -1,33 +1,10 @@
+
 <?php
 class AdminSubjectController extends Controller{
     function listAction(){
         $adminsubModel = new AdminSubjectModel();
-        $count = $adminsubModel->count();
-        $_admin_page_limit = 6;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
-
-        }
-
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
-        //
-
-        $list =$adminsubModel->loadList($offset);
+        
+        $list =$adminsubModel->loadList(0);
 
         if(is_array($list)){
             $this->view['list']  = $list;
@@ -42,7 +19,7 @@ class AdminSubjectController extends Controller{
     function addAction(){
         $func= new func();
         $adminsubjectModel= new AdminSubjectModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_mh = $_POST['txt_ten_mh'];
             $ghi_chu=$_POST['txt_ghi_chu'];
             $res_validate = $func->validateSubject($ten_mh);
@@ -75,7 +52,7 @@ class AdminSubjectController extends Controller{
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID môn!';
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_mh = $_POST['txt_ten_mh'];
             $ghi_chu = $_POST['txt_ghi_chu'];
             $khoa = $_POST['khoa'];

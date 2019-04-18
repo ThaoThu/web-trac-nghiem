@@ -4,32 +4,9 @@ class AdminQuestionController extends  Controller
 {
     function listAction(){
         $adminQuestionModel = new AdminQuestionModel();
-        $count = $adminQuestionModel->countCauHoi();
-        $_admin_page_limit = 10;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
+        
 
-        }
-
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
-        //
-
-        $list = $adminQuestionModel->loadList($offset);
+        $list = $adminQuestionModel->loadList(0);
 
         $adminhp= new AdminHocphanModel();
         $adminsub= new AdminSubjectModel();
@@ -54,7 +31,7 @@ class AdminQuestionController extends  Controller
 
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
+    
             $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;
@@ -76,7 +53,7 @@ class AdminQuestionController extends  Controller
             $this->view['msg'][] = $ds_mon;
         }
 
-        if(isset($_POST['btnSave_x'])) {
+        if(isset($_POST['btnSave'])) {
             echo '<pre>';
             print_r($_POST);
             echo '</pre>';
@@ -140,7 +117,7 @@ class AdminQuestionController extends  Controller
             $this->view['msg'][] = 'Không xác định ID câu hỏi!';
         }
 
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
 
             $arr_post = $_POST;
 

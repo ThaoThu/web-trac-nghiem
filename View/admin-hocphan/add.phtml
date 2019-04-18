@@ -3,46 +3,75 @@
 // print_r($this->view['a']);
 // echo '</pre>';
 ?>
-<div class="clear"></div>
-<div id="form_row">
-    <form action="" method="post" >
-        <div class="manager-nav">
-            <h2>
-                <i class="fas fa-school"></i> <a href="?controller=admin-hocphan&action=list">Quản lý Học Phần</a> 
-                <span>
-                    <?php
-                    if(!empty($this->view['msg'])){
-                        if(is_array($this->view['msg'])){
-                             foreach ($this->view['msg'] as $item_msg)
-                            echo '<b>'.$item_msg."</b>";
-                        }else echo $this->view['msg'];
-                    }
-                    ?>
-                </span>
-                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
-            </h2>
+
+
+<div class="product-status mg-b-15 ">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list single-page-breadcome">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <span>
+                                    <?php
+                                    if(!empty($this->view['msg'])){
+                                        if(is_array($this->view['msg'])){
+                                            foreach ($this->view['msg'] as $item_msg)
+                                            echo '<b>'.$item_msg."</b>";
+                                        }else echo $this->view['msg'];
+                                    }
+                                    ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Học phần</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <fieldset>
-            <legend>Thêm học phần</legend>
-            <div class="form_row">
-                <label class="require">Tên Học Phần</label>
-                <input type="text" class="form_input" name="txt_ten_hp" >
+    </div>
+</div> 
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="text-center">Thêm học phần</h2>
+        <form action="" method="post" >
+            <div class="col-xs-6 col-xs-offset-3 ">
+                <div class="form-group">
+                    <label class="require">Tên Học Phần</label>
+                    <input type="text" class="form-control" name="txt_ten_hp" >
+                </div> 
+                <div class="form-group">
+                    <label class="require">Môn Học</label>
+                    <select name="ma_monhoc"" class="form-control">
+                        <?php
+                        foreach($this->view['list_mon'] as $row){
+                            echo '<option value="'.$row['ma_mh'].'">'.$row['ten_mh'] .'</option>';
+                        }
+                        ?>
+                        
+                    </select>
+                </div> 
+                
             </div>
-            <div class="form_row">
-                <label class="require">Môn Học</label>
-                <select name="ma_monhoc"" class="form_input">
-                    <?php
-                     foreach($this->view['list_mon'] as $row){
-                        echo '<option value="'.$row['ma_mh'].'">'.$row['ten_mh'] .'</option>';
-                     }
-                    ?>
-                    
-                </select></div>
+            
+            <div class="col-lg-12">
+                <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
+                </div>
             </div>
-        </fieldset>
-    </form>
-</div>
-
-
-
+        </form>
+    </div>
+<div>
 

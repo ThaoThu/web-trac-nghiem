@@ -90,34 +90,36 @@
                                     <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Giáo viên</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                         <li><a title="All Professors" href="?controller=admin-teacher&action=list"><span class="mini-sub-pro">Danh sách giáo viên</span></a></li>
-                                        <li><a title="Add Professor" href="?controller=admin-student&action=list"><span class="mini-sub-pro">Thêm giáo viên</span></a></li>
+                                        <li><a title="Add Professor" href="?controller=admin-teacher&action=add"><span class="mini-sub-pro">Thêm giáo viên</span></a></li>
                                     </ul>
                                 </li>
                                 <li>
                             <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Học Sinh</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">Danh sách học sinh</span></a></li>
-                                <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Thêm học sinh</span></a></li>
+                                <li><a title="All Students" href="?controller=admin-student&action=list"><span class="mini-sub-pro">Danh sách học sinh</span></a></li>
+                                <li><a title="Add Students" href="?controller=admin-student&action=add"><span class="mini-sub-pro">Thêm học sinh</span></a></li>
                             </ul>
                         </li>
                         <li><a href="?controller=admin-group&action=list"><i class ="fa fas fa-users"></i> Nhóm tài khoản</a></li>
+                        <li><a href="?controller=admin-user&action=list"><i class ="fa fas fa-user"></i> Tài khoản</a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Môn học</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="?controller=admin-subject&action=list&page=1"><span class="mini-sub-pro">Danh sách môn học</span></a></li>
-                                <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Thêm môn học</span></a></li>
-                                
-                                
+                                <li><a title="All Subject" href="?controller=admin-subject&action=list"><span class="mini-sub-pro">Danh sách môn học</span></a></li>
+                                <li><a title="Add Subject" href="?controller=admin-subject&action=add"><span class="mini-sub-pro">Thêm môn học</span></a></li>
+                                <li><a title="All part" href="?controller=admin-hocphan&action=list"><span class="mini-sub-pro">Danh sách học phần</span></a></li>
+                                <li><a title="Add part" href="?controller=admin-hocphan&action=add"><span class="mini-sub-pro">Thêm học phần</span></a></li>
+
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Kỳ thi</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Library" href="?controller=admin-kythi&action=list&page=1"><span class="mini-sub-pro">Danh sách kỳ thi</span></a></li>
-                                <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Thêm kỳ thi</span></a></li>
-                                <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Edit Library Asset</span></a></li>
+                                <li><a title="All Library" href="?controller=admin-kythi&action=list"><span class="mini-sub-pro">Danh sách kỳ thi</span></a></li>
+                                <li><a title="Add Library" href="?controller=admin-kythi&action=add"><span class="mini-sub-pro">Thêm kỳ thi</span></a></li>
+                               
                             </ul>
                         </li>
                         <li>
@@ -174,12 +176,11 @@
                                                 <li class="nav-item"><a href="?controller=admin-teacher&action=taobaithi">Bài Thi</a></li>  
                                                 <li class="nav-item"><a href="?controller=admin-exam&action=list-kq-lop">Xem kết quả</a></li>  
                                                 <li class="nav-item dropdown res-dis-nn">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Project <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Thống kê<span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
                                                     <div role="menu" class="dropdown-menu animated zoomIn">
-                                                        <a href="#" class="dropdown-item">Documentation</a>
-                                                        <a href="#" class="dropdown-item">Expert Backend</a>
-                                                        <a href="#" class="dropdown-item">Expert FrontEnd</a>
-                                                        <a href="#" class="dropdown-item">Contact Support</a>
+                                                        <a href="#" class="dropdown-item">Thống kê thí sinh</a>
+                                                        <a href="#" class="dropdown-item">Thống kê đề</a>
+                                                       
                                                     </div>
                                                 </li>
                                                 

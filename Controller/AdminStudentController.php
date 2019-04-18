@@ -2,29 +2,8 @@
 class AdminStudentController extends Controller{
     function listAction(){
         $adminstuModel = new AdminStudentModel();
-        $count = $adminstuModel->count();
-        $_admin_page_limit = 20;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
-        }
-
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
-        $list =$adminstuModel->loadList($offset);
+       
+        $list =$adminstuModel->loadList(0);
         $adminclass = new AdminClassModel();
         $ds_lop =$adminclass->Select_All_Class();
         if(is_array($ds_lop)){
@@ -36,7 +15,6 @@ class AdminStudentController extends Controller{
         }
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
             $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;
@@ -47,7 +25,7 @@ class AdminStudentController extends Controller{
         $func= new func();
         $adminstu= new AdminStudentModel();
         $adminclass= new AdminClassModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ma_lp= $_POST['txt_ma_lp'];
             $ho = $_POST['txt_ho'];
             $ten = $_POST['txt_ten'];
@@ -57,6 +35,7 @@ class AdminStudentController extends Controller{
             $dt= trim($_POST['txt_dt']);
             $passwd = $_POST['txt_passwd'];
             $email = $_POST['txt_email'];
+            
             //validate du lieu
             $this->view['msg']= array();
             $res_validate_mail = $func->validateEmail($email);
@@ -106,7 +85,7 @@ class AdminStudentController extends Controller{
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID hoc sinh!';
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ho_dem = $_POST['txt_ho'];
             $ten = $_POST['txt_ten'];
             $ngay_sinh = $_POST['txt_ns'];

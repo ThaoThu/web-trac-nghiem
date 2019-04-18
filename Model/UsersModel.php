@@ -21,12 +21,12 @@ class UsersModel extends Model {
 
                 return $row;
             }else{
-                return "Sai mật khẩu!";
+                return "Thông tin tài khoản không chính xác";
             }
 
         }
         else{
-            return 'Không tồn tại tài khoản có tên đăng nhập là '.$username;
+            return "Thông tin tài khoản không chính xác ";
         }
 
 

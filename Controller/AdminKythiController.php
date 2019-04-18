@@ -42,7 +42,7 @@ class AdminKythiController extends Controller{
     function addAction(){
         $func= new func();
         $adminktModel= new AdminKythiModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_kt = $_POST['txt_ten_kt'];
             $time_start=$_POST['time_start'];
             $time_finish=$_POST['time_finish'];
@@ -70,7 +70,7 @@ class AdminKythiController extends Controller{
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID môn!';
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_kt = $_POST['txt_ten_kt'];
             $time_start=$_POST['time_start'];
             $time_finish=$_POST['time_finish'];

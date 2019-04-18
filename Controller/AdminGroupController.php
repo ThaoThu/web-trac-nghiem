@@ -7,7 +7,7 @@ class AdminGroupController extends Controller{
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID chức năng!';
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_chuc_nang = $_POST['txt_ten_cn'];
             $nguoidung = $_POST['nguoidung'];
             $chucnang = $_POST['chucnang'];
@@ -32,7 +32,7 @@ class AdminGroupController extends Controller{
 
     function addquyenAction(){
         $admingroupModel= new AdminGroupModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_chuc_nang = $_POST['txt_ten_cn'];
             $nguoidung = $_POST['nguoidung'];
             $chucnang = $_POST['chucnang'];
@@ -126,7 +126,7 @@ class AdminGroupController extends Controller{
     function addAction(){
         $func= new func();
         $admingroupModel= new AdminGroupModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_nhom = $_POST['txt_ten_nhom'];
             $res_validate = $func->validateGroupName($ten_nhom);
             if($res_validate ===true){
@@ -153,7 +153,7 @@ class AdminGroupController extends Controller{
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID nhóm!';
         }
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ten_nhom = $_POST['txt_ten_nhom'];
             $res_validate = $func->validateGroupName($ten_nhom);
             if($res_validate ===true){

@@ -2,35 +2,9 @@
 class AdminHocPhanController extends Controller{
     function listAction(){
         $AdminHocphanModel = new AdminHocphanModel();
-        $count = $AdminHocphanModel->count();
-        $_admin_page_limit = 6;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
-        }
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
-        //
-
-        $list =$AdminHocphanModel->loadList($offset);
-
-
+        $list =$AdminHocphanModel->loadList(0);
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
-            $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;
         }
@@ -39,7 +13,7 @@ class AdminHocPhanController extends Controller{
     function addAction(){
         $func= new func();
         $AdminHocphanModel = new AdminHocphanModel();
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ma_mh= $_POST['ma_monhoc'];
             $ten_hp= $_POST['txt_ten_hp'];
             $res_insert= $AdminHocphanModel->Insert_Hocphan($ma_mh,$ten_hp);
@@ -76,7 +50,7 @@ class AdminHocPhanController extends Controller{
             $this->view['msg'][] = 'Không xác định ID Học Phần!';
         }
 
-        if(isset($_POST['btnSave_x'])){
+        if(isset($_POST['btnSave'])){
             $ma_hp = $_GET['id'];
             $ten_hp = $_POST['txt_ten_hp'];
             $ma_mh = $_POST['txt_ma_mh'];

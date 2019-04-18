@@ -3,9 +3,7 @@ class AdminTeacherModel extends Model{
 
     public function loadList($params = null)
     {
-        // TODO: Implement loadList() method.
-        $limit = $_admin_page_limit=6;
-        $sql = "SELECT 	* FROM giaovien ORDER BY ma_gv ASC LIMIT $params,$limit ";
+        $sql = "SELECT 	* FROM giaovien ORDER BY ma_gv ASC  ";
 
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);
