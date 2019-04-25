@@ -1,10 +1,9 @@
-<div class="center_content">
-
-    <div id="right_wrap">
-        <div id="right_content" >
+<div class="row">
+<div class="col-xs-12" style ="width:90% ;margin-left:170px">
+       
             <h2>Kết Quả</h2>
-
-            <table id="rounded-corner">
+            <table id="rounded-corner" style ="width:100% " >
+             
                 <thead>
                     <tr>
                         <th>Mã Bài thi</th>
@@ -13,36 +12,34 @@
                         <th>Điểm</th>
                     </tr>
                 </thead>
+               
                 <tr>
-                    <?php
-
-                        foreach ($this->view['list'] as $row){
-                            if($row['trang_thai']!=0){
-                                echo "<tr>";
-                                echo "
-                                    <td>".$row['ma_bt']."</td>
-                                    <td>".$row['ngay_thi']."</td>
-                                    <td>".$row['so_cau_dung']."</td>
-                                    <td>".$row['diem']."</td>
-                                   
-                                ";
-                                
-                            }
+                <?php
+                    foreach ($this->view['list'] as $row){
+                        if($row['trang_thai']!=0){
+                            echo "<tr>";
+                            echo "
+                                <td>".$row['ma_bt']."</td>
+                                <td>".$row['ngay_thi']."</td>
+                                <td>".$row['so_cau_dung']."</td>
+                                <td>".$row['diem']."</td>
+                            
+                            ";
+                            
                         }
-
+                    }
                     ?>
-
-
-
-                
+                <tr>
+                    
+                </tr>
             </table>
         </div>
     </div>
+    </div>
     <div class="sidebar" id="sidebar">
-
         <input type="checkbox" id="menuTrigger"/>
-        <div class="menu">
-            <h3>Quản Lý </h3>
+        <div class="menu" style="top: 86px;">
+          
             <label for="menuTrigger" class="trigger">
             <div class="line"></div>
                 <div class="line"></div>
@@ -55,7 +52,5 @@
             </ul>
         </div>
     </div>
-
-
     <div class="clear"></div>
 </div> <!--end of center_content-->

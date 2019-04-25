@@ -50,19 +50,18 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
+							
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                                <th data-field="name" data-editable="true">STT</th>
-                                                <th data-field="class" data-editable="true">Tên Lớp</th>
-                                                <th data-field="note" data-editable="true">Ghi Chú</th>
-                                                <th data-field="action" >Cài Đặt</th> 
+                                                <th>STT</th>
+                                                <th>Tên Lớp</th>
+                                                <th>Ghi Chú</th>
+                                                <th >Cài Đặt</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,6 +72,7 @@
                                             $link = '?controller=admin-class&action=edit&id='.$row['ma_lop'];
                                             $link_delete = '?controller=admin-class&action=delete&id='.$row['ma_lop'];
                                                 echo '<tr>
+                                                    
                                                         <td>'.$stt.'</td>
                                                         <td>'.$row['ten_lop'].'</td>
                                                         <td>'.$row['ghi_chu'].'</td>

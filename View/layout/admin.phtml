@@ -62,8 +62,10 @@
     <link rel="stylesheet" href="Public/Back-end/css/responsive.css">
     <!-- modernizr JS
 		============================================ -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
     <script src="Public/Back-end/js/vendor/modernizr-2.8.3.min.js"></script>
     <script>var  _base_url="<?php echo base_path; ?>"</script>
+    <script type="text/javascript" src="Public/backend/js/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -173,17 +175,30 @@
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="?controller=admin-question&action=list&page=1">Ngân hàng câu hỏi</a></li>  
                                                 <li class="nav-item"><a href="?controller=admin-exam&action=list&page=1">Đề thi</a></li>  
-                                                <li class="nav-item"><a href="?controller=admin-teacher&action=taobaithi">Bài Thi</a></li>  
-                                                <li class="nav-item"><a href="?controller=admin-exam&action=list-kq-lop">Xem kết quả</a></li>  
+                                             
                                                 <li class="nav-item dropdown res-dis-nn">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Thống kê<span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Bài Thi<span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
                                                     <div role="menu" class="dropdown-menu animated zoomIn">
-                                                        <a href="#" class="dropdown-item">Thống kê thí sinh</a>
-                                                        <a href="#" class="dropdown-item">Thống kê đề</a>
+                                                        <a href="?controller=admin-teacher&action=taobaithi" class="dropdown-item">Tạo bài thi</a>
+                                                        <a href="?controller=admin-baithi&action=list" class="dropdown-item">Danh sách bài thi</a>
                                                        
                                                     </div>
                                                 </li>
-                                                
+                                                <li class="nav-item dropdown res-dis-nn">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Xem kết quả<span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <div role="menu" class="dropdown-menu animated zoomIn">
+                                                        <a href="?controller=admin-exam&action=list-kq-lop" class="dropdown-item">Theo lớp</a>
+
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item dropdown res-dis-nn">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Thống kê<span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <div role="menu" class="dropdown-menu animated zoomIn">
+                                                        <a href="?controller=admin-baithi&action=list-kq-lop" class="dropdown-item">Top thí sinh điểm cao</a>
+                                                        <a href="?controller=admin-baithi&action=xem-bieu-do" class="dropdown-item">Biểu đồ</a>
+                                                       
+                                                    </div>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -200,7 +215,7 @@
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="#"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="?controller=index&action=logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -234,14 +249,16 @@
             </div>
         </div>
     </div>
-
+    
+    
     <!-- jquery
 		============================================ -->
     <script src="Public/Back-end/js/vendor/jquery-1.12.4.min.js"></script>
+
     <!-- bootstrap JS
 		============================================ -->
     <script src="Public/Back-end/js/bootstrap.min.js"></script>
-    
+   
     <script src="Public/Back-end/js/data-table/bootstrap-table.js"></script>
     <script src="Public/Back-end/js/data-table/tableExport.js"></script>
     <script src="Public/Back-end/js/data-table/data-table-active.js"></script>
@@ -302,9 +319,8 @@
     <!-- main JS
 		============================================ -->
     <script src="Public/Back-end/js/main.js"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="Public/Back-end/js/tawk-chat.js"></script>
+  
+    
 </body>
    
 

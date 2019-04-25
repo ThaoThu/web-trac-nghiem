@@ -199,7 +199,9 @@ class AdminTeacherController extends Controller{
             $this->view['msg'][] = $ds_lop;
         }
         if(isset($_POST['btnSave'])){
+            
             $ma_lp = $_POST['txt_ma_lp'];
+            $so_luong_de = $_POST['sl_bansao'];
             $DanhSachHs= $AdminTeacherModel->Get_hs_by_class($ma_lp);
             $this->view['msg']= array();
             if(!$DanhSachHs)$this->view['msg'][]="Lỗi. Lớp chưa có học sinh nào";
@@ -207,24 +209,15 @@ class AdminTeacherController extends Controller{
             if(!isset($_POST['id_dt']))$this->view['msg'][] = "Chưa chọn đề thi";
             if(!$this->view['msg']){
                 $ma_dt = $_POST['id_dt'];
-               
-               
-               // $res_insert=  khong co resinsert vì nếu để resinsert thì ko add đc nghiều bài thi
-                $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt);
-               // if($res_insert===true){
-                    // $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
+
+               $res_insert= $AdminTeacherModel->TaoBaiThi($ma_lp,$ma_dt,$so_luong_de);
+                if(isset($res_insert)){
+                    $this->view['msg'][] = $res_insert;
+                }else{
+                     $this->view['msg'][] = "Thêm  mới các bài thi thành công!";
                     header("Location: ".base_path.'?controller=admin-baithi&action=list');
-                     
-               // }else{
-                    
-                //    if(substr($res_insert,0,9)=='Duplicate'){
-                  //      $this->view['msg'][]="Lỗi. Đã tạo bài thi cho lớp này rồi !";
-                 //   }else{
-                        
-                   //     $this->view['msg'][]="Có lỗi xảy ra, không thể tạo đề thi";
-                  //  }
-                     
-               // }
+                }
+                $adminExam -> updateTrangThai($ma_dt);
                
                 
                 

@@ -2,101 +2,74 @@
 // echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
 //    print_r($this->view);
 // echo '</pre>';?>
-<div class="clear"></div>
-<div id="form_row" >
-    <form action="" method="post">
-        <div class="manager-nav">
-            <h2>
-                <i class="fas fa-book"></i> <a href="?controller=admin-question&action=list">Quản lý câu hỏi </a> 
-                <span>
-                    <?php
-                    if(!empty($this->view['msg'])){
-                        if(is_array($this->view['msg'])){
-                             foreach ($this->view['msg'] as $item_msg)
-                            echo '<b>'.$item_msg."</b>";
-                        }else echo $this->view['msg'];
-                    }
-                    ?>
-                </span>
-                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
-            </h2>
+        <div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                        <?php
+                                            if(!empty($this->view['msg'])){
+                                                if(is_array($this->view['msg'])){
+                                                    foreach ($this->view['msg'] as $item_msg)
+                                                    echo '<b>'.$item_msg."</b>";
+                                                }else echo $this->view['msg'];
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Câu hỏi</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class ="container">
+            <div class="row">
+                <form action="" method ="post">
+                    <div class="col-xs-12 panel panel-default ">
+                        <div class ="panel-heading mg-b-30">
+                            <div class="form-group">
+                                <label class= "require">Nhập số câu hỏi muốn thêm :</label>
+                                <input type="text" required name ="sl" id="sl" class="form-control">
+                            </div>
+                            <div class='form-group '>
+                                <label class='require'>Môn học</label>
+                                <select name='txt_ma_mon' class='form-control'  onchange ='chon_hoc_phan(this.value)'>
+                                    <?php if(isset($this->view['list_sub_group']))
+                                    {foreach ($this->view['list_sub_group'] as $row)
+                                    {echo '<option value="'.$row['ma_mh'].'" >'.$row['ten_mh'].'</option>';}}?>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="content_question"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-            <legend>Thêm mới câu hỏi</legend>
-            <div class="">
-                <textarea id="content" style="border:1px solid red;" name="txt_cau_hoi"></textarea>
-                <script type="text/javascript">
-                    CKEDITOR.replace("content",{
-                        toolbar: [
-                            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat','-','Source']},
-                            {name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-                            {
-                                name: 'insert',
-                                items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
-                            },
-                            {
-                                name: 'paragraph',
-                                items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
-                            },
-                            {name: 'links', items: ['Link', 'Unlink', 'Anchor']},
-                        ],
-                        extraPlugins: "tableresize"
-                    });</script>
-
-            </div>
-            <div class="cauhoi">
-                <div class="form_row taikhoan">
-                <label class="require">Môn học</label>
-                <select name="txt_ma_mon" class="form_input "  onchange ="chon_hoc_phan(this.value)">
-                    <?php
-                    $ma_mh = isset($this->view['data']['ma_mh'])?$this->view['data']['ma_mh']:'';
-                    if(isset($this->view['list_sub_group'])){
-                        foreach ($this->view['list_sub_group'] as $row){
-                            if($row['ma_mh'] ==  $ma_mh)
-                                $selected = ' selected ';
-                            else
-                                $selected ='';
-
-                            echo '<option '.$selected.' value="'.$row['ma_mh'].'" >'.$row['ten_mh'].'</option>';
-                        }
-                    }
-                    ?>
-                
-                </select>
-                </div>
-            
-                <div class="form_row taikhoan">
-                    <label class="require">Học phần</label>
-                    <select name="txt_ma_hp" class="form_input ">
-                        <?php
-
-                        ?>
-                    </select>
-                </div>
-                <div class="form_row taikhoan">
-                    <label class="require">Số lượng đáp án</label>
-                    <input type="text" class="form_input " name="txt_so_luong_dap_an" /><br>
-                </div>
-                <div >
-                <label class="require" style ="margin-bottom:100px">Độ khó</label>
-                    <input type="radio"  name="dokho" value="de" checked />Dễ
-                    <input type="radio"  name="dokho" value="tb" />Trung Bình
-                    <input type="radio"  name="dokho" value="kho" />Khó
-                </div>
-            </div>
-            <div class="dapan">
-                <div class="form_row">
-                    <div id='box-dap-an'>
-                    </div>
-                    <div id='box-dap-an-dung'>
-                    </div>
-                </div>
-            </div>
-            
-        
-        
-            <script>
+        <script src="Public/Back-end/js/vendor/jquery-1.12.4.min.js"></script>
+            <script type="text/javascript">
                 var ma_mh=parseInt($('input[name="txt_ma_mon"]').val());
+                console.log(ma_mh)
                 function chon_hoc_phan(ma_mh){
                     //$('select[name="txt_ma_hp"]').load('http://localhost:8055/mvc-oop/mvc-oop/?controller=admin-question&&action=list-hp&idmon='+ma_mh);
                     var _url = _base_url+'?controller=admin-question&action=list-hp&ma_mh=' + ma_mh;
@@ -104,67 +77,40 @@
                     $.get( _url).done(function( data ) {
 
                         var obj_json = JSON.parse(data);
-                        console.log(obj_json);
-
                         var option_str = '';
                         $.each(obj_json,function (index, item) {
-
-                            option_str += '<option value="' + item.ma_hp + '">' + item.ten_hp + '</option>';
-
+                            option_str += '<option value=\"' + item.ma_hp + '\">' + item.ten_hp + '</option>';
                         });
-                        console.log(option_str);
-                        $('select[name="txt_ma_hp"]').html(option_str);
-
-
+                        $('select[name^="txt_ma_hp"]').html(option_str);
                     });
-
-
                 }
             </script>
             <script type="text/javascript">
+            
                 $(document).ready(function(){
-
-                    $('input[name="txt_so_luong_dap_an"]').keyup(function (){ 
-
-
-                        var so_dap_an = parseInt($('input[name="txt_so_luong_dap_an"]').val()); // lây số lượng đáp án
-
-                        var htm_box_dap_an = '';
-                        var htm_box_dap_an_dung = '';
-                        for(i = 1; i<= so_dap_an; i++){  //tạo lại chuỗi input của đáp án
-
-                            htm_box_dap_an += "<label>Đáp án " + i + "</label> <input type='text' class ='form_input' required name='txt_dap_an_"  + i + "' /> <br>";
-
-                            htm_box_dap_an_dung += i + "<input type='radio' name='chk_dap_an_dung' value='"  + i + "' /> ";  // chú ý tên chk với txt để trên server lấy không bị sai.
+                    $('#sl').keyup(function (e) { 
+                    var soluongcauhoi=0;
+                    soluongcauhoi = parseInt($('#sl').val());
+                    var cauhoi = '';
+                    for(let i =1 ;i <=soluongcauhoi; i++){
+                        cauhoi +="<h3>Câu hỏi "+i+"</h3><textarea required id='content' style='border:1px solid red; width:100%' name='txt_cau_hoi["+i+"]'></textarea>"
+                        cauhoi +="<div class='form-group'><label class='require'>Học phần</label><select required name='txt_ma_hp["+i+"]' class='form-control'><?php?></select></div>"
+                        let dap_an ="";
+                        let chk_dap_an_dung=""
+                        for( var j=1;j<=4;j++){
+                            dap_an+="<div class='form-group'><label>Đáp án " + j + "</label> <input type='text' class ='form-control' required name='txt_dap_an["+i+"][]"  +"' /></div>"
+                            chk_dap_an_dung += + j+" "+ "<input type='radio' required style='margin-right:10px'  name='chk_dap_an_dung["+i+"]' value='"  + j + "' /> "
                         }
-
-                        $("#box-dap-an").html(htm_box_dap_an);  // đưa vào textbox
-                        $("#box-dap-an-dung").html( "<label>Đáp án đúng</label>"+ htm_box_dap_an_dung);  // đưa vào textbox
-
-                    });
-
-                    // trên server khi post lên dùng khối lệnh pre để in ra thông tin post
-                    // sẽ có được mảng các  biến txt_dap_an_1, txt_dap_an_2, txt_dap_an_3, txt_dap_an_4....
-                    // dùng vòng lặp for duyệt toàn bộ mảng biến post, kiểm tra
-
-                    /*
-                            //$arr_post = $_POST;
-
-                    foreach($arr_post as $var_name => $val){
-                        if(substr($x, 0,11 ) == 'txt_dap_an_'){
-                            //bỏ đi 1 chữ số cuối của biến
-                            // đây là biến đáp án
-
-                            // cho biến này vào mảng đáp án.
-                        }
-                    }
-
-            */
-
-
+                        cauhoi +=dap_an
+                        cauhoi+="<div class='form-group'>"
+                        cauhoi += chk_dap_an_dung
+                        cauhoi+="<div class='form-control' ><label class='require' >Độ khó "+" "+ "</label> Dễ <input style='margin-right:10px'  type='radio'  name='dokho["+i+"]' value='de' checked /> Trung Bình <input style='margin-right:10px'  type='radio'  name='dokho["+i+"]' value='tb' /> Khó <input type='radio'  name='dokho["+i+"]' value='kho' /></div>"
+                        cauhoi +="</div><hr style='margin:40px 0'>"    
+                } 
+                    $('#content_question').html(cauhoi)
                 });
-
+            });
+           
             </script>
-    </form>
-</div>
-<div class="clear"></div>
+        </form>
+    </div>

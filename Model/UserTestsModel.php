@@ -112,8 +112,8 @@ class UserTestsModel extends Model
     }
     public function DsbaiThi($ma_ts){
         // TODO: Implement loadList() method.
-        $limit = $_admin_page_limit=3;
-        $sql = "SELECT ma_bt ,baithi.ngay_thi,baithi.trang_thai,thisinh.ma_ts FROM baithi,thisinh,lop where baithi.ma_ts='$ma_ts' /*And trang_thai='1'*/ AND baithi.ma_ts = thisinh.ma_ts and baithi.ma_lp=lop.ma_lop";
+ 
+        $sql = "SELECT ma_bt ,baithi.ngay_thi,baithi.trang_thai,thisinh.ma_ts FROM baithi,thisinh,lop where baithi.ma_ts='$ma_ts' AND baithi.ma_ts = thisinh.ma_ts and baithi.ma_lp=lop.ma_lop";
 
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);
@@ -129,9 +129,13 @@ class UserTestsModel extends Model
 
         return $data;
     }
-    public function Hoan_thanh_bai_thi($array_post_cau_tl,$ma_bt,$so_cau_dung,$diem_bai_thi,$date){
-        
-        $sql = "UPDATE baithi SET noi_dung='$array_post_cau_tl',trang_thai=1,so_cau_dung='$so_cau_dung',ngay_thi='$date',diem='$diem_bai_thi' WHERE ma_bt='$ma_bt'";
+    public function Hoan_thanh_bai_thi($array_post_cau_tl,$ma_bt,$so_cau_dung,$diem_bai_thi,$date,$stt_cau_tl_dung){
+        $mahoa = serialize($stt_cau_tl_dung);
+        // echo '<pre>';
+        // print_r($mahoa);
+        // echo '</pre>';
+        // exit();
+        $sql = "UPDATE baithi SET dap_an_thi_sinh='$array_post_cau_tl',ds_stt_cau_tl_dung='$mahoa',trang_thai=1,so_cau_dung='$so_cau_dung',ngay_thi='$date',diem='$diem_bai_thi' WHERE ma_bt='$ma_bt'";
        
         $res = mysqli_query($this->conn, $sql);
         if($res === false){

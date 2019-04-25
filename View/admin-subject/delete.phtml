@@ -1,30 +1,61 @@
-<div class="clear"></div>
-<div id="form_row">
-    <form action="" method="post">
-        <div class="manager-nav">
-            <h2>
-                <i class="fas fa-book"></i> <a href="?controller=admin-class&action=list">Quản lý môn học </a> 
-                <span>
-                    <?php
-                    if(!empty($this->view['msg'])){
-                            echo $this->view['msg'];
-                    }
-                    ?>
-                </span>
-            </h2>
+<div class="product-status mg-b-15 ">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list single-page-breadcome">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <span>
+                                    <?php
+                                    if(!empty($this->view['msg'])){
+                                        if(is_array($this->view['msg'])){
+                                            foreach ($this->view['msg'] as $item_msg)
+                                            echo '<b>'.$item_msg."</b>";
+                                        }else echo $this->view['msg'];
+                                    }
+                                    ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Môn học</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form_row">
-            <input type="hidden" name="ma_mh" value="<?php echo $this->view['data']['ma_mh'];?>">
-            <h1>Chắc chắn xóa môn: <?php echo $this->view['data']['ten_mh']; ?> ? </h1>
-        </div>
-        <div class="form_row">
-            <?php
-            if(isset($this->view['data'])) {
-                echo '<input type="submit" class="btn-delete" value="Đồng ý xóa" name="btnDelete" >';
-                echo '<button class="btn-delete btn-return"><a href="?controller=admin-subject&action=list">Trở về</a></button>';
-            }
-            ?>
-        </div> 
-    </form>
+    </div>
+</div> 
+<div class="container-fluid">
+    <div class="row">
+        
+        <form action="" method="post" >
+            <div class="col-xs-6 col-xs-offset-3 text-center">
+                <div class="form-group">
+                    <input type="hidden" name="ma_mh" value="<?php echo $this->view['data']['ma_mh'];?>">
+                    <h1>Chắc chắn xóa môn: <?php echo $this->view['data']['ten_mh']; ?> ? </h1>
+                </div> 
+                <div class="form-group">
+                <?php
+                if(isset($this->view['data'])) {
+                    echo '<input type="submit" class="btn btn-danger mr10" value="Đồng ý xóa" name="btnDelete" >';
+                    echo '<a href="?controller=admin-subject&action=list"><p class="btn btn-primary">Trở về</p></a>';  
+                }
+                ?>   
+                </div>
+            </div>
+        </form>
+    </div>
+<div>
 
-</div>
+

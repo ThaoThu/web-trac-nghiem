@@ -49,17 +49,17 @@
                             <div class="sparkline13-graph product-status-wrap">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
-                                        <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
-										</select>
+                                        <!-- <select class="form-control dt-tb">
+											<option value="">Xuất</option>
+											
+										</select> -->
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
                                                 <th>Mã Bài thi</th> 
+                                                <th>Chi tiết</th>
                                                 <th>Mã thí sinh</th>
                                                 <th>Số Câu Đúng</th>
                                                 <th>Điểm</th>
@@ -71,10 +71,11 @@
                                         <?php
 
                                             foreach ($this->view['list'] as $row){
-                                                
+                                                $link = '?controller=admin-exam&action=xemkqchitiet&id='.$row['ma_bt'];
                                                     echo "<tr>";
                                                     echo "
-                                                    <td>".$row['ma_bt']."</td>
+                                                    <td><a href =".$link.">".$row['ma_bt']."</a></td>
+                                                    <td><a class='blue-text' href =".$link.">Xem</a></td>
                                                     <td>".$row['ma_ts']."</td>
                                                     <td>".$row['so_cau_dung']."</td>
                                                     <td>".$row['diem']."</td>
@@ -82,9 +83,7 @@
                                                     <td>".$row['ngay_thi']."</td>
                                                     
                                                     
-                                                    ";
-                                                    
-                                                
+                                                    "; 
                                             }
 
                                         ?>

@@ -39,7 +39,7 @@
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd mg-b-10">
-                                    <h1>Danh sách đề thi đã tạo</h1>
+                                    <h1>Danh sách bài thi đã tạo</h1>
                                    
                                 </div>
                             </div>
@@ -47,18 +47,19 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
+
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                                <th data-field="stt" data-editable="true">STT</th>
-                                                <th data-field="dethi" data-editable="true">Đề Thi</th>
-                                                <th data-field="lop" data-editable="true">Lớp</th>
+                                                <th>STT</th>
+                                                <th>Đề Thi</th>
+                                                <th>Lớp</th>
+                                                <th>Người tạo</th>
+                                                <th>Ngày tạo</th>
                                               
                                             </tr>
                                         </thead>
@@ -71,7 +72,9 @@
                                              echo '<tr>
                                                 <td>'.$stt.'</td>
                                                 <td>'.$row['ma_dt'].'</td>
-                                                <td>'.$row['ten_lop'].'</td></tr>';
+                                                <td>'.$row['ten_lop'].'</td>
+                                                <td>'.$row['nguoi_tao'].'</td>
+                                                <td>'.$row['ngay_tao'].'</td></tr>';
 
                                             }
 

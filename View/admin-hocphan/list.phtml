@@ -51,9 +51,8 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
+										
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
@@ -61,10 +60,10 @@
                                         <thead>
                                             <tr>
                                                 <th>STT</th>
-                                                <th  data-field="hp" data-editable="true">Tên Học Phần</th>
-                                                <th data-field="mon" data-editable="true">Môn học</th>
-                                                <th>Status</th>
-                                                <th data-field="action" >Cài Đặt</th> 
+                                                <th>Tên Học Phần</th>
+                                                <th>Môn học</th>
+                                                <th>Trạng thái</th>
+                                                <th>Cài Đặt</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -77,11 +76,11 @@
                                             $link_delete = '?controller=admin-hocphan&action=delete&id='.$row['ma_hp'];
                                             if($row['locked']==1)
                                             {
-                                                $img='<button class="ds-setting">Disabled</button>';
+                                                $img='<button class="ds-setting">Khóa</button>';
                                                 $link_delete ='#';
                                             }
                                             if($row['locked']==0) {
-                                                $img='<button class="pd-setting">Active</button>';
+                                                $img='<button class="pd-setting">Mở</button>';
                                             }
                                             echo '
                                                 <tr>

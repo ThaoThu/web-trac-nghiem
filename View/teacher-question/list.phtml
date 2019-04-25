@@ -1,0 +1,124 @@
+<?php
+echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+   print_r($this->view);
+echo '</pre>';
+?>
+
+
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Câu hỏi</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách câu hỏi</h1>
+                                    <div class="add-product ">
+                                        <a href="?controller=teacher-question&&action=add">Thêm </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Xuất</option>
+											
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã câu hỏi</th>
+                                                <th>Nội Dung câu hỏi</th>
+                                                <th>Học phần</th>
+                                                <th>Môn học</th>
+                                                <th>Trạng thái</th>
+                                                <th>Cài Đặt</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                   
+                                        if(isset($this->view['list'])){
+                                            foreach($this->view['list'] as $row) {
+                                                $link = '?controller=teacher-question&action=edit&id=' . $row['ma_ch'];
+                                                $link_delete = '?controller=teacher-question&action=delete&id=' . $row['ma_ch'];
+                                                
+                                                if($row['locked']==1){
+                                                    $img='<button class="ds-setting">Khóa</button>';
+                                                   
+                                                    $link_delete ='#';
+                                                }
+                                                if($row['locked']==0) {
+                                                    $img='<button class="pd-setting">Mở</button>';
+                                                   
+                                                }
+                                                foreach($this->view['list_mon'] as $row1){
+                                                    if($row['ma_mh']===$row1['ma_mh']){
+                                                        $ten_mh = $row1['ten_mh'];
+                                                    }
+                                                }
+                                                foreach($this->view['list_hp'] as $row2){
+                                                    if($row['id_hp']===$row2['ma_hp']){
+                                                        $ten_hp = $row2['ten_hp'];
+                                                    }}
+                                                    
+                                                    echo '<tr>
+                                                        
+                                                        <td>' . $row['ma_ch'] . '</td>
+                                                        <td >' . substr($row['noi_dung_ch'], 0, 50).'...' . '</td>
+                                                        <td>' . $ten_hp . '</td>
+                                                        <td >' . $ten_mh. '</td>
+                                                        <td >' . $img. '</td>
+                                                    
+                                                        <td>
+                                                            <a href='.$link.'><button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                            <a href='.$link_delete.'><button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                        </td>
+                                                        
+                                                        
+                                                    </tr>';
+                                                    }   
+                                            }                     
+                                        ?>
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

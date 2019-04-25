@@ -8,10 +8,12 @@ class IndexController extends Controller{
         $_base_path='/TRAC-NGHIEM';
         if(isset($_SESSION['userLogin']))
         {
-            if($_SESSION['userLogin']['gid']==4||$_SESSION['userLogin']['gid']==5)
-                header("Location: ".$_base_path.'?controller=admin-class&action=list&page=1');
+            if($_SESSION['userLogin']['gid']==4)
+                 header("Location: ".$_base_path.'?controller=admin-question&action=list');
             else if($_SESSION['userLogin']['gid']==6)
-                header("Location: ".$_base_path.'?controller=user-tests&action=list&page=1');
+                header("Location: ".$_base_path.'?controller=user-tests&action=list');
+            else if($_SESSION['userLogin']['gid']==5)
+                header("Location: ".$_base_path.'?controller=teacher-question&action=list');
              
         }
         if(isset($_POST['btnLogin'])){

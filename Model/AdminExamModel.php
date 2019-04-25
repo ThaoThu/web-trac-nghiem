@@ -17,11 +17,27 @@ class AdminExamModel extends Model{
         }
         return $data;
     }
+    function xemchitietketqua($ma_bt){
+       $sql ="select ma_ts,ds_stt_cau_tl_dung,noi_dung,so_cau_dung,diem,ngay_thi from baithi where ma_bt='$ma_bt'";
+
+        // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
+        $res = mysqli_query($this->conn, $sql);
+        if($res === false){
+            // có lỗi
+            return 'Error load : '. mysqli_error($this->conn);
+        }
+
+        $data = array();
+        while ($row = mysqli_fetch_assoc($res)){
+            $data[] = $row;
+        }
+        return $data;
+    }
 
     public function loadList($params=null)
 
     {
-        $sql = "SELECT * FROM dethi";
+        $sql = "SELECT * FROM dethi ORDER BY ma_dt DESC";
         $res = mysqli_query($this->conn, $sql);
         if($res === false){
             // có lỗi
@@ -54,12 +70,14 @@ class AdminExamModel extends Model{
 //
 //    }
     public function Insert_DeThi($params){
+      
         $tg = $params['thoi_gian_lam_bai'];
         $ma_kt = $params['ma_kt'];
         $ma_mh = $params['ma_mh'];
         $tong_diem = $params['tong_diem'];
         $sl = $params['so_luong_cau_hoi'];
         $ds_id=$params['ds_id_ch'];
+        $ds_id_phu=$params['ds_id_ch_phu'];
         $unique  = md5($ma_kt.$ma_mh.$ds_id);
         $date=date('Y-m-d');
         if($_SESSION['userLogin']['gid']==4){
@@ -71,8 +89,8 @@ class AdminExamModel extends Model{
       
         
 
-        $sql = "INSERT INTO dethi (ma_kt,ma_mh,so_luong_cau_hoi,ds_id_ch,tong_diem,thoi_gian_lam_bai,ngaytao,nguoitao,unique_val) VALUES ('$ma_kt','$ma_mh','$sl','$ds_id','$tong_diem','$tg','$date','$nguoi_tao','$unique')";
-//        $sql.=";update monhoc set locked='1' where monhoc.ma_mh=$ma_mh)";
+        $sql = "INSERT INTO dethi (ma_kt,ma_mh,so_luong_cau_hoi,ds_id_ch,ds_id_ch_phu,tong_diem,thoi_gian_lam_bai,ngaytao,nguoitao,unique_val) VALUES ('$ma_kt','$ma_mh','$sl','$ds_id','$ds_id_phu','$tong_diem','$tg','$date','$nguoi_tao','$unique')";
+
 
         $res = mysqli_query($this->conn,$sql);
 
@@ -80,11 +98,15 @@ class AdminExamModel extends Model{
             return "Lỗi INSERT đề thi: ". mysqli_error($this->conn);
         }
         return true;
+       
     }
     
-    function Update_DeThi($ma_dt,$ma_kt,$ma_mh,$so_luong_cau_hoi,$tong_diem,$thoi_gian_lam_bai,$locked ){
-        //ma_dt,ma_kt,ma_mh,so_luong_cau_hoi,ds_id_ch,tong_diem,thoi_gian_lam_bai,locked
-        $sql = "UPDATE dethi SET ma_kt = '$ma_kt',ma_mh='$ma_mh',so_luong_cau_hoi='$so_luong_cau_hoi',tong_diem='$tong_diem',thoi_gian_lam_bai='$thoi_gian_lam_bai',locked='$locked' WHERE ma_dt=$ma_dt ";
+    function Update_DeThi($id,$ma_kythi,$so_luong_cau_hoi,$string_ds_id,$string_ds_id_duphong,$thoi_gian_lam_bai, $tong_diem){
+        $sql = "UPDATE dethi SET ma_kt = '$ma_kythi',so_luong_cau_hoi='$so_luong_cau_hoi',tong_diem='$tong_diem',thoi_gian_lam_bai='$thoi_gian_lam_bai',ds_id_ch='$string_ds_id',ds_id_ch_phu = '$string_ds_id_duphong' WHERE ma_dt=$id";
+        echo '<pre>';
+        print_r($sql);
+        echo '</pre>';
+        exit();
         $res = mysqli_query($this->conn,$sql);
         if($res ===false){
             return "Lỗi UPDATE: ". mysqli_error($this->conn);
@@ -169,6 +191,10 @@ class AdminExamModel extends Model{
         }
 
         return true;
+    }
+    public function updateTrangThai($ma_dt){
+            $sql = "Update dethi set locked ='1' where ma_dt = $ma_dt";
+            $res = mysqli_query($this->conn,$sql);  
     }
 
 

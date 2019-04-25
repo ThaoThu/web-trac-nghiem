@@ -54,43 +54,38 @@ class AdminQuestionController extends  Controller
         }
 
         if(isset($_POST['btnSave'])) {
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            
             $arr_post = $_POST;
-            $dapan_dung = array();
-            $dapan = array();
-
-            foreach ($arr_post as $var_name => $val) {
-                if (substr($var_name, 0, 11) == 'txt_dap_an_') {
-                    $stt = substr($var_name, -1);
-                    $dapan[$stt] = array();
-                    $dapan[$stt][0] = $val;
-                    $dapan[$stt][1] = 0;
-                }
-                if($var_name == 'chk_dap_an_dung'){
-                    $dapan[$val][1] = 1;
-                }
-            }
+            // foreach ($arr_post as $var_name => $val) {
+            //     if (substr($var_name, 0, 11) == 'txt_dap_an_') {
+            //         $stt = substr($var_name, -1);
+            //         $dapan[$stt] = array();
+            //         $dapan[$stt][0] = $val;
+            //         $dapan[$stt][1] = 0;
+            //     }
+                // if($var_name == 'chk_dap_an_dung'){
+                //     $dapan[$val][1] = 1;
+                // }
+            // }
             $func= new func();
             $noi_dung_ch = $_POST['txt_cau_hoi'];
+            $dap_an = $_POST['txt_dap_an'];
+            $sl = $_POST['sl'];
+            $dap_an_dung = $_POST['chk_dap_an_dung'];
             $ma_hp = $_POST['txt_ma_hp'];
             $ma_mh = $_POST['txt_ma_mon'];
             $dokho = $_POST['dokho'];
-            $so_luong_dap_an = $_POST['txt_so_luong_dap_an'];
-            $res_validate = $func->validateQuestion($noi_dung_ch);
-            if ($res_validate !== true) {
-                $this->view['msg'][] = $res_validate;
-            }
+            $res_validate=true;
             if ($res_validate === true) {
-                $string_dap_an = serialize($dapan);
-                $data_save = array('noi_dung_ch' => $noi_dung_ch, 'id_hp' => $ma_hp, 'ma_mh' => $ma_mh, 'so_luong_dap_an' => $so_luong_dap_an, 'noi_dung_dap_an' => $string_dap_an,'dokho'=>$dokho);
+                $data_save = array('noi_dung_ch' => $noi_dung_ch,'sl'=>$sl, 'id_hp' => $ma_hp, 'ma_mh' => $ma_mh, 'noi_dung_dap_an' => $dap_an,'dap_an_dung'=>$dap_an_dung,'dokho'=>$dokho);
                 $res_insert = $adminQuestionModel->Insert_CauHoi($data_save);
-                if ($res_insert === true) {
+               
                     $this->view['msg'][] = "Thêm câu hỏi thành công ";
                     header("Location: ".base_path.'?controller=admin-question&action=list');
-                } else
-                    $this->view['msg'] = $res_insert;
+               
             } else {
                 // in ra thông báo
                 $this->view['msg'][] = "Chưa nhập đủ thông tin";
@@ -101,73 +96,32 @@ class AdminQuestionController extends  Controller
     function editAction(){
         $adminsub= new AdminSubjectModel();
         $func= new func();
-        $adminQuestionModel = new AdminQuestionModel();
-        
-        $ds_mon = $adminsub->Select_All_Subject();
-
-        if(is_array($ds_mon)){
-            $this->view['list_sub_group'] = $ds_mon;
-        }
-        else
-        {
-            $this->view['msg'][] = $ds_mon;
-        }
+        $adminQuestionModel = new AdminQuestionModel(); 
         $id= @$_GET['id'];
         if(!is_numeric($id)){
             $this->view['msg'][] = 'Không xác định ID câu hỏi!';
         }
+        $row_info =  $adminQuestionModel->loadOne($id);
+        $ds_hp = $adminsub->Select_All_Subject_hp($row_info['ma_mh']);
+        if(is_array($ds_hp)){
+            $this->view['list_hp'] = $ds_hp;
+        }
+        else
+        {
+            $this->view['msg'][] = $ds_hp;
+        }
 
         if(isset($_POST['btnSave'])){
-
             $arr_post = $_POST;
-
-            $dapan_dung = array();
-            $dapan=array();
-
-            foreach($arr_post as $var_name => $val){
-                // echo substr($var_name , 0,16 ).'<br>';
-                if(substr($var_name , 0,11 ) == 'txt_dap_an_'){
-                    $stt = substr($var_name , -1);
-                    $dapan[$stt] = array();
-                    $dapan[$stt][0] = $val;
-
-//                    echo $val;
-
-
-                }elseif(substr($var_name , 0,16 ) == 'chk_dap_an_dung_'){
-
-                    $stt = substr($var_name , -1);
-
-                    $dapan_dung[$stt ]='x';// gias tri bat ky
-                }
-            }
-
-            foreach ($dapan as $stt_dap_an =>$val ){
-                if(isset($dapan_dung[$stt_dap_an]))
-                    $dapan[$stt_dap_an][1] = 1;
-                else{
-                    $dapan[$stt_dap_an][1] = 0;
-
-                }
-
-            }
-
             $noi_dung_ch = $_POST['txt_cau_hoi'];
             $ma_hp = $_POST['txt_ma_hp'];
-            $ma_mh = $_POST['txt_ma_mon'];
             $dokho = $_POST['dokho'];
-            $khoa = $_POST['khoa'];
-            $so_luong_dap_an = $_POST['txt_so_luong_dap_an'];
+            $dap_an =$_POST['txt_dap_an'];
+            $chk_dap_an_dung = $_POST['chk_dap_an_dung'];            
             $res_validate = $func->validateQuestion($noi_dung_ch);
-
-            if($res_validate!== true){
-                $this->view['msg'][] =$res_validate;
-            }
             if($res_validate ===true){
-                $string_dap_an=serialize($dapan);
-
-                $data_save = array('ma_ch'=>$id,'noi_dung_ch'=>$noi_dung_ch ,'id_hp'=>$ma_hp, 'ma_mh'=>$ma_mh,'so_luong_dap_an'=>$so_luong_dap_an,'dokho'=>$dokho,'noi_dung_dap_an'=>$string_dap_an,'locked'=>$khoa);
-
+                $serialize_dapan=serialize($dap_an);
+                $data_save = array('ma_ch'=>$id,'noi_dung_ch'=>$noi_dung_ch,'id_hp'=>$ma_hp,'dokho'=>$dokho,'noi_dung_dap_an'=>$serialize_dapan,'dap_an_dung'=>$chk_dap_an_dung);
                 $res_update = $adminQuestionModel->Update_CauHoi($data_save );
                 if($res_update === true){
                     $this->view['msg'][]  = "Cập nhật câu hỏi thành công!";
@@ -183,7 +137,7 @@ class AdminQuestionController extends  Controller
             }
         }
 
-        $row_info =  $adminQuestionModel->loadOne($id);
+        
         if(is_array($row_info)){
             $this->view['data'] = $row_info;
         }else{

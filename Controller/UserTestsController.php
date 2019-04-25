@@ -8,34 +8,14 @@ class UserTestsController extends Controller
 
         $UserTestsModel = new UserTestsModel();
 
-        $count = @$UserTestsModel->count_thisinh($_SESSION['userLogin']['username']);
-        $_admin_page_limit = 6;
-        // Công việc dành cho phân trang
-        $total_records = $count;
-        if(!is_numeric($total_records)){
-            $this->view['msg'] = $total_records;
-
-        }
-
-        $total_pages = ceil($total_records / $_admin_page_limit);
-
-        if($total_pages<=0){
-            $this->view['msg'] = "Chưa có dữ liệu!";
-        }
-
-        $current_page = @intval($_GET['page']);
-        if($current_page <1)
-            $current_page = 1;
-        if($current_page > $total_pages)
-            $current_page = $total_pages;
-
-        $offset = ($current_page-1) * $_admin_page_limit ;
+        // $count = @$UserTestsModel->count_thisinh($_SESSION['userLogin']['username']);
+        
 
         $list = @$UserTestsModel->DsbaiThi($_SESSION['userLogin']['username']);
 
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
+       
             $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;
@@ -129,48 +109,56 @@ class UserTestsController extends Controller
             $this->view['ds_ch']=$arr_ch;
             $total_question = count($arr_ch);
             $this->view['count_question']=$total_question;
-          
-            if (isset($_POST['btnSave'])) {
-               
                 
+            if (isset($_POST['btnSave'])) {
+         
+            
                 ///////////////////////mang chua cau tl cua ts $ma_ch => $ cau tl
                 $array_post_cau_tl = array();
                 foreach($_POST as $key => $value){
                     if(substr($key,0,2)=='ch')$array_post_cau_tl[substr($key,2)]=$value;
+                      
+                   
                 }
                 // echo '<pre>';
                 // print_r($array_post_cau_tl);
                 // echo '</pre>';
+                
                 //tạo mảng $ma_ch => unserialize đáp án
-                $answer_unserialize = array();
-                foreach($arr_ch as $row){
-                    $answer_unserialize[$row[0]['ma_ch']] = $row[0]['noi_dung_dap_an']
-                    ;   
-                }
-                //unserialize đáp án
-                $unserialize_answer = array();
-                foreach ($answer_unserialize as $key => $value) {
-                    $unserialize_answer[$key] = unserialize($value);
-                }
-               
+                
                 /////////////////////right answer $ma_ch => $dap an dung
                 $right_answer = array();
-                foreach($unserialize_answer as $ma_ch => $arr_answer){
-                    foreach($arr_answer as  $stt_dap_an => $noi_dung_dap_an){
-                       // echo $ma_ch.'-'.$stt_dap_an[1].'<br>';
-                         if($noi_dung_dap_an[1]==1)$right_answer[$ma_ch]=$stt_dap_an;
-                    }
-                   
-                }
+                foreach($arr_ch as $key => $arr_answer){
+                   foreach($arr_answer as $row){
+                    $right_answer[$row['ma_ch']] = $row['dap_an_dung'];
+                   }  
+                };
+             
                 // echo '<pre>';
                 // print_r($right_answer);
                 // echo '</pre>';
+          
+              
+              
                 $so_cau_dung = 0;//So cau tl đúng
+                $stt_cau_tl_dung = array();
+                
                 foreach($array_post_cau_tl as $ma_ch => $cau_tl){
-                    foreach($right_answer as $ma_ch1 => $dap_an) if($ma_ch ==$ma_ch1 && $cau_tl==$dap_an)$so_cau_dung++;
+                   $j=0; // xac dinh stt cau tl dung
+                    foreach($right_answer as $ma_ch1 => $dap_an) {
+                        $j++;
+                        if($ma_ch ==$ma_ch1 && $cau_tl==$dap_an)
+                            {
+                                $so_cau_dung++;
+                                array_push($stt_cau_tl_dung,$j);
+  
+                            }
+                    }
+                   
                 }
-               // echo $so_cau_dung;
 
+            //    echo $so_cau_dung;
+               
                 //Làm tròn số
                 
                 $diem_bai_thi =round(($so_cau_dung*$diem_bai_thi)/$total_question,3);
@@ -182,18 +170,16 @@ class UserTestsController extends Controller
                 else{
                     $diem_bai_thi = $diem_bai_thi=ceil($diem_bai_thi);
                 }
-                // echo '<pre>';
-                // print_r($array_post_cau_tl);
-                // echo '</pre>';
-    //  echo '<pre>';
-    //  print_r($right_answer);
-    //  echo '</pre>';           
-   
-                $result_insert =$UserTestsModel->Hoan_thanh_bai_thi(serialize($array_post_cau_tl),$ma_bt,$so_cau_dung,$diem_bai_thi,$date);    
+                // echo $diem_bai_thi;
+                //    exit();
+    // exit();
+                $result_insert =$UserTestsModel->Hoan_thanh_bai_thi(serialize($array_post_cau_tl),$ma_bt,$so_cau_dung,$diem_bai_thi,$date,$stt_cau_tl_dung);    
                 if($result_insert==true){
                     session_start();
-                    $_SESSION['so_cau_dung']=$so_cau_dung;
-                    $_SESSION['diem']=$diem_bai_thi;
+                    $_SESSION['userLogin']['baithi']['so_cau_dung']=$so_cau_dung;
+                    $_SESSION['userLogin']['baithi']['diem']=$diem_bai_thi;
+                    $_SESSION['userLogin']['baithi']['ngaythi']=$date;
+                    $_SESSION['userLogin']['baithi']['mabaithi']=$ma_bt;
                     
                     header("Location: ".$_base_path.'?controller=user-tests&action=checked');
                 }else{

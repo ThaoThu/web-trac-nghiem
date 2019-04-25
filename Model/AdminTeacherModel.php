@@ -160,30 +160,50 @@ class AdminTeacherModel extends Model{
         return $data;
     }
 
-//ma_bt,ma_ts,ma_lp,ma_kt,ma_dt,noi_dung
-    function TaoBaiThi($ma_lp,$ma_dt){
-        
-        $DanhSachHs= $this->Get_hs_by_class($ma_lp);
-        $func = new func(); 
-        $DS_Id_Ch = $this->get_ds_id_ch_by_dethi($ma_dt);
-        
-        
-        $array_id_ch = unserialize($DS_Id_Ch['ds_id_ch']);
-        foreach($array_id_ch as $row) $array_with_key_is_id["$row"]='';
 
-        foreach ($DanhSachHs as $row){
-            $array_shuffle_id_ch=$func->array_shuffle($array_with_key_is_id);// co dang id_ch=>''
-            $nd_mahoa = serialize($array_shuffle_id_ch);//
-            $unique = md5($row['ma_ts'].$ma_dt);
-            $sql = "INSERT INTO baithi (ma_ts,ma_lp,ma_dt,noi_dung,unique_value) VALUES ('".$row['ma_ts']."','$ma_lp','$ma_dt','$nd_mahoa','$unique')";
+    function TaoBaiThi($ma_lp,$ma_dt,$sl_bansao){
+        $func = new func(); 
+        //1 Lay ds hoc sinh
+        $DanhSachHs= $this->Get_hs_by_class($ma_lp);
+        //2 Lay ds id cau hoi
+        $DS_Id_Ch = $this->get_ds_id_ch_by_dethi($ma_dt);
+        $array_id_ch = unserialize($DS_Id_Ch['ds_id_ch']);
+        //3 chuyen mang id cauhoi = key
+        foreach($array_id_ch as $row) $array_with_key_is_id["$row"]='';
+        //4 Tao mang cac de
+        $date=date('Y-m-d');
+        if($_SESSION['userLogin']['gid']==4){
+            $nguoi_tao=$_SESSION['userLogin']['username'];
+        }else{
+            $nguoi_tao=$_SESSION['userLogin']['ma_gv'];
            
-            $res = mysqli_query($this->conn,$sql);
-            if($res ===false){
-                return  mysqli_error($this->conn);
-            }
-            
         }
+        $mang_cac_de = array();
+        for ($i =0 ; $i<$sl_bansao ; $i++){
+            $array_shuffle_id_ch=$func->array_shuffle($array_with_key_is_id);// co dang id_ch=>''
+            array_push($mang_cac_de,$array_shuffle_id_ch);
+        }
+//5 
+         $tong_de = count($mang_cac_de);
+         $i=1;
+        foreach ($DanhSachHs as $row){
+             $unique = md5($row['ma_ts'].$ma_dt);
+             $ma_de_dao = $ma_dt.'_'.$i;
+             if($i < $tong_de){
+                 $i++;
+                }else{
+                    $i=1;
+                }
+                $nd_mahoa = serialize($mang_cac_de[($i-1)]);
+                $sql = "INSERT INTO baithi (ma_ts,ma_lp,ma_dt,ma_de_dao,noi_dung,nguoi_tao,ngay_tao,unique_value) VALUES ('".$row['ma_ts']."','$ma_lp','$ma_dt','$ma_de_dao','$nd_mahoa','$nguoi_tao','$date','$unique')";    
+                $res = mysqli_query($this->conn,$sql);
+                if($res ==''){
+                    return  'Đề đã được tạo cho lớp này!';
+                    return $res;
+                }
+           
     }
+}
     function SelectArrayKyThi(){
         $sql = "SELECT * FROM kythi" ;
         $res= mysqli_query($this->conn,$sql);

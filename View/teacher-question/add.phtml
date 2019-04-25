@@ -1,0 +1,95 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+// echo '</pre>';?>
+        <div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                        <?php
+                                            if(!empty($this->view['msg'])){
+                                                if(is_array($this->view['msg'])){
+                                                    foreach ($this->view['msg'] as $item_msg)
+                                                    echo '<b>'.$item_msg."</b>";
+                                                }else echo $this->view['msg'];
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Câu hỏi</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class ="container">
+            <div class="row">
+                <form action="" method ="post">
+                    <div class="col-xs-12 panel panel-default ">
+                        <div class ="panel-heading mg-b-30">
+                            <div class="form-group">
+                                <label class= "require">Nhập số câu hỏi muốn thêm :</label>
+                                <input type="text" required name ="sl" id="sl" class="form-control">
+                              
+                            </div>
+                           
+                        </div>
+                        <div id="content_question"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="Public/Back-end/js/vendor/jquery-1.12.4.min.js"></script>
+            <script type="text/javascript">
+            
+                $(document).ready(function(){
+                    $('#sl').keyup(function (e) { 
+                    var soluongcauhoi=0;
+                    soluongcauhoi = parseInt($('#sl').val());
+                    var cauhoi = '';
+                    for(let i =1 ;i <=soluongcauhoi; i++){
+                        cauhoi +="<h3>Câu hỏi "+i+"</h3><textarea required id='content' style='border:1px solid red; width:100%' name='txt_cau_hoi["+i+"]'></textarea>"
+                        cauhoi +="<div class='form-group'><label class='require'>Học phần</label><select required name='txt_ma_hp["+i+"]' class='form-control'><?php foreach ($this->view['list_hp'] as $row)
+                              echo "<option value =".$row['ma_hp'].">".$row['ten_hp']."</option>" ;  
+                                ?>
+                        </select></div>"
+                        let dap_an ="";
+                        let chk_dap_an_dung=""
+                        for( var j=1;j<=4;j++){
+                            dap_an+="<div class='form-group'><label>Đáp án " + j + "</label> <input type='text' class ='form-control' required name='txt_dap_an["+i+"][]"  +"' /></div>"
+                            chk_dap_an_dung += + j+" "+ "<input type='radio' required style='margin-right:10px'  name='chk_dap_an_dung["+i+"]' value='"  + j + "' /> "
+                        }
+                        cauhoi +=dap_an
+                        cauhoi+="<div class='form-group'>"
+                        cauhoi += chk_dap_an_dung
+                        cauhoi+="<div class='form-control' ><label class='require' >Độ khó "+" "+ "</label> Dễ <input style='margin-right:10px'  type='radio'  name='dokho["+i+"]' value='de' checked /> Trung Bình <input style='margin-right:10px'  type='radio'  name='dokho["+i+"]' value='tb' /> Khó <input type='radio'  name='dokho["+i+"]' value='kho' /></div>"
+                        cauhoi +="</div><hr style='margin:40px 0'>"    
+                } 
+                    $('#content_question').html(cauhoi)
+                });
+            });
+           
+            </script>
+        </form>
+    </div>

@@ -57,9 +57,7 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
@@ -69,7 +67,7 @@
                                                 <th>STT</th>
                                                 <th>Tên môn học</th>
                                                 <th>Ghi chú</th>
-                                                <th>Status</th>
+                                                <th>Trạng Thái</th>
                                                 <th>Cài Đặt</th> 
                                             </tr>
                                         </thead>
@@ -82,12 +80,12 @@
                         $link_delete = '?controller=admin-subject&action=delete&id='.$row['ma_mh'];
                         if($row['locked']==1)
                         {
-                            $img='<button class="ds-setting">Disabled</button>';
+                            $img='<button class="ds-setting">Khóa</button>';
                             
                              $link_delete ='#';
                         }
                         if($row['locked']==0) {
-                            $img='<button class="pd-setting">Active</button>';
+                            $img='<button class="pd-setting">Mở</button>';
                             
 
                         }

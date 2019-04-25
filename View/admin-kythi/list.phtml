@@ -50,9 +50,7 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
@@ -63,7 +61,7 @@
                                                 <th  data-field="hp" data-editable="true">Tên kỳ thi</th>
                                                 <th data-field="start" data-editable="true">Bắt đầu</th>
                                                 <th data-field="start" data-editable="true">Kết thúc</th>
-                                                <th>Status</th>
+                                                <th>Trạng thái</th>
                                                 <th data-field="action" >Cài Đặt</th> 
                                             </tr>
                                         </thead>
@@ -76,13 +74,12 @@
                                             $link_delete = '?controller=admin-kythi&action=delete&id='.$row['id_kt'];
                                             if($row['locked']==1)
                                             {
-                                                $img='<button class="ds-setting">Disabled</button>';
+                                                $img='<button class="ds-setting">Khóa</button>';
                                                 $link_delete ='#';
                                             }
                                             if($row['locked']==0) {
-                                                $img='<button class="pd-setting">Active</button>';
-                                              
-
+                                                $img='<button class="pd-setting">Mở</button>';
+                                            
                                             }
                                             $stt++;                                      
                                             echo '<tr>

@@ -1,0 +1,115 @@
+<?php
+// echo '<pre>';
+// print_r($this->view);
+// echo '</pre>';
+?>
+
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Kết quả</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Chi tiết bài thi</h1>
+                                    <div class="add-product ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                       
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                              
+                                                <th>Mã thí sinh</th>
+                                                <th>Số Câu Đúng</th>
+                                                <th>Điểm</th>
+                                                <th>Ngày Thi</th>
+                                                <th>Đáp án</th>
+                                                
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+
+                                            foreach ($this->view['list'] as $row){
+                                                
+                                                    echo "<tr>";
+                                                    echo "
+                                                    
+                                                    <td>".$row['ma_ts']."</td>
+                                                    <td>".$row['so_cau_dung']."</td>
+                                                    <td>".$row['diem']."</td>
+                                                   
+                                                     <td>".$row['ngay_thi']."</td>
+                                                    
+                                                    
+                                                    ";
+                                                    
+                                                
+                                            }
+                                           
+                                                
+                                                 foreach ($this->view['list'] as $row){
+                                                    
+                                                     $unser_noidung = unserialize($row['noi_dung']);
+                                                     $unser_caudung = unserialize($row['ds_stt_cau_tl_dung']);
+                                                 }
+                                                 
+                                                echo "<td>";
+                                                $i=1;
+                                                foreach($unser_noidung as $id => $row){
+                                                    if(in_array($i,$unser_caudung)=='true') $tt='<i class="fa fas green-text fa-check"></i>';
+                                                    else $tt='<i  class="fa fas fa-times red-text"></i>';
+                                                     echo '<p>Câu'.$i.':'.$tt.'</p>';
+                                                     $i++;
+                                                 }
+                                                 echo "</td>";
+
+                                        ?>
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

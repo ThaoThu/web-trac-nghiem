@@ -89,23 +89,35 @@ class func{
           $random[$key] = $list[$key]; 
         }
         return $random;
+
+       
     }
 
     public function validateCore ($string){
 
         if(!is_numeric($string)){
-            return "Điểm phải là số .";
-        }else return true;}
+            return "Điểm phải là số.";
+        }else return true;
+    }
     public function validateTg($string){
 
-        if($string<1){
-            return "Thời gian ít nhất 1 phút . ";
-        }else return true;}
+       
+            if(!is_numeric($string)){
+                return "Thời gian không chính xác.";
+            }
+        else {
+             return true;
+        }
+    }
     
     public function validateQuestion ($string){
 
-        if(strlen($string)<3){
-            return "Câu hỏi ít nhất 3 ký tự .";
-        }else return true;}
+        if(strlen($string) <= 0 ){
+            return "Không được bỏ trống câu hỏi !";
+        }else {
+             return true;
+        }
+       
+    }
     
 }

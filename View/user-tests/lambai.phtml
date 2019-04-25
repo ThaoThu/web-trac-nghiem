@@ -1,21 +1,18 @@
 <?php
-// echo '<pre>';
-// print_r($this->view);
-// echo '</pre>';
+
 ?>
-        <div class="container">
-        <div class="col-lg-8 d-block m-auto bg-light quizsetting ">
+        <div class="container" style="  margin-top: 30px;">
+        <div class="col-lg-12 ">
             <div class="card">
                 <p class="card-header text-center " ><span class="text-uppercase text-primary"> <?php echo $_SESSION['userLogin']['username']; ?></span>, Chọn phương án trả lời đúng. <i class="fas fa-thumbs-up"></i>	 </p>
-                <small class ="bg-warning text-center ">!!! Reload sẽ nộp bài</small>
+                <!-- <small class ="bg-warning text-center ">!!! Reload sẽ nộp bài</small> -->
             </div>
             
             <form action="" method="post" id="myForm">
             <input type="hidden"  name="ma_bt"  id="" value = <?php echo $_GET['ma_bt']?>>
             <input type="hidden"  name="total_question"  id="total_question" value = <?php echo $this->view['count_question']?>>
                 <div class="card">
-                
-                    
+
                     <?php 
                     $i = 0;
                     //strip_tags : bỏ tag thẻ p lấy từ CSDL
@@ -26,11 +23,16 @@
                         foreach($row as $val)$i++;
                         echo  $i.'.'.strip_tags($val['noi_dung_ch']);
                             $answer_serialize = unserialize($val['noi_dung_dap_an']);
+                            // echo '<pre>';
+                            // print_r($answer_serialize);
+                            // echo '</pre>';
                             foreach($answer_serialize as $stt => $ans){
-                                echo '<div class = "card-block"><label class = "container" id="edit-padding">'.$ans[0];
-                                echo '<input type = "radio" class="custom-control-input" id ="'.$val['ma_ch'].$stt.'" name ="ch'.$val['ma_ch'].'" value="'.$stt.'">';
+                                echo '<div class = "card-block">
+                                <label class = "container" id="edit-padding">'.$ans;
+                                echo '<input type = "radio" class="custom-control-input" id ="'.$val['ma_ch'].$stt.'" name ="ch'.$val['ma_ch'].'" value="'.($stt+1).'">';
                                 echo ' <span class="checkmark"></span>';
-                                echo '</label></div>';
+                                echo '</label>
+                                </div>';
                             }
                     } //end of foreach row
                             
@@ -38,25 +40,29 @@
                     ?>    
                     
                 </div>              
-                <button type="submit" class="btn btn-secondary mg-submit" id="btnSave" name = "btnSave" value="Hoàn Thành Bài Thi" onclick="return hoanthanh()">Nộp Bài Thi</button>
+                <button type="submit" class="btn btn-primary mg-submit" id="btnSave" name = "btnSave" value="Hoàn Thành Bài Thi" onclick="return hoanthanh()">Nộp Bài Thi</button>
                 
             </form>
         </div>  
     </div>
-<div class="center_content" style="padding-left: 50px;padding-top: 20px;" onload="start()">
-    <div style="position: fixed;right: 0;top: 0; padding: 20px; background-color: #eee; border: 1px solid #ccc; border-radius: 5px;" <?php if($this->view['locked']==1) echo "hidden" ?> >
-        <span id="h">Giờ</span> :
-        <span id="m">Phút</span> :
-        <span id="s">Giây</span>
+<div class="center_content" style="padding-left: 50px;padding-top: 20px;"
+onload="start()" >
+ 
+    <div id="clockdiv" style="position: fixed;right: 0;bottom: 30px; padding: 20px; background-color: #06b4f3; border: 1px solid #ccc; border-radius: 5px;" <?php if($this->view['locked']==1) echo "hidden" ?> >
+        <span class="smalltext" id="h">Giờ</span> :
+        <span class="smalltext" id="m">Phút</span> :
+        <span class="smalltext" id="s">Giây</span>
     </div>
 </div>
+<script src="Public/Back-end/js/vendor/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
     //ko cho trở về
-    history.pushState(null, null, location.href);
-	window.onpopstate = function () {
-	history.go(1);
-};
+    // history.pushState(null, null, location.href);
+	// window.onpopstate = function () {
+	// history.go(1);
+   
 
+// };
 
 
 if (window.performance) {

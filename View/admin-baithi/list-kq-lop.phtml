@@ -1,0 +1,87 @@
+<?php
+//echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+//echo '</pre>';?>
+
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Kết quả</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách kỳ thi</h1>
+                                    <div class="add-product ">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Kỳ thi</th>
+                                                <th>Danh Sách Kết Quả</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $stt = 0;
+                                        foreach($this->view['list'] as $row){
+                                            $stt++;                                           
+                                            $link = "?controller=admin-baithi&action=top-student&id=".$row['id_kt']."";
+
+                                            echo '<tr>
+                                                <td>'.$stt.'</td>
+                                                <td><a href="'.$link.'">'.$row['ten_kt'].'</a></td>
+                                                <td><a class="blue-text" href="'.$link.'">Xem</a></td>';
+                                            
+
+                                        }
+
+                                        ?>
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

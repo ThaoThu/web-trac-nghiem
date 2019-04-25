@@ -2,48 +2,43 @@
 // echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
 // print_r($this->view);
 // echo '</pre>';?>
-
-<div class="trai">
-<?php
+<div class="comtainer">
+    <div class="row">
+        <div class="col-xs-12 mt-80">
+    <?php
     if($this->view['list_sub']){ 
-    echo '<h2>Cấu trúc ngân hàng đề</h2>';
-    echo '<table  >';
-       echo' <thead class="thead-inverse">';
-        
-            echo '<tr>
+    echo '<h2 class="text-center">Cấu trúc ngân hàng đề</h2>';
+    echo '<table style="width:100%">';
+        echo' <thead>';
+            echo '
                 <th>Chương</th>
                 <th>Số câu dễ</th>
                 <th>Số câu trung bình</th>
                 <th>Số câu khó</th>
-            </tr>';
-        
-    
-           echo ' </thead>
+            ';
+        echo ' </thead>
             <tbody>';
-                
-                      $total = count($this->view['list_sub']);
-                        $D = $TB = $K =0;
-                        foreach($this->view['list_sub'] as $row){
-                            if($row['dokho']=='de'){
-                                $D ++;  
-                            }
-                            if($row['dokho']=='tb'){
-                                $TB ++;   
-                            }
-                            if($row['dokho']=='kho'){
-                                $K ++;      
-                            }
-                        }
-                        
-                    
-                    $array_hp_dokho = array();$str_noi = '';
-                        foreach($this->view['list_sub'] as $row){
+                $total = count($this->view['list_sub']);
+                $D = $TB = $K =0;
+                foreach($this->view['list_sub'] as $row){
+                    if($row['dokho']=='de'){
+                        $D ++;  
+                    }
+                    if($row['dokho']=='tb'){
+                        $TB ++;   
+                    }
+                    if($row['dokho']=='kho'){
+                        $K ++;      
+                    }
+                } 
+                $array_hp_dokho = array();$str_noi = '';
+                    foreach($this->view['list_sub'] as $row){
 
-                             $str_noi= $row['dokho'].'-'.$row['id_hp'];
-                            
-                            array_push($array_hp_dokho,$str_noi); 
-                        }
-                          $dem_so_lan_xh=array_count_values($array_hp_dokho);
+                            $str_noi= $row['dokho'].'-'.$row['id_hp'];
+                        
+                        array_push($array_hp_dokho,$str_noi); 
+                    }
+                        $dem_so_lan_xh=array_count_values($array_hp_dokho);
                     echo '
                     <tr>
                         <td scope="row">%</td>
@@ -89,21 +84,18 @@
                         <td><input type="text" name="" id="" readonly value='.$D.'></td>
                         <td><input type="text" name="" id="" readonly value='.$TB.'></td>
                         <td><input type="text" name="" id="" readonly value='.$K.'></td>   
-                    </tr>';
-                    
-                
-                
-        echo'    </tbody>
+                    </tr>';     
+            echo'</tbody>
     </table>
 </div>
-<div class="clear"></div>                                                              
-<div class="trai">';
-    echo '<h2>Cấu trúc đề thi</h2>';
-    echo '<table>';
+                                                          
+<div class="col-xs-12 mt-80">';
+    echo '<h2 class="text-center" >Cấu trúc đề thi</h2>';
+    echo '<table style="width:100%">';
        echo' <thead class="thead-inverse">';
             echo '<tr>
                 <th>Chương</th>
-                <th>Số câu dễ</th>
+                <th class="mg-r-10">Số câu dễ</th>
                 <th>Số câu trung bình</th>
                 <th>Số câu khó</th>
             </tr>
@@ -137,28 +129,30 @@
                         <td id="Total_tb" name ="Total_tb"></td>
                         <td id="Total_kho" name ="Total_kho"></td>  
                     </tr>
-                    <tr><td>Số câu đã chọn là :<td><td id="Total" name ="Total"></td><td><input type = "submit" class="btn-delete btn-return" name = "btnSave" value="Lưu"></td></tr>';
+                    <tr><td>Số câu đã chọn là :</td><td id="Total" name ="Total"></td><td><input type = "submit" class="btn btn-primary waves-effect waves-light" name = "btnSave" value="Lưu"></td></tr>';
                     echo '</tbody>
                     </table>
                 
                 
-                </div> ';
-                echo'
-                <div class="clear"></div>
-                
-                   
-                        
-                    </form>';
+                </div>';
+                echo'</form>';
+            echo '</table>';
+        echo'</div>';
+    echo'</div>';
+echo'</div>';
+    
                    
                           
     }else{
-        echo 'Không có câu hỏi';
+        echo '<h1>Không có câu hỏi</h1>';
     }
 ?>    
            
-
-
-<div class="clear " style ="margin-bottom:50px;"></div>
+<script src="Public/Back-end/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="Public/backend/js/dethi.js">
+</script>
+<script type="text/javascript">
+$(".footer-copyright-area").hide();
+$(".header-right-info").hide();
 </script>
 

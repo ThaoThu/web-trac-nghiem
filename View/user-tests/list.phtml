@@ -1,14 +1,15 @@
-<div class="center_content">
 
-    <div id="right_wrap">
-        <div id="right_content" >
-            <h2>Các bài thi </h2>
-            <table id="rounded-corner">
+<div class="row">
+
+    <div class="col-xs-12" style ="width:90% ;margin-left:170px">
+       
+            <h3>Các bài thi </h3>
+            <table id="rounded-corner" style ="width:100% " >
                 <thead>
                     <tr>
                         <th>Mã Bài thi</th>
                         <th>Ngày Thi</th>
-                        <th>Đã Hoàn Thành</th>
+                        <th>Trạng thái</th>
                         <th>Làm Bài</th>
                     </tr>
                 </thead>
@@ -28,7 +29,7 @@
                            if($row['trang_thai']!=1){
                                 echo '<td><a href='.$link.'><img src="Public/backend/images/edit.png"/></a></td>';
                            }else{
-                            echo '<td><img width="40px" src="Public/backend/images/none.jpg"/></td>';
+                            echo '<td><img width="16px" src="Public/backend/images/none.jpg"/></td>';
                            }
                             echo "<tr>";
                         }
@@ -38,19 +39,7 @@
 
 
                 <tr>
-                    <td colspan="11">
-                        <?php
-                        // hiển thị chỉ số trang của danh sách
-                        if($this->view['total_pages']>1){?>
-                        <div class="page-number">
-                            <ul>
-                                <?php
-                                for($page = 1; $page <=$this->view['total_pages'];$page++ ){
-                                    echo '<li><a href="?controller=user-tests&action=list&page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                            <?php }?>
-                    </td>
+                    
                 </tr>
             </table>
 
@@ -65,7 +54,7 @@
 
         <input type="checkbox" id="menuTrigger"/>
         <div class="menu">
-            <h3>Quản Lý </h3>
+            <!-- <h3>Quản Lý </h3> -->
             <label for="menuTrigger" class="trigger">
             <div class="line"></div>
                 <div class="line"></div>
@@ -77,7 +66,7 @@
                 <li class="link"><a class="settings"href="?controller=user-tests&action=editpass">Đổi Mật Khẩu</a> </li>
             </ul>
         </div>
-        <div class="css-script-ads">
+      
        
             <div class="clear"></div>
         </div>

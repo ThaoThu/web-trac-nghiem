@@ -51,9 +51,8 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
+											
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
@@ -61,10 +60,11 @@
                                         <thead>
                                             <tr>
                                                 <th>Mã câu hỏi</th>
-                                                <th data-field="nd" data-editable="true">Nội Dung câu hỏi</th>
-                                                <th data-field="hphan" data-editable="true">Học phần</th>
-                                                <th data-field="mhoc" data-editable="true">Môn học</th>
-                                                <th data-field="action" >Cài Đặt</th> 
+                                                <th>Nội Dung câu hỏi</th>
+                                                <th>Học phần</th>
+                                                <th>Môn học</th>
+                                                <th>Trạng thái</th>
+                                                <th>Cài Đặt</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,12 +76,12 @@
                                                 $link_delete = '?controller=admin-question&action=delete&id=' . $row['ma_ch'];
                                                 
                                                 if($row['locked']==1){
-                                                    $img='<button class="ds-setting">Disabled</button>';
+                                                    $img='<button class="ds-setting">Khóa</button>';
                                                    
                                                     $link_delete ='#';
                                                 }
                                                 if($row['locked']==0) {
-                                                    $img='<button class="pd-setting">Active</button>';
+                                                    $img='<button class="pd-setting">Mở</button>';
                                                    
                                                 }
                                                 foreach($this->view['list_mon'] as $row1){
@@ -100,6 +100,7 @@
                                                         <td >' . substr($row['noi_dung_ch'], 0, 50).'...' . '</td>
                                                         <td>' . $ten_hp . '</td>
                                                         <td >' . $ten_mh. '</td>
+                                                        <td >' . $img. '</td>
                                                     
                                                         <td>
                                                             <a href='.$link.'><button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>

@@ -53,11 +53,11 @@ class MyMVC{
 
 
 //Khoa chuc nang phan quyen
-//        if(!$this->CheckAcl($controller,$action)){
-//            echo '<b>Ban khong co quyen su dung chuc nang nay</b>';
-// //
-//            exit();
-//        }
+    //     if(!$this->CheckAcl($controller,$action)){
+    //         echo '<b>Bạn không có quyền sử dụng chức năng này </b>';
+
+    //        exit();
+    //   }
 
 
         $controllerClass = $this->convertUpperActionAndControllerName($controller).'Controller';
@@ -117,12 +117,12 @@ class MyMVC{
 
         //check acl
 
-    //     if(in_array($str_check,$_SESSION['userLogin']['permission_allow'])){
-    //         return true;
-    //     }else
-    //         return false;
+       if(in_array($str_check,$_SESSION['userLogin']['permission_allow'])){
+           return true;
+        }else
+           return false;
 
-    }
+     }
 
     function convertUpperActionAndControllerName($string){
         $tmp = str_replace('-',' ',$string);

@@ -1,0 +1,109 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+// print_r($this->view);
+// echo '</pre>';
+?>
+        <div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Học sinh</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Danh sách thí sinh</h1>
+                                    <div class="add-product ">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Xuất</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã Thí sinh</th>
+                                                <th>Họ và Tên</th>
+                                                <th>Lớp</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Giới tính</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Điện thoại</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            foreach($this->view['list'] as $row){
+                                                foreach($this->view['list_class'] as $row1){
+                                                    if($row['ma_lp']===$row1['ma_lop']){
+                                                        $ten_lp = $row1['ten_lop'];
+                                                    }
+                                                }
+
+                                                //?controller=admin-group&action=edit&id=14
+                                                $link = '?controller=admin-student&action=edit&id='.$row['ma_ts'];
+                                                $link_delete = '?controller=admin-student&action=delete&id='.$row['ma_ts'];
+                                                $gt;
+                                                if($row['gioi_tinh']==0) $gt="Nam";else $gt="Nữ";
+                                                echo '
+                                                <tr>
+                                                    <td><b>'.$row['ma_ts'].'</b></td>
+                                                    
+                                                    <td >'.$row['ho_dem'].' '.$row['ten'].'</td>
+                                                    <td>'.$ten_lp.'</td>
+                                                    <td>'.substr($row['ngay_sinh'],0,10).'</td>
+                                                    <td >'.$gt.'</td>
+                                                    <td>'.$row['dia_chi'].'</td>
+                                                    <td>'.$row['dien_thoai'].'</td>
+                                                    
+                                                </tr>';
+
+                                            }
+
+                                            ?>
+                                       
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -3723,7 +3723,7 @@ div#sparklinehome canvas {
     background-color: #86bc42;
 }
 .footer-copyright-area {
-    background: #006DF0;
+  
 	padding: 20px 0px;
     text-align: center;
 }
@@ -4736,4 +4736,22 @@ margin-top:55px;
 }
 .err{
     color:red
+}
+.mr10{
+    margin-right: 20px;
+}
+.fixed-table-loading,#tawkchat-minified-wrapper{
+    display:none!important
+}
+.mt-80{
+margin-top:80px;
+}
+.green-text{
+    color:green;
+}
+.red-text{
+    color:red;
+}
+.blue-text{
+    color:blue!important;
 }

@@ -3,8 +3,8 @@
 class AdminKythiModel extends Model{
     public function loadList($params = null)
     {
-        $limit = $_admin_page_limit=6;
-        $sql = "SELECT * FROM kythi ORDER BY id_kt DESC LIMIT $params,$limit ";
+     
+        $sql = "SELECT * FROM kythi ORDER BY id_kt DESC ";
         $res = mysqli_query($this->conn, $sql);
         if($res === false){
             // có lỗi
@@ -100,6 +100,12 @@ class AdminKythiModel extends Model{
         }
 
         return $return_data;
+    }
+    public function updateTrangThai($id){
+  
+            $sql = "Update kythi set locked ='1' where id_kt = $id";
+            $res = mysqli_query($this->conn,$sql);
+      
     }
     
 

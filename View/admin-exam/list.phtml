@@ -51,41 +51,42 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
+											<option value="">Xuất</option>
 										</select>
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                                <th data-field="kythi" data-editable="true">Kỳ Thi</th>
-                                                <th data-field="mon" data-editable="true">Môn học</th>
-                                                <th data-field="sl" data-editable="true">Số lượng câu hỏi</th>
-                                                <th data-field="tong" data-editable="true">Tổng Điểm</th>
-                                                <th data-field="thoigian" data-editable="true">Thời Gian làm bài</th>
-                                                <th>Status</th>
-                                                <th data-field="action" >Cài Đặt</th> 
+                                                <th>STT</th>
+                                                <th >Kỳ Thi</th>
+                                                <th >Môn học</th>
+                                                <th >Số lượng câu hỏi</th>
+                                                <th >Tổng Điểm</th>
+                                                <th >Thời Gian làm bài</th>
+                                                <th>Trạng thái</th>
+                                                <th >Cài Đặt</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                         <?php
-                                      
+                                      $stt =0;
                                         $img_delete='';
                                         $img_edit='<img src="Public/backend/images/edit.png" />';
                                         if(isset($this->view['list'])){
                                             foreach($this->view['list'] as $row){
+                                                $stt ++;
                                                 $link = '?controller=admin-exam&action=edit&id='.$row['ma_dt'];
                                                 $link_delete = '?controller=admin-exam&action=delete&id='.$row['ma_dt'];
                                                 if($row['locked']==1){
-                                                    $img='<button class="ds-setting">Disabled</button>';
+                                                    $img='<button class="ds-setting">Khóa</button>';
                                                    
                                                     $link_delete ='#';
                                                 }
                                                 if($row['locked']==0) {
                                                   
-                                                    $img='<button class="pd-setting">Active</button>';
+                                                    $img='<button class="pd-setting">Mở</button>';
                                                    
                                                 }
                                                 foreach($this->view['list_mh'] as $row1){
@@ -101,13 +102,16 @@
                                                 echo '
                                                 <tr>
                                                     
+                                                    <td>'.$stt.'</td>
                                                     <td>'.$ten_kt.'</td>
                                                     <td>'.$ten_mh.'</td>
                                                     <td>'.$row['so_luong_cau_hoi'].'</td>
                                                     <td>'.$row['tong_diem'].'</td>
                                                     <td>'.$row['thoi_gian_lam_bai'].'</td>
                                                     <td>'.$img.'</td>
-                                                    <td><a href='.$link_delete.'><button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>
+                                                    <td>
+                                                    <a href='.$link.'><button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                    <a href='.$link_delete.'><button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a></td>
                                                 </tr>';
                                             }
                                         }

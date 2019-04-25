@@ -14,17 +14,14 @@ a.button{-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;font
 .green{color:#fff;background: #7dc44e;text-shadow:1px 1px #4c9021;}
 .red:hover{ background-color:#d96060;}
 .green:hover{ background-color:#69b736;}
+#panelwrap{width: 82%;
+    margin-left: 165px; background-color:#FFFFFF;-moz-border-radius:10px;-webkit-border-radius:10px;-khtml-border-radius:10px; border-radius:10px;border:6px #c0cdd2 solid;}
 
-#panelwrap{ margin:20px auto; background-color:#FFFFFF;
-    -moz-border-radius:10px;-webkit-border-radius:10px;
-    -khtml-border-radius:10px;
-    border-radius:10px;
-    /* border:6px #c0cdd2 solid; height: 93vh;} */
-}
 #panelwrap::after{
     content: '';
     clear: both;
 }
+.header{ width:100%; height:auto;}
 #loginpanelwrap{width:500px;
     padding: 50px 0;
     margin:120px auto auto auto; background-color:#FFFFFF;-moz-border-radius:10px;-webkit-border-radius:10px;-khtml-border-radius:10px; border-radius:10px;border:6px #c0cdd2 solid;}
@@ -65,6 +62,7 @@ input.form_submit{
 .loginform_input{width:350px;height:45px;padding:4px 4px 4px 15px; background-color:rgb(250, 255, 189); border:1px #90A9B7 solid; color:#000;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;}
 input.loginform_submit{background: #228ccd;
     color: #fff;
-    font-size: 20px;}
+    font-size: 20px; cursor: pointer;}
 
-
+   
+      

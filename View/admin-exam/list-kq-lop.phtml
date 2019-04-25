@@ -48,11 +48,10 @@
                             <div class="sparkline13-graph product-status-wrap">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
-                                        <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
-										</select>
+                                        <!-- <select class="form-control dt-tb">
+											<option value="">Xuất</option>
+										
+										</select> -->
                                     </div>
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
@@ -60,6 +59,7 @@
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Tên lớp</th>
+                                                <th>Danh Sách Kết Quả</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,11 +67,12 @@
                                         $stt = 0;
                                         foreach($this->view['list'] as $row){
                                             $stt++;
-                                            $link = '?controller=admin-class&action=edit&id='.$row['ma_lop'];
-                                            $link_delete = '?controller=admin-class&action=delete&id='.$row['ma_lop'];
+                                            $link = "?controller=admin-exam&action=xemketqua&id=".$row['ma_lop']."";
+
                                             echo '<tr>
                                                 <td>'.$stt.'</td>
-                                                <td><a href="?controller=admin-exam&action=xemketqua&id='.$row['ma_lop'].'">'.$row['ten_lop'].'</a></td>';
+                                                <td><a href="'.$link.'">'.$row['ten_lop'].'</a></td>
+                                                <td><a class="blue-text" href="'.$link.'">Xem</a></td>';
                                             
 
                                         }

@@ -40,7 +40,7 @@
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd mg-b-10">
-                                    <h1>Danh sách đề thi</h1>
+                                    <h1>Tạo bài thi</h1>
                                     <div class="add-product ">
                                        
                                     </div>
@@ -103,9 +103,9 @@
                                        
                                         </tbody>
                                     </table>
-                                    <div class="form_row mt-3">
-                                        <label>Lớp</label>
-                                        <select name="txt_ma_lp" style="" class="form_input">
+                                    <div class="form-group">
+                                        <label class=" require">Lớp</label>
+                                        <select  name="txt_ma_lp" style="" class="form-control require">
                                             <?php
                                             $ma_lp = isset($_POST['txt_ma_lp'])?$_POST['txt_ma_lp']:'';
                                             if(isset($this->view['list_class'])){
@@ -115,8 +115,12 @@
                                             }
                                             ?>
                                         </select>
-                                        <input type="submit" name = "btnSave" value="Lưu" class="btn-delete ">
                                     </div>
+                                    <div class="form-group">
+                                        <label class="require"> Tổng số đề  </label>
+                                        <input class="form-control" type="number" max="5" required name ="sl_bansao"/>
+                                    </div>
+                                    <input type="submit" style="margin:20px auto" name = "btnSave" value="Lưu" class="btn btn-primary waves-effect  waves-light">
                                     <p>
                                     <?php
                                     if(@$this->view['msg']!==null)

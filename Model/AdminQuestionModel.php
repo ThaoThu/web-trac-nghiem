@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 03/01/2018
- * Time: 9:16 CH
- */
+
 
 class AdminQuestionModel extends  Model
 {
@@ -14,7 +9,7 @@ class AdminQuestionModel extends  Model
     {
         // TODO: Implement loadList() method.
         $limit = $_admin_page_limit=9;
-        $sql = "SELECT * FROM cauhoi ORDER BY ma_ch ASC ";
+        $sql = "SELECT * FROM cauhoi ORDER BY ma_ch DESC ";
         // đoạn ORDER BY id ASC  dùng để sắp xếp theo cột ID tăng dần
         $res = mysqli_query($this->conn, $sql);
         if($res === false){
@@ -76,36 +71,42 @@ class AdminQuestionModel extends  Model
 
         return $return_data;
     }
-
+    
     public function Insert_CauHoi($params){
+        $sl = $params['sl'];
         $noi_dung_ch = $params['noi_dung_ch'];
         $id_hp = $params['id_hp'];
         $ma_mh = $params['ma_mh'];
-        $so_luong_dap_an = $params['so_luong_dap_an'];
+        $dap_an_dung = $params['dap_an_dung'];
         $noi_dung_dap_an = $params['noi_dung_dap_an'];
+        
         $dokho = $params['dokho'];
-        $sql = "INSERT INTO cauhoi (noi_dung_ch,id_hp,ma_mh,so_luong_dap_an,noi_dung_dap_an,dokho) VALUES ('$noi_dung_ch','$id_hp','$ma_mh','$so_luong_dap_an','$noi_dung_dap_an','$dokho')";
-        $res = mysqli_query($this->conn,$sql);
-        if($res ===false){
-            return "Lỗi INSERT1: ". mysqli_error($this->conn);
+        $sql ='';
+       for( $i = 1 ; $i<= $sl; $i++)
+       {
+        $serialize_cauhoi[$i] = serialize($noi_dung_dap_an[$i]);
+        $sql[$i] = "INSERT INTO cauhoi (noi_dung_ch,id_hp,ma_mh,noi_dung_dap_an,dap_an_dung,dokho) VALUES ('$noi_dung_ch[$i]','$id_hp[$i]','$ma_mh','$serialize_cauhoi[$i]','$dap_an_dung[$i]','$dokho[$i]')";
+        $res[$i] = mysqli_query($this->conn,$sql[$i]);
+        if($res[$i] ===false){
+            return "Lỗi INSERT: ". mysqli_error($this->conn);
         }
-        return true;
+       }
+    
+        
     }
 
     function Update_CauHoi($params){
+
         $id= $params['ma_ch'];
-        $noi_dung_ch = $params['noi_dung_ch'];
+        $noi_dung_ch = trim($params['noi_dung_ch']);
         $id_hp = $params['id_hp'];
-        $ma_mh = $params['ma_mh'];
-        $so_luong_dap_an = $params['so_luong_dap_an'];
-        $noi_dung_dap_an = $params['noi_dung_dap_an'];
         $dokho = $params['dokho'];
-        $khoa = $params['locked'];
-        $sql = "UPDATE cauhoi SET noi_dung_ch = '$noi_dung_ch',ma_mh='$ma_mh',id_hp='$id_hp',so_luong_dap_an='$so_luong_dap_an',noi_dung_dap_an='$noi_dung_dap_an',dokho='$dokho',locked='$khoa' WHERE ma_ch='$id' ";
-       
+        $noi_dung_dap_an = $params['noi_dung_dap_an'];
+        $dap_an_dung = $params['dap_an_dung'];
+        $sql = "UPDATE cauhoi SET noi_dung_ch = '$noi_dung_ch',id_hp='$id_hp',noi_dung_dap_an='$noi_dung_dap_an',dokho='$dokho',dap_an_dung='$dap_an_dung' WHERE ma_ch='$id' ";
         $res = mysqli_query($this->conn,$sql);
         if($res ===false){
-            return "Lỗi UPDATE: ". mysqli_error($this->conn);
+            return "Có lỗi xảy ra";
         }
         return true;
     }
@@ -161,4 +162,13 @@ class AdminQuestionModel extends  Model
                 return $data;
         
             }
+    public function updateTrangThai($id_ch_phu,$id_ch_chinh){
+       
+        $concat_arr = array_merge($id_ch_chinh,$id_ch_phu);
+       
+        foreach ($concat_arr as $row){
+            $sql = "Update cauhoi set locked ='1' where ma_ch = $row";
+            $res = mysqli_query($this->conn,$sql);
+        }
+    }
 }

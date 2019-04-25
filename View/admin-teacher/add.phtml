@@ -3,84 +3,114 @@
 // print_r($this->view);
 // echo '</pre>';
 ?>
-<div class="clear"></div>
-<div id="form_row">
-    <form action="" method="post" >
-        <div class="manager-nav">
-            <h2>
-                <i class="fas fa-users"></i> <a href="?controller=admin-teacher&action=list">Quản lý giáo viên</a> 
-                <span>
-                    <?php
-                    if(!empty($this->view['msg']['success'])){
-                     echo $this->view['msg']['success'];
-                    }
-                    ?>
-                </span>
-                <span class="manager-item"><input type="image" src="Public/imgs/download.png" alt="SUBMIT" name="btnSave" />Lưu</span>
-            </h2>
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                        <?php
+                                            if(!empty($this->view['msg']['success'])){
+                                            echo $this->view['msg']['success'];
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Giáo Viên</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="text-center">Thêm giáo viên</h2>
+                <form action="" method="post" > 
+                    <div class="col-xs-6">
+                        <div form-group">
+                            <label class= "require">Họ, Tên đệm</label>
+                            <input type="text" required class="form-control" name="txt_ho">
+                        </div>
+                        <div form-group">
+                            <label class= "require">Tên</label>
+                            <input type="text" required class="form-control" name="txt_ten" >           
+                        </div>
+                        <div form-group">
+                            <label class= "require">Ngày sinh</label>
+                            <input type="date" required class="form-control" name="txt_ns" >
+                        
+                        </div>
+                        <div form-group">
+                            <label class= "require">Địa chỉ</label>
+                            <input type="text" required class="form-control" name="txt_dia_chi" >
+
+                        </div>
+                        <div form-group">
+                            <label class= "require">Giới tính</label>
+                            <input type="radio" name="gioi_tinh" value="0" checked>Nam <input type="radio" name="gioi_tinh" value="1"> Nữ
+                        </div>
+                        
+                    </div>
+                    <div class="col-xs-6">
+                       
+                        <div form-group">
+                            <label class= "require">Điện thoại</label>
+                            <input type="text" required class="form-control" name="txt_dien_thoai" >
+                            <div class="err small_err">
+                                <?php echo isset($this->view['msg']['phone'])? $this->view['msg']['phone']:''   ?>
+                            </div>
+                        </div>
+                        <div form-group">
+                            <label class= "require">Mật Khẩu</label>
+                            <input type="password" required class="form-control" name="txt_passwd" >
+                            <div class="err small_err">
+                                <?php echo isset($this->view['msg']['pass'])? $this->view['msg']['pass']:''   ?>
+                            </div>
+                        </div>
+                        <div form-group">
+                            <label class= "require">Email</label>
+                            <input type="email" required class="form-control" name="txt_email" >
+                            <div class="err small_err">
+                                <?php echo isset($this->view['msg']['mail'])? $this->view['msg']['mail']:''   ?>
+                            </div>
+                        </div>
+                        <div form-group">
+                            
+                            <label class= "require">Môn</label>
+                            <select name="txt_ma_mh" class="form-control">    
+                                <?php
+                                if(isset($this->view['list_subject'])){
+                                    foreach ($this->view['list_subject'] as $row){
+                                        echo '<option  value="'.$row['ma_mh'].'" >'.$row['ten_mh'].'</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>   
+
+                    </div>
+                    <div class="col-lg-12">
+                    <div class="payment-adress mg-t-15 responsive-mg-t-0 mg-b-15">
+                        <button type="submit" class="btn btn-primary waves-effect waves-light" title="Lưu" name="btnSave">Lưu</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <fieldset class="fieldset _tk">
-            <legend>Thêm giáo viên</legend>
-            <div class="form_row taikhoan">
-                <label class= "require">Họ, Tên đệm</label>
-                <input type="text" required class="form_input small_input" name="txt_ho">
-            </div>
-
-            <div class="form_row taikhoan">
-                <label class= "require">Tên</label>
-                <input type="text" required class="form_input small_input" name="txt_ten" >           
-            </div>
-            <div class="form_row taikhoan">
-                <label class= "require">Ngày sinh</label>
-                <input type="date" required class="form_input small_input" name="txt_ns" >
-            
-            </div>
-            <div class="form_row taikhoan">
-                <label class= "require">Giới tính</label>
-                <input type="radio" name="gioi_tinh" value="0" checked>Nam<input type="radio" name="gioi_tinh" value="1">Nữ
-            </div>
-            <div class="form_row taikhoan">
-                <label class= "require">Địa chỉ</label>
-                <input type="text" required class="form_input small_input" name="txt_dia_chi" >
-
-            </div>
-            <div class="form_row taikhoan">
-                <label class= "require">Điện thoại</label>
-                <input type="text" required class="form_input small_input" name="txt_dien_thoai" >
-                <div class="err small_err">
-                    <?php echo isset($this->view['msg']['phone'])? $this->view['msg']['phone']:''   ?>
-                </div>
-            </div>
-            <div class="form_row taikhoan">
-                <input hidden type="text" class="form_input small_input" name="txt_ma_ts" value="<?php echo$this->view['data']['ma_ts'];?>">
-                <label class= "require">Môn</label>
-                <select name="txt_ma_mh" class="form_input small_input">    
-                    <?php
-                    if(isset($this->view['list_subject'])){
-                        foreach ($this->view['list_subject'] as $row){
-                            echo '<option  value="'.$row['ma_mh'].'" >'.$row['ten_mh'].'</option>';
-                        }
-                    }
-                    ?>
-                </select>
-            </div>     
-            <div class="form_row taikhoan">
-                <label class= "require">Mật Khẩu</label>
-                <input type="password" required class="form_input small_input" name="txt_passwd" >
-                <div class="err small_err">
-                    <?php echo isset($this->view['msg']['pass'])? $this->view['msg']['pass']:''   ?>
-                </div>
-            </div>
-            <div class="form_row taikhoan">
-                <label class= "require">Email</label>
-                <input type="email" required class="form_input small_input" name="txt_email" >
-                <div class="err small_err">
-                    <?php echo isset($this->view['msg']['mail'])? $this->view['msg']['mail']:''   ?>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-</div>
+    </div>
 
 
 

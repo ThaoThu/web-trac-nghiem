@@ -8,7 +8,7 @@ class AdminSubjectController extends Controller{
 
         if(is_array($list)){
             $this->view['list']  = $list;
-            $this->view['total_pages'] = $total_pages;
+           
             $this->view['msg'] = "Lay dl thanh cong!";
         }else{
             $this->view['msg'] = $list;

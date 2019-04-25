@@ -1,0 +1,167 @@
+<?php
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view);
+// echo '</pre>';
+// echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+//    print_r($this->view['list']['gioi']['count(baithi.ma_bt)']);
+// echo '</pre>';
+?>
+
+<div class="product-status mg-b-15 ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <input type ="hidden"  id="gioi" value = "<?php echo $this->view['list']['gioi']['count(baithi.ma_bt)']?>"/>
+                                            <input type ="hidden" id="kha" value = "<?php echo $this->view['list']['kha']['count(baithi.ma_bt)']?>"/>
+                                            <input type ="hidden"  id="tb" value = "<?php echo $this->view['list']['tb']['count(baithi.ma_bt)']?>"/>
+                                            <input type ="hidden"  id="fail" value = "<?php echo $this->view['list']['truot']['count(baithi.ma_bt)']?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Thống kê</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd mg-b-10">
+                                    <h1>Phân bố kết quả</h1>
+                                    <div class="add-product ">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph product-status-wrap">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar" ></div>
+                                    <div>
+                                        <div id="piechart" style="width: 900px; height: 500px;"></div>
+                                        <div class="container">
+                                            <canvas id="myChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" >
+    var gioi = parseInt(document.getElementById('gioi').value);
+    var kha = parseInt(document.getElementById('kha').value);
+    var tb = parseInt(document.getElementById('tb').value);
+    var fail = parseInt(document.getElementById('fail').value);
+   
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['level', 'persent'],
+          ['Giỏi (8.5-10)', gioi],
+          ['Khá(7-8)',      kha],
+          ['Trung Bình(4-6.75)',  tb],
+          ['Trượt(1-3.75)',  tb],
+         
+        ]);
+
+        var options = {
+          title: 'Kết quả kỳ thi'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script src="Public/Back-end/js/chartjs/dist/Chart.js"></script>
+    <script>
+    
+    
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        datasets:[{
+          label:'Population',
+          data:[
+            617594,
+            181045,
+            153060,
+            106519,
+            105162,
+            95072
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Largest Cities In Massachusetts',
+          fontSize:25
+        },
+        legend:{
+          display:true,
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
